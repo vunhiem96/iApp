@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="isLight"
+            type="Boolean" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/root_setting"
+        setViewBackgroundRoot="@{isLight}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f2f1f6">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tvAdvertisement"
+            android:fillViewport="true"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:id="@+id/ll_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="-5dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:src="@drawable/ic_back" />
+
+                    <TextView
+                        android:id="@+id/setting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:fontFamily="@font/font"
+                        android:text="@string/settingxl"
+                        android:textColor="@color/main_color"
+                        android:textSize="@dimen/_20sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/ads_all"
+                    setViewBackgroundZone="@{isLight}"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_85sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/background_white_radius"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:id="@+id/img_next"
+                        colorfilter="@{isLight}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/ic_next" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/font"
+                        android:gravity="center"
+                        android:text="Ad Sponsored"
+                        android:textColor="@color/main_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/card1"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:scaleType="fitXY"
+                        app:riv_corner_radius="@dimen/_8sdp" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/card2"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:scaleType="fitXY"
+                        app:riv_border_color="#d5d5d5"
+                        app:riv_border_width="0.5dp"
+                        app:riv_corner_radius="@dimen/_8sdp" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/card3"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_toEndOf="@id/card1"
+                        android:scaleType="fitXY"
+                        app:riv_corner_radius="@dimen/_8sdp" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/card4"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:layout_toEndOf="@id/card2"
+                        android:scaleType="fitXY"
+                        app:riv_border_color="#d5d5d5"
+                        app:riv_border_width="0.5dp"
+                        app:riv_corner_radius="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_ads1"
+                        setTextColor="@{isLight}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="@dimen/_5sdp"
+                        android:layout_toStartOf="@id/img_next"
+                        android:layout_toEndOf="@id/card3"
+                        android:fontFamily="@font/font"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="Download Full IOS App"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_14sdp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll1"
+                    setViewBackgroundZone="@{isLight}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/background_white_radius"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/iap_click"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/button_selector_light_top"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:id="@+id/img_next2"
+                            colorfilter="@{isLight}"
+                            android:layout_width="@dimen/_5sdp"
+                            android:layout_height="@dimen/_9sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:src="@drawable/ic_next" />
+
+                        <TextView
+                            android:id="@+id/text_pro"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginEnd="@dimen/_22sdp"
+                            android:fontFamily="@font/font"
+                            android:gravity="center_vertical"
+                            android:text="@string/rm_ads"
+                            android:textColor="@color/main_color"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/default_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/button_selector_light">
+
+                        <TextView
+                            android:id="@+id/tv_display"
+                            setTextColor="@{isLight}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:fontFamily="@font/font"
+                            android:text="@string/lightmode_comming_soon"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <RadioGroup
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/dark_on"
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:background="@drawable/yesno_delete"
+                                android:button="@null" />
+
+                            <TextView
+                                android:id="@+id/tv_dark"
+                                setTextColor="@{isLight}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_15sdp"
+                                android:fontFamily="@font/font"
+                                android:text="@string/dark"
+                                android:textColor="#000000" />
+
+                            <RadioButton
+                                android:id="@+id/light_on"
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:background="@drawable/yesno_delete"
+                                android:button="@null" />
+
+                            <TextView
+                                android:id="@+id/tv_light"
+                                setTextColor="@{isLight}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_15sdp"
+                                android:fontFamily="@font/font"
+                                android:text="@string/light"
+                                android:textColor="#000000" />
+
+                            <RadioButton
+                                android:id="@+id/auto_on"
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:background="@drawable/yesno_delete"
+                                android:button="@null" />
+
+                            <TextView
+                                android:id="@+id/tv_auto"
+                                setTextColor="@{isLight}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_15sdp"
+                                android:fontFamily="@font/font"
+                                android:text="@string/auto"
+                                android:textColor="#000000" />
+
+                        </RadioGroup>
+
+                        <View
+                            android:id="@+id/view5xx"
+                            setViewBackground="@{isLight}"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:background="#E2E2E3" />
+
+                        <View
+                            android:id="@+id/view5x"
+                            setViewBackground="@{isLight}"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:background="#E2E2E3" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/rlFull"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/button_selector_light">
+
+                        <com.suke.widget.SwitchButton
+                            android:id="@+id/checkFullDark"
+                            android:layout_width="@dimen/_42sdp"
+                            android:layout_height="@dimen/_26sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            visible="@{!isLight}"
+                            app:sb_background="#2B2B2C"
+                            app:sb_checked_color="#61c064"
+                            app:sb_show_indicator="false"
+                            app:sb_uncheck_color="#2B2B2C" />
+
+                        <com.suke.widget.SwitchButton
+                            android:id="@+id/checkFullLight"
+                            android:layout_width="@dimen/_42sdp"
+                            android:layout_height="@dimen/_26sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            app:sb_background="#e9e9eb"
+                            visible="@{isLight}"
+                            app:sb_checked_color="#67cd67"
+                            app:sb_show_indicator="false"
+                            app:sb_uncheck_color="#e9e9eb" />
+
+                        <TextView
+                            android:id="@+id/tvFull"
+                            setTextColor="@{isLight}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginEnd="@dimen/_60sdp"
+                            android:fontFamily="@font/font"
+                            android:text="@string/set_full_screen"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <View
+                            android:id="@+id/viewFull"
+                            setViewBackground="@{isLight}"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:background="#E2E2E3" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/make_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/button_selector_light"
+                        android:visibility="gone">
+
+                        <com.suke.widget.SwitchButton
+                            android:id="@+id/check_make_link_light"
+                            android:layout_width="@dimen/_42sdp"
+                            android:layout_height="@dimen/_23sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            app:sb_background="#e9e9eb"
+                            app:sb_show_indicator="false"
+                            app:sb_uncheck_color="#e9e9eb" />
+
+                        <com.suke.widget.SwitchButton
+                            android:id="@+id/check_make_link_dark"
+                            android:layout_width="@dimen/_42sdp"
+                            android:layout_height="@dimen/_23sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:visibility="gone"
+                            app:sb_background="#2B2B2C"
+                            app:sb_show_indicator="false"
+                            app:sb_uncheck_color="#2B2B2C" />
+
+                        <TextView
+                            android:id="@+id/tv_makelink"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginEnd="@dimen/_60sdp"
+                            android:fontFamily="@font/font"
+                            android:text="bật tắt 2"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <View
+                            android:id="@+id/viewmakeLink"
+                            setViewBackground="@{isLight}"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:background="#E2E2E3" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_hide_hint"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/button_selector_light"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tv_hide_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:fontFamily="@font/font"
+                            android:text="On off"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <com.suke.widget.SwitchButton
+                            android:id="@+id/check_hint_light"
+                            android:layout_width="@dimen/_42sdp"
+                            android:layout_height="@dimen/_26sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            app:sb_background="#e9e9eb"
+                            app:sb_checked_color="#67cd67"
+                            app:sb_show_indicator="false"
+                            app:sb_uncheck_color="#e9e9eb" />
+
+                        <com.suke.widget.SwitchButton
+                            android:id="@+id/check_hint_dark"
+                            android:layout_width="@dimen/_42sdp"
+                            android:layout_height="@dimen/_26sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:visibility="gone"
+                            app:sb_background="#2B2B2C"
+                            app:sb_checked_color="#61c064"
+                            app:sb_show_indicator="false"
+                            app:sb_uncheck_color="#2B2B2C" />
+
+                        <View
+                            android:id="@+id/viewhint"
+                            setViewBackground="@{isLight}"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:background="#E2E2E3" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/rate_app2"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/button_selector_light_bottom"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:id="@+id/img_next72"
+                            colorfilter="@{isLight}"
+                            android:layout_width="@dimen/_5sdp"
+                            android:layout_height="@dimen/_9sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:src="@drawable/ic_next" />
+
+                        <TextView
+                            android:id="@+id/tv_rate2"
+                            setTextColor="@{isLight}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:fontFamily="@font/font"
+                            android:text="@string/more_ios_app_from_us"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_12ssp" />
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll2"
+                    setViewBackgroundZone="@{isLight}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/background_white_radius"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/share"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/button_selector_light_top"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:id="@+id/img_next5"
+                            colorfilter="@{isLight}"
+                            android:layout_width="@dimen/_5sdp"
+                            android:layout_height="@dimen/_9sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:src="@drawable/ic_next" />
+
+                        <TextView
+                            android:id="@+id/tv_share_app"
+                            setTextColor="@{isLight}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:fontFamily="@font/font"
+                            android:text="@string/share_app"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <View
+                            android:id="@+id/view8"
+                            setViewBackground="@{isLight}"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:background="#E2E2E3" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_feedback"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/button_selector_light"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:id="@+id/img_next6"
+                            colorfilter="@{isLight}"
+                            android:layout_width="@dimen/_5sdp"
+                            android:layout_height="@dimen/_9sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:src="@drawable/ic_next" />
+
+                        <TextView
+                            android:id="@+id/tv_rate_us"
+                            setTextColor="@{isLight}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:fontFamily="@font/font"
+                            android:text="@string/feed_back"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <View
+                            android:id="@+id/view9"
+                            setViewBackground="@{isLight}"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:background="#E2E2E3" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/privacy_app"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/button_selector_light_bottom"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:id="@+id/img_next8"
+                            colorfilter="@{isLight}"
+                            android:layout_width="@dimen/_5sdp"
+                            android:layout_height="@dimen/_9sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:src="@drawable/ic_next" />
+
+
+                        <TextView
+                            android:id="@+id/tv_policy"
+                            setTextColor="@{isLight}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:fontFamily="@font/font"
+                            android:text="Privacy Policy"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_12ssp">
+
+                        </TextView>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_42sdp" />
+            </LinearLayout>
+
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/layoutAds"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginBottom="2dp"
+            android:background="#66BCBABA"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/font"
+                android:gravity="center"
+                android:text="Loading ads..." />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvAdvertisement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layoutAds"
+            android:background="#999C9B9B"
+            android:fontFamily="@font/font"
+            android:gravity="center"
+            android:paddingVertical="@dimen/_1sdp"
+            android:text="Advertisement"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="7dp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</layout>
+

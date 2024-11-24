@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isLight"
+            type="Boolean" />
+    </data>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_38sdp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/appIconImageView"
+            android:layout_width="@dimen/_23sdp"
+            app:riv_corner_radius="@dimen/_5sdp"
+            android:scaleType="fitXY"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_10sdp"
+          />
+
+        <TextView
+            android:id="@+id/appNameTextView"
+            setTextColor="@{isLight}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_45sdp"
+            android:fontFamily="@font/font"
+            android:text="@string/privacy_settings"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp" />
+
+        <ImageView
+            colorfilter="@{isLight}"
+            android:layout_width="@dimen/_5sdp"
+            android:layout_height="@dimen/_9sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:src="@drawable/ic_next" />
+
+        <View
+            android:id="@+id/viewBot"
+            setViewBackground="@{isLight}"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/_45sdp"
+            android:background="#E2E2E3" />
+    </RelativeLayout>
+</layout>

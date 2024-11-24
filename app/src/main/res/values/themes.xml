@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ISettings" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+         <item name="colorPrimary">@color/black</item>
+    </style>
+
+    <style name="Theme.ISettings" parent="Base.Theme.ISettings" />
+
+    <style name="Edittext" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#ed2727</item>
+        <item name="colorPrimaryDark">#ed2727</item>
+        <item name="colorAccent">@color/main_color</item>
+
+        <item name="colorControlHighlight">#99E4B645</item>
+
+    </style>
+</resources>

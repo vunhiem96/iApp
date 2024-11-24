@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="tranfarent">#00ffffff</color>
+    <color name="click_light">#4D757474</color>
+    <color name="click_light2">#4D949393</color>
+    <color name="cam">#FF9500</color>
+    <color name="xanh_la">#34C759</color>
+    <color name="nuoc_bien">#007AFF</color>
+    <color name="xam">#8E8E93</color>
+    <color name="mau_do">#FF0719</color>
+    <color name="mau_do_nhat">#F84F5B</color>
+    <color name="tim">#5756DE</color>
+    <color name="da_troi">#00AFEC</color>
+    <color name="main_color">#007AFF</color>
+    <color name="bg3">#212438</color>
+</resources>
