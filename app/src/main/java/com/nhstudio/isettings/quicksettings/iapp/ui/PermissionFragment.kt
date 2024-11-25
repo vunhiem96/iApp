@@ -10,12 +10,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
+import android.provider.Settings
 import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
@@ -40,23 +42,12 @@ import com.nhstudio.isettings.quicksettings.iapp.extension.haveInternet
 import com.nhstudio.isettings.quicksettings.iapp.extension.isTesting
 import com.nhstudio.isettings.quicksettings.iapp.extension.loadInterAd
 import com.nhstudio.isettings.quicksettings.iapp.extension.setFullScreen
+import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClick
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClickAlphaItemView
 
 
 class PermissionFragment : Fragment() {
-    val pickMedia =
-        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-            // Xử lý uri của ảnh được chọn ở đây
-            if (uri != null) {
-                // Hiển thị ảnh, upload, ...
-                context?.config!!.avatarUser = uri.toString()
-                context?.let { Glide.with(it).load(uri).into(binding.ivAvatar) }
 
-            } else {
-                // Người dùng không chọn ảnh
-
-            }
-        }
 
     private val binding by lazy { FragmentUserBinding.inflate(layoutInflater) }
     override fun onCreateView(
@@ -79,24 +70,63 @@ class PermissionFragment : Fragment() {
             if(darkMode){
              binding.rootUser.setBackgroundColor(Color.BLACK)
             }
+            rlOverlay.setPreventDoubleClick {
+                goToIntent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
+            }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                rlAllFile.setPreventDoubleClick {
+                    goToIntent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
+                }
+            } else {
+                rlAllFile.beGone()
+            }
+            rlHome.setPreventDoubleClick {
+                goToIntent(Settings.ACTION_HOME_SETTINGS)
+
+            }
+
+            rlDefaultApp.setPreventDoubleClick {
+                goToIntent(Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS)
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                rlAlarm.setPreventDoubleClick {
+                    goToIntent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
+                }
+            } else {
+                rlAlarm.beGone()
+            }
+
+            rlUnknown.setPreventDoubleClick {
+                goToIntent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES)
+            }
+
+            rlModifySystem.setPreventDoubleClick {
+                goToIntent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
+            }
+
+            rlNotification.setPreventDoubleClick {
+                goToIntent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS)
+            }
+
+        }
+    }
+
+    private fun goToIntent(intent: String) {
+        try {
+            canShowOpenAds = true
+            startActivity(Intent(intent))
+        } catch (e: Exception) {
+            Toast.makeText(
+                context,
+                getString(R.string.your_device_does_not_support_this_feature), Toast.LENGTH_LONG
+            ).show()
         }
     }
 
     private fun setOnClick() {
         binding.apply {
-            tvCancel.setPreventDoubleClickAlphaItemView {
-                if (loadInterAd && config!!.pu) {
-                    (activity as MainActivity).showDialogAd()
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        (activity as MainActivity).showInter()
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            findNavController().popBackStack()
-                        }, 110)
-                    }, 400)
-                } else {
-                    findNavController().popBackStack()
-                }
-            }
+
             rlTop.setPreventDoubleClickAlphaItemView {
                 if (loadInterAd && config!!.pu) {
                     (activity as MainActivity).showDialogAd()
@@ -110,88 +140,12 @@ class PermissionFragment : Fragment() {
                     findNavController().popBackStack()
                 }
             }
-            tvOk.setPreventDoubleClickAlphaItemView {
-                context?.config!!.nameUser = edtPasscode.text.toString()
-                context?.config!!.detailUser = edtRePasscode.text.toString()
-                if (loadInterAd && config!!.pu) {
-                    (activity as MainActivity).showDialogAd()
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        (activity as MainActivity).showInter()
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            findNavController().popBackStack()
-                        }, 110)
-                    }, 400)
-                } else {
-                    findNavController().popBackStack()
-                }
-            }
-            addAvatar.setPreventDoubleClickAlphaItemView {
-                requestPermissionLocation({},{})
-            }
-        }
-    }
-
-    private fun requestPermissionLocation(onGranted: () -> Unit, onDenied: () -> Unit) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
-                XXPermissions.with(requireContext())
-                    .permission(Permission.READ_EXTERNAL_STORAGE)
-                    .request(object : OnPermissionCallback {
-
-                        override fun onGranted(
-                            permissions: MutableList<String>,
-                            allGranted: Boolean
-                        ) {
-                            if (!allGranted) {
-                                onDenied.invoke()
-                                return
-                            }
-                            onGranted.invoke()
-                            try {
-                                val intent = Intent(
-                                    Intent.ACTION_PICK,
-                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-                                )
-                                startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE)
-                            } catch (_: Exception) {
-
-                            }
-                        }
-
-                        override fun onDenied(
-                            permissions: MutableList<String>,
-                            doNotAskAgain: Boolean
-                        ) {
-                            onDenied.invoke()
-                        }
-                    })
-
-            } else {
-                try {
-                    val intent =
-                        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE)
-                } catch (_: Exception) {
-
-                }
-            }
-
-        } else {
-
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
 
         }
     }
 
-    var REQUEST_CODE_PICK_IMAGE = 10001
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_PICK_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
-            val uri = data.data
-            context?.config!!.avatarUser = uri.toString()
-            context?.let { Glide.with(it).load(uri).into(binding.ivAvatar) }
-        }
-    }
+
+
 
 
     override fun onResume() {
@@ -245,7 +199,7 @@ class PermissionFragment : Fragment() {
             if (isTesting) {
                 mAdViewAdmob!!.adUnitId = "ca-app-pub-3940256099942544/6300978111"
             } else {
-                mAdViewAdmob!!.adUnitId = "ca-app-pub-9589105932398084/8278298542"
+                mAdViewAdmob!!.adUnitId = ""
             }
             mAdViewAdmob?.setBackgroundColor(Color.WHITE)
             val adRequest = AdRequest.Builder().build()

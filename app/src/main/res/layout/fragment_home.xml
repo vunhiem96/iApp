@@ -120,9 +120,9 @@
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/_10sdp"
                             android:background="@drawable/background_radius_8"
-                            android:backgroundTint="#8E8E93"
-                            android:padding="@dimen/_3sdp"
-                            android:src="@drawable/ic_settings" />
+                            android:backgroundTint="#5756de"
+                            android:padding="@dimen/_2sdp"
+                            android:src="@drawable/ic_app" />
 
                         <View
                             setViewBackground="@{isLight}"
@@ -139,7 +139,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/_45sdp"
                             android:fontFamily="@font/font"
-                            android:text="App permissions"
+                            android:text="All app"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -151,15 +151,16 @@
                         android:layout_height="@dimen/_38sdp"
                         android:background="@drawable/button_selector_light_bottom">
 
+
                         <ImageView
                             android:layout_width="@dimen/_23sdp"
                             android:layout_height="@dimen/_23sdp"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/_10sdp"
                             android:background="@drawable/background_radius_8"
-                            android:backgroundTint="@color/mau_do_nhat"
+                            android:backgroundTint="#8E8E93"
                             android:padding="@dimen/_3sdp"
-                            />
+                            android:src="@drawable/ic_settings" />
 
                         <TextView
                             setTextColor="@{isLight}"
@@ -168,7 +169,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/_45sdp"
                             android:fontFamily="@font/font"
-                            android:text="@string/system_application"
+                            android:text="App permissions"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -289,10 +290,27 @@
 
 
                 </LinearLayout>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <FrameLayout
+                        android:id="@+id/loadingView"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_200sdp">
+                        <ProgressBar
+                            android:indeterminateTint="@color/nuoc_bien"
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/_38sdp"
+                            android:layout_height="@dimen/_38sdp"/>
+                    </FrameLayout>
+
+
+                </FrameLayout>
+
 
                 <View
                     android:layout_width="match_parent"
@@ -302,6 +320,7 @@
 
 
         </androidx.core.widget.NestedScrollView>
+
 
 
     </RelativeLayout>

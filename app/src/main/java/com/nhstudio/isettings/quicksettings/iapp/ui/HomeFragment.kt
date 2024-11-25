@@ -87,15 +87,15 @@ class HomeFragment : Fragment() {
     private fun getAllApp() {
 
         LoadAppUtils.getAppsAll {
+            binding.loadingView.beGone()
+            defaultSortList.clear()
+            defaultSortList.addAll(it.sortedBy { item ->
+                if (checkSelect(item)) {
+                    -1
+                } else 1
+            })
 
-                defaultSortList.clear()
-                defaultSortList.addAll(it.sortedBy { item ->
-                    if (checkSelect(item)) {
-                        -1
-                    } else 1
-                })
-
-                Log.i("dasdasdasdasdasdasdsaasd", "$defaultSortList")
+            Log.i("dasdasdasdasdasdasdsaasd", "$defaultSortList")
             CoroutineScope(Dispatchers.IO).launch {
                 val groupedApps = groupAppsAlphabetically(
                     defaultSortList,
@@ -107,7 +107,13 @@ class HomeFragment : Fragment() {
                     apps.forEachIndexed { index, appInfo ->
                         val isFirst = index == 0
                         val isLast = index == apps.size - 1
-                        appListItems.add(AppListAdapter.AppListItem.AppItem(appInfo, isFirst = isFirst, isLast = isLast))
+                        appListItems.add(
+                            AppListAdapter.AppListItem.AppItem(
+                                appInfo,
+                                isFirst = isFirst,
+                                isLast = isLast
+                            )
+                        )
                     }
                 }
                 withContext(Dispatchers.Main) {
@@ -138,8 +144,22 @@ class HomeFragment : Fragment() {
         return listLockSelect.find { it == packageInfo.packageName } != null
     }
 
+    private fun goToIntent(intent: String) {
+        try {
+            canShowOpenAds = true
+            startActivity(Intent(intent))
+        } catch (e: Exception) {
+            Toast.makeText(
+                context,
+                getString(R.string.your_device_does_not_support_this_feature), Toast.LENGTH_LONG
+            ).show()
+        }
+    }
     private fun setOnClickListener() {
         binding.apply {
+            rlApp.setPreventDoubleClick {
+                goToIntent(Settings.ACTION_MANAGE_ALL_APPLICATIONS_SETTINGS)
+            }
             viewSearchNext.setPreventDoubleClick {
                 if (loadInterAd && config!!.pu) {
                     (activity as MainActivity).showDialogAd()
@@ -159,7 +179,7 @@ class HomeFragment : Fragment() {
 
             }
 
-            rlApp.setPreventDoubleClick {
+            rlDevelop.setPreventDoubleClick {
                 if (loadInterAd && config!!.pu) {
                     (activity as MainActivity).showDialogAd()
                     Handler(Looper.getMainLooper()).postDelayed({
