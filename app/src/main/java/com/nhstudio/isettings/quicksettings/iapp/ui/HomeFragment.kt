@@ -137,11 +137,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun getAllSystemApps(context: Context): List<ApplicationInfo> {
-        val packageManager = context.packageManager
-        val packages = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
-        return packages.filter { it.flags and ApplicationInfo.FLAG_SYSTEM != 0 }
-    }
+
 
     fun groupAppsAlphabetically(
         appList: List<ApplicationInfo>,
@@ -209,6 +205,24 @@ class HomeFragment : Fragment() {
                 } else {
                     if (findNavController().currentDestination!!.id == R.id.homeFragment) {
                         findNavController().navigate(R.id.action_homeFragment_to_userFragment)
+                    }
+                }
+
+            }
+            rlSystem.setPreventDoubleClick {
+                if (loadInterAd && config!!.pu) {
+                    (activity as MainActivity).showDialogAd()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        (activity as MainActivity).showInter()
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            if (findNavController().currentDestination!!.id == R.id.homeFragment) {
+                                findNavController().navigate(R.id.action_homeFragment_to_systemFragment)
+                            }
+                        }, 110)
+                    }, 400)
+                } else {
+                    if (findNavController().currentDestination!!.id == R.id.homeFragment) {
+                        findNavController().navigate(R.id.action_homeFragment_to_systemFragment)
                     }
                 }
 

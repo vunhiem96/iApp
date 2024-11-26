@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">App Manager</string>
+    <string name="app_name2">App Manager</string>
     <string name="searchs">Search</string>
     <string name="your_name">Your Name</string>
     <string name="your_gmail_account">Your gmail account</string>
@@ -182,6 +182,8 @@
     <string name="add_profile_picture">Add profile picture</string>
     <string name="back">Back</string>
     <string name="system_application">System application</string>
+    <string name="app_permissions">App permissions</string>
+    <string name="app_not_found">App not found</string>
 
 
 </resources>

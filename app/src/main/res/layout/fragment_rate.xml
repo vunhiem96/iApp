@@ -26,7 +26,7 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:fontFamily="@font/font"
-            android:text="@string/app_name"
+            android:text="@string/app_name2"
             android:textColor="@color/black"
             android:textSize="@dimen/_24ssp" />
 
@@ -80,6 +80,7 @@
                     android:layout_height="@dimen/_21sdp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_15sdp"
+                    android:src="@drawable/ic_home_ap"
                     app:tint="@color/main_color"  />
 
                 <View

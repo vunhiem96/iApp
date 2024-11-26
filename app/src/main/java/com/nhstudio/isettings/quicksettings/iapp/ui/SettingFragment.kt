@@ -234,14 +234,14 @@ class SettingFragment : Fragment() {
     fun Context.shareApp() {
         val linkApk =
             "https://play.google.com/store/apps/details?id=" + applicationContext!!.packageName
-        val appName = getString(R.string.app_name)
+        val appName = getString(R.string.app_name2)
         val sharingIntent = Intent(Intent.ACTION_SEND)
         sharingIntent.type = "text/plain"
         sharingIntent.run {
-            putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name))  // title
+            putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name2))  // title
             putExtra(
                 Intent.EXTRA_TEXT,
-                "Download app " + getString(R.string.app_name) + ": $linkApk"  // content
+                "Download app " + getString(R.string.app_name2) + ": $linkApk"  // content
             )
         }
         startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_via)))

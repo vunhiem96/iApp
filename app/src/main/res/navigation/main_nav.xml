@@ -33,6 +33,13 @@
             app:exitAnim="@anim/slide_out_left"
             android:id="@+id/action_homeFragment_to_userFragment"
             app:destination="@id/userFragment" />
+        <action
+            app:popExitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            android:id="@+id/action_homeFragment_to_systemFragment"
+            app:destination="@id/systemFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -80,6 +87,10 @@
         android:name="com.nhstudio.isettings.quicksettings.iapp.ui.PermissionFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/systemFragment"
+        android:name="com.nhstudio.isettings.quicksettings.iapp.ui.SystemFragment"
+        android:label="SystemFragment" />
 
 
 </navigation>

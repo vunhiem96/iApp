@@ -60,6 +60,7 @@ class PermissionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.isLight = !darkMode
         loadBannerAdmob()
         setOnClick()
         setupColor()
@@ -107,6 +108,10 @@ class PermissionFragment : Fragment() {
 
             rlNotification.setPreventDoubleClick {
                 goToIntent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS)
+            }
+
+            rlUsage.setPreventDoubleClick {
+                goToIntent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
             }
 
         }
@@ -199,7 +204,7 @@ class PermissionFragment : Fragment() {
             if (isTesting) {
                 mAdViewAdmob!!.adUnitId = "ca-app-pub-3940256099942544/6300978111"
             } else {
-                mAdViewAdmob!!.adUnitId = ""
+                mAdViewAdmob!!.adUnitId = "ca-app-pub-9589105932398084/2828828028"
             }
             mAdViewAdmob?.setBackgroundColor(Color.WHITE)
             val adRequest = AdRequest.Builder().build()

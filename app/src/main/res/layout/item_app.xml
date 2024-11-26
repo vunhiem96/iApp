@@ -11,7 +11,7 @@
     </data>
 
     <RelativeLayout
-        android:background="@color/white"
+        android:background="@drawable/bg_select_center_white"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_38sdp">
 
@@ -28,9 +28,13 @@
         <TextView
             android:id="@+id/appNameTextView"
             setTextColor="@{isLight}"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_toStartOf="@id/ivNext"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:maxLines="2"
+             android:ellipsize="end"
             android:layout_marginStart="@dimen/_45sdp"
             android:fontFamily="@font/font"
             android:text="@string/privacy_settings"
@@ -38,6 +42,7 @@
             android:textSize="@dimen/_12ssp" />
 
         <ImageView
+            android:id="@+id/ivNext"
             colorfilter="@{isLight}"
             android:layout_width="@dimen/_5sdp"
             android:layout_height="@dimen/_9sdp"

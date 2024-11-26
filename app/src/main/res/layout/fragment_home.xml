@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:fontFamily="@font/font"
-                    android:text="@string/app_name"
+                    android:text="@string/app_name2"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_22ssp"
                     android:textStyle="bold" />
@@ -146,6 +146,54 @@
 
                     </RelativeLayout>
                     <RelativeLayout
+                        android:id="@+id/rlSystem"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_38sdp"
+                        android:background="@drawable/button_selector_light">
+
+                        <ImageView
+                            android:layout_width="@dimen/_23sdp"
+                            android:layout_height="@dimen/_23sdp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:background="@drawable/background_radius_8"
+                            android:backgroundTint="#8E8E93"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/ic_settings" />
+
+                        <TextView
+                            android:id="@+id/tv5G"
+                            setTextColor="@{isLight}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_45sdp"
+                            android:fontFamily="@font/font"
+                            android:text="@string/system_application"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <ImageView
+                            android:id="@+id/ivNext5G"
+                            colorfilter="@{isLight}"
+                            android:layout_width="@dimen/_5sdp"
+                            android:layout_height="@dimen/_9sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:src="@drawable/ic_next" />
+
+
+                        <View
+                            android:id="@+id/view5G"
+                            setViewBackground="@{isLight}"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/_45sdp"
+                            android:background="#E2E2E3" />
+                    </RelativeLayout>
+                    <RelativeLayout
                         android:id="@+id/rlDevelop"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_38sdp"
@@ -169,7 +217,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/_45sdp"
                             android:fontFamily="@font/font"
-                            android:text="App permissions"
+                            android:text="@string/app_permissions"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -181,111 +229,6 @@
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="@dimen/_15sdp"
                             android:src="@drawable/ic_next" />
-                    </RelativeLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/rootZone8"
-                    setViewBackgroundZone="@{isLight}"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    android:background="@drawable/background_white_radius"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:id="@+id/rlPersonal"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_38sdp"
-                        android:background="@drawable/button_selector_light_top">
-
-                        <ImageView
-                            android:layout_width="@dimen/_23sdp"
-                            android:layout_height="@dimen/_23sdp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:background="@drawable/background_radius_8"
-                            android:backgroundTint="@color/xam"
-                            android:padding="@dimen/_3sdp"/>
-
-
-                        <TextView
-                            setTextColor="@{isLight}"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/_45sdp"
-                            android:fontFamily="@font/font"
-                            android:text="@string/personal_dictionary"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12ssp" />
-
-                        <ImageView
-
-                            colorfilter="@{isLight}"
-                            android:layout_width="@dimen/_5sdp"
-                            android:layout_height="@dimen/_9sdp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="@dimen/_15sdp"
-                            android:src="@drawable/ic_next" />
-
-                        <View
-                            setViewBackground="@{isLight}"
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginStart="@dimen/_45sdp"
-                            android:background="#E2E2E3" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/rlPrivate"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_38sdp"
-                        android:background="@drawable/button_selector_light">
-
-                        <ImageView
-                            android:layout_width="@dimen/_23sdp"
-                            android:layout_height="@dimen/_23sdp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:background="@drawable/background_radius_8"
-                            android:backgroundTint="@color/xam"
-                            android:padding="@dimen/_3sdp"
-                       />
-
-                        <TextView
-
-                            setTextColor="@{isLight}"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/_45sdp"
-                            android:fontFamily="@font/font"
-                            android:text="@string/privacy_settings"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12ssp" />
-
-                        <ImageView
-
-                            colorfilter="@{isLight}"
-                            android:layout_width="@dimen/_5sdp"
-                            android:layout_height="@dimen/_9sdp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="@dimen/_15sdp"
-                            android:src="@drawable/ic_next" />
-
-                        <View
-                            setViewBackground="@{isLight}"
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginStart="@dimen/_45sdp"
-                            android:background="#E2E2E3" />
                     </RelativeLayout>
 
 

@@ -1,5 +1,6 @@
 package com.nhstudio.isettings.quicksettings.iapp.adapter
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
@@ -19,6 +20,7 @@ import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.ItemAppBinding
 import com.nhstudio.iapp.appmanager.databinding.ItemLetterBinding
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
+import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClick
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClickAlphaItemView
 
@@ -78,21 +80,54 @@ class AppListAdapter(private val packageManager: PackageManager) :
             Glide.with(itemView.context).load(appInfo.loadIcon(packageManager))
                 .into(binding.appIconImageView)
             binding.appNameTextView.text = appItem.appInfo.loadLabel(packageManager)
-            binding.isLight = true
+            binding.isLight = !darkMode
             binding.apply {
+                if(darkMode){
+                    itemView.setBackgroundResource(R.drawable.bg_select_center_dark)
+                }
                 if (appItem.isFirst) {
-                    itemView.setBackgroundResource(R.drawable.background_white_top)
+                    if(darkMode){
+                        itemView.setBackgroundResource(R.drawable.bg_select_top_dark)
+                    } else {
+                        itemView.setBackgroundResource(R.drawable.bg_select_top_white)
+                    }
                 }
                 if (appItem.isLast) {
                     viewBot.beGone()
-                    itemView.setBackgroundResource(R.drawable.background_white_bot)
+                    if(darkMode){
+                        itemView.setBackgroundResource(R.drawable.bg_select_bot_dark)
+                    } else {
+                        itemView.setBackgroundResource(R.drawable.bg_select_bot_white)
+                    }
+
                     // ... (Tùy chỉnh giao diện cho phần tử cuối cùng)
                 }
                 if (appItem.isFirst && appItem.isLast) {
-                    itemView.setBackgroundResource(R.drawable.background_white_radius)
+                    if(darkMode){
+                        itemView.setBackgroundResource(R.drawable.bg_select_bot_white_one_dark)
+                    } else {
+                        itemView.setBackgroundResource(R.drawable.bg_select_bot_white_one)
+                    }
+
                 }
-                root.setPreventDoubleClickAlphaItemView {
+                root.setPreventDoubleClick {
                     openAppDetails(itemView.context,appInfo.packageName)
+                }
+                root.setOnLongClickListener {
+                    try {
+                        val intent = packageManager.getLaunchIntentForPackage(appInfo.packageName)
+                        if (intent != null) {
+                            itemView.context.startActivity(intent)
+                        } else {
+                            // App not found, handle the error (e.g., show a toast message)
+                            Toast.makeText( itemView.context,
+                                itemView.context.getString(R.string.app_not_found), Toast.LENGTH_SHORT).show()
+                        }
+                    } catch (e: ActivityNotFoundException) {
+                        Toast.makeText( itemView.context,
+                            itemView.context.getString(R.string.app_not_found), Toast.LENGTH_SHORT).show()
+                    }
+                    true
                 }
             }
 

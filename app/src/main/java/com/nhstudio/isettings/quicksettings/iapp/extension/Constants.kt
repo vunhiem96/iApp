@@ -11,7 +11,7 @@ const val PRODUCT_ID_FAKE = "removeadnosale"
 
 var darkMode = false
 var checkInter = false
-var isTesting = BuildConfig.DEBUG
+var isTesting = false
 var loadInterAd = false
 var showInterOk = false
 var initOpenAds = false

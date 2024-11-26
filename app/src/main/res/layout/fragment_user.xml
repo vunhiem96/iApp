@@ -372,7 +372,13 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/_15sdp"
                     android:src="@drawable/ic_next" />
-
+                <View
+                    setViewBackground="@{isLight}"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="@dimen/_45sdp"
+                    android:background="#E2E2E3" />
 
             </RelativeLayout>
             <RelativeLayout
@@ -425,7 +431,7 @@
 
 
             <RelativeLayout
-                android:id="@+id/rlAdd"
+                android:id="@+id/rlUsage"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_38sdp"
                 android:background="@drawable/button_selector_light_bottom">
@@ -438,22 +444,22 @@
                     android:background="@drawable/background_radius_8"
                     android:backgroundTint="@color/tim"
                     android:padding="@dimen/_3sdp"
-                   />
+                    android:src="@drawable/ic_settings" />
 
                 <TextView
-                    android:id="@+id/tvAdd"
+
                     setTextColor="@{isLight}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_45sdp"
                     android:fontFamily="@font/font"
-                    android:text="@string/add_account"
+                    android:text="@string/ACTION_USAGE_ACCESS_SETTINGS"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp" />
 
                 <ImageView
-                    android:id="@+id/ivAdd"
+
                     colorfilter="@{isLight}"
                     android:layout_width="@dimen/_5sdp"
                     android:layout_height="@dimen/_9sdp"

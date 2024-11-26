@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "87630387909",
-    "project_id": "isettings-72591",
-    "storage_bucket": "isettings-72591.firebasestorage.app"
+    "project_number": "607586958320",
+    "project_id": "iapp-af874",
+    "storage_bucket": "iapp-af874.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:87630387909:android:7439ba4d6ec41447352eac",
+        "mobilesdk_app_id": "1:607586958320:android:58146b2c419c53911e3b35",
         "android_client_info": {
           "package_name": "com.nhstudio.iapp.appmanager"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDXx4tgx6VO6uEhZhpw-te6daCxmfkLDxY"
+          "current_key": "AIzaSyDqX_D7gXmxu5Se6BZvXdt4Ds7EZd3jktg"
         }
       ],
       "services": {
