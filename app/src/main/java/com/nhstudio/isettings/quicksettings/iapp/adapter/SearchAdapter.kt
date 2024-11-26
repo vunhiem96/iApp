@@ -2,10 +2,14 @@ package com.nhstudio.isettings.quicksettings.iapp.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ApplicationInfo
+import android.net.Uri
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.ItemSearchBinding
 import com.nhstudio.isettings.quicksettings.iapp.data.SettingModel
@@ -15,7 +19,7 @@ import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClick
 
 class SearchAdapter(
     var context: Context,
-    var listImage: List<SettingModel>
+    var listImage: List<ApplicationInfo>
 ) : RecyclerView.Adapter<ImageViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val binding = ItemSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -31,14 +35,17 @@ class SearchAdapter(
         val viewBind = holder.binding
         holder.binding.isLight = !darkMode
         viewBind.apply {
-            tvPin.text = item.nameSetting
+            tvPin.text =  item.loadLabel(tvPin.context.packageManager)
+            Glide.with(tvPin.context).load(item.loadIcon(tvPin.context.packageManager))
+                .into(appIconImageView)
             root.setPreventDoubleClick {
                 try {
-                    context.startActivity(Intent(item.urlSetting))
-                } catch (e: Exception) {
-                    Toast.makeText(context,
-                        context.getString(R.string.your_device_does_not_support_this_feature), Toast.LENGTH_LONG
-                    ).show()
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    val uri = Uri.fromParts("package", item.packageName, null)
+                    intent.data = uri
+                    context.startActivity(intent)
+                } catch (_: Exception) {
+                    Toast.makeText(context, "An error occurred", Toast.LENGTH_SHORT).show()
                 }
             }
         }

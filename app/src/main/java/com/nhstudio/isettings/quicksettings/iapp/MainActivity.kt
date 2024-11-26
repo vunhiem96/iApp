@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity() {
 
     private var mInterstitialAdmob: com.google.android.gms.ads.interstitial.InterstitialAd? = null
 
-    var idAdmob = "ca-app-pub-9589105932398084/2088725917"
+    var idAdmob = ""
 
     private fun loadInterAdmob() {
         loadInterAd = false

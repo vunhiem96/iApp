@@ -85,21 +85,31 @@ class HomeFragment : Fragment() {
     }
 
     private fun getAllApp() {
+        if (defaultSortList.isEmpty()) {
+            LoadAppUtils.getAppsAll {
+            Log.i("dasdasdasdasdasdsa","vao1")
+                binding.loadingView.beGone()
+                defaultSortList.clear()
+                defaultSortList.addAll(it.sortedBy { item ->
+                    if (checkSelect(item)) {
+                        -1
+                    } else 1
+                })
+                initRvApp()
 
-        LoadAppUtils.getAppsAll {
-            binding.loadingView.beGone()
-            defaultSortList.clear()
-            defaultSortList.addAll(it.sortedBy { item ->
-                if (checkSelect(item)) {
-                    -1
-                } else 1
-            })
+            }
+        } else {
+            Log.i("dasdasdasdasdasdsa","vao2")
+//            initRvApp()
+        }
+    }
 
-            Log.i("dasdasdasdasdasdasdsaasd", "$defaultSortList")
-            CoroutineScope(Dispatchers.IO).launch {
+    private fun initRvApp() {
+        CoroutineScope(Dispatchers.IO).launch {
+            context?.let {
                 val groupedApps = groupAppsAlphabetically(
                     defaultSortList,
-                    packageManager = requireContext().packageManager
+                    packageManager = it.packageManager
                 )
                 val appListItems = mutableListOf<AppListAdapter.AppListItem>()
                 for ((letter, apps) in groupedApps) {
@@ -117,15 +127,20 @@ class HomeFragment : Fragment() {
                     }
                 }
                 withContext(Dispatchers.Main) {
-                    binding.recyclerView.adapter = AppListAdapter(requireContext().packageManager)
-                    binding.recyclerView.layoutManager = LinearLayoutManager(context)
+                    binding.recyclerView.adapter = AppListAdapter(it.packageManager)
+                    binding.recyclerView.layoutManager = LinearLayoutManager(it)
                     (binding.recyclerView.adapter as AppListAdapter).submitList(appListItems)
                 }
-
             }
 
 
         }
+    }
+
+    fun getAllSystemApps(context: Context): List<ApplicationInfo> {
+        val packageManager = context.packageManager
+        val packages = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
+        return packages.filter { it.flags and ApplicationInfo.FLAG_SYSTEM != 0 }
     }
 
     fun groupAppsAlphabetically(
@@ -155,6 +170,7 @@ class HomeFragment : Fragment() {
             ).show()
         }
     }
+
     private fun setOnClickListener() {
         binding.apply {
             rlApp.setPreventDoubleClick {

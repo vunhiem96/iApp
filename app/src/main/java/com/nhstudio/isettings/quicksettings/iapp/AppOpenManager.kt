@@ -21,7 +21,7 @@ class AppOpenManager(
     val onCloseOpenApp: () -> Unit,
     val onRecent: () -> Unit
 ) {
-    private val AD_UNIT_ID = "ca-app-pub-9589105932398084/3764208580"
+    private val AD_UNIT_ID = ""
     private val AD_UNIT_ID_DEBUG = "ca-app-pub-3940256099942544/9257395921"
     var appOpenAd: AppOpenAd? = null
     private var loadCallback: AppOpenAd.AppOpenAdLoadCallback? = null

@@ -9,6 +9,7 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -99,10 +100,14 @@ class AppListAdapter(private val packageManager: PackageManager) :
 //            binding.root.isSelected = appItem.isSelected
         }
         fun openAppDetails(context: Context, packageName: String) {
-            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-            val uri = Uri.fromParts("package", packageName, null)
-            intent.data = uri
-            context.startActivity(intent)
+            try {
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                val uri = Uri.fromParts("package", packageName, null)
+                intent.data = uri
+                context.startActivity(intent)
+            } catch (_: Exception) {
+              Toast.makeText(context,"An error occurred",Toast.LENGTH_SHORT).show()
+            }
         }
 
         companion object {

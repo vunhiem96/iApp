@@ -131,7 +131,7 @@ class RateFragment : Fragment() {
             if (isTesting) {
                 mAdViewAdmob!!.adUnitId = "ca-app-pub-3940256099942544/2014213617"
             } else {
-                mAdViewAdmob!!.adUnitId = "ca-app-pub-9589105932398084/8278298542"
+                mAdViewAdmob!!.adUnitId = ""
             }
             mAdViewAdmob?.setBackgroundColor(Color.WHITE)
             mAdViewAdmob!!.loadAd(adRequest)

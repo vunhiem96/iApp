@@ -27,6 +27,7 @@ import com.nhstudio.isettings.quicksettings.iapp.extension.canShowOpenAds
 import com.nhstudio.isettings.quicksettings.iapp.extension.checkInter
 import com.nhstudio.isettings.quicksettings.iapp.extension.config
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
+import com.nhstudio.isettings.quicksettings.iapp.extension.defaultSortList
 import com.nhstudio.isettings.quicksettings.iapp.extension.getListSetting
 import com.nhstudio.isettings.quicksettings.iapp.extension.haveInternet
 import com.nhstudio.isettings.quicksettings.iapp.extension.hideKeyboard
@@ -101,22 +102,26 @@ class SearchFragment : Fragment() {
             context?.let { ctx ->
                 editResult.doAfterTextChanged {
                     val text = it.toString()
-                    if(text.isNotEmpty()) {
-                        val listSearch =  getListSetting(ctx).filter { info ->
-                            info.nameSetting.lowercase(Locale.ROOT)
+                    if (text.isNotEmpty()) {
+                        val listSearch = defaultSortList.filter { info ->
+                            info.loadLabel(requireContext().packageManager).toString()
+                                .lowercase(Locale.ROOT)
                                 .contains(text.lowercase(Locale.ROOT))
                         }
-                        val adapter = SearchAdapter(ctx,listSearch)
+                        val adapter = SearchAdapter(ctx, listSearch)
                         binding.rvSearch.adapter = adapter
-                    } else{
+                    } else {
                         val adapter = SearchAdapter(ctx, arrayListOf())
                         binding.rvSearch.adapter = adapter
                     }
                 }
+                var listSearch = defaultSortList
+                if (defaultSortList.size > 5) {
+                    listSearch = defaultSortList.shuffled().take(5).toMutableList()
+                }
 
-                val listSearch = getListSetting(ctx).shuffled().take(5)
 
-                val adapter = SearchAdapter(ctx,listSearch)
+                val adapter = SearchAdapter(ctx, listSearch)
                 binding.rvSearch.adapter = adapter
             }
 
@@ -130,7 +135,8 @@ class SearchFragment : Fragment() {
 
     private val adSize: AdSize?
         get() {
-            val windowManager = requireContext().getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            val windowManager =
+                requireContext().getSystemService(Context.WINDOW_SERVICE) as WindowManager
             val display = windowManager.defaultDisplay
             val outMetrics = DisplayMetrics()
             display.getMetrics(outMetrics)
@@ -154,7 +160,7 @@ class SearchFragment : Fragment() {
 
     var mAdViewAdmob: AdView? = null
     private fun loadBannerAdmob() {
-        if (context?.config!!.pu && binding.layoutAds.haveInternet() ) {
+        if (context?.config!!.pu && binding.layoutAds.haveInternet()) {
 
             mAdViewAdmob = context?.let { AdView(it) }
 
@@ -172,7 +178,7 @@ class SearchFragment : Fragment() {
             if (isTesting) {
                 mAdViewAdmob!!.adUnitId = "ca-app-pub-3940256099942544/6300978111"
             } else {
-                mAdViewAdmob!!.adUnitId = "ca-app-pub-9589105932398084/8278298542"
+                mAdViewAdmob!!.adUnitId = ""
             }
             mAdViewAdmob?.setBackgroundColor(Color.WHITE)
             val adRequest = AdRequest.Builder().build()
