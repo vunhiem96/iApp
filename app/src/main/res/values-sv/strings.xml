@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Inställningar</string>
+    <string name="app_name2">App Manager</string>
     <string name="searchs">Sök</string>
     <string name="your_name">Ditt namn</string>
     <string name="your_gmail_account">Ditt Gmail-konto</string>
@@ -171,4 +171,9 @@
     <string name="im_sj_hp">Jag är så glad när du älskar den här applikationen. Vänligen uppgradera till pro-versionen för den bästa upplevelsen, samt hjälp oss med kostnaden att använda, tack så mycket</string>
     <string name="add_profile_picture">Lägg till profilbild</string>
     <string name="back">Tillbaka</string>
+    <string name="system_application">Systemapplikation</string>
+    <string name="app_permissions">Appbehörigheter</string>
+    <string name="app_not_found">Appen hittades inte</string>
+    <string name="app_not_found2">Tryck och håll ned för att starta applikationen</string>
+    <string name="app_not_found3">Ett fel uppstod</string>
 </resources>

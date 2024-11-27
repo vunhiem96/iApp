@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">설정</string>
+    <string name="app_name2">앱 관리자</string>
     <string name="searchs">검색</string>
     <string name="your_name">당신의 이름은</string>
     <string name="your_gmail_account">Gmail 계정</string>
@@ -171,4 +171,9 @@
     <string name="im_sj_hp">이 애플리케이션이 마음에 드셨다니 정말 기쁩니다. 최고의 경험을 위해 프로 버전으로 업그레이드하고 운영 비용도 마련해 주세요. 정말 감사합니다.</string>
     <string name="add_profile_picture">프로필 사진 추가</string>
     <string name="back">뒤로</string>
+    <string name="system_application">시스템 애플리케이션</string>
+    <string name="app_permissions">앱 권한</string>
+    <string name="app_not_found">앱을 찾을 수 없음</string>
+    <string name="app_not_found2">애플리케이션을 실행하려면 길게 누르세요.</string>
+    <string name="app_not_found3">오류가 발생했습니다.</string>
 </resources>

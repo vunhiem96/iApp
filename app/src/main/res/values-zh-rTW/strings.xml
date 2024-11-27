@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">設定</string>
+    <string name="app_name2">應用程式管理器</string>
     <string name="searchs">搜尋</string>
     <string name="your_name">你的名字</string>
     <string name="your_gmail_account">您的 Gmail 帳戶</string>
@@ -171,4 +171,9 @@
     <string name="im_sj_hp">當您喜歡這個應用程式時，我很高興。請升級到專業版以獲得最佳體驗，並幫助我們解決營運成本，非常感謝</string>
     <string name="add_profile_picture">新增個人資料圖片</string>
     <string name="back">返回</string>
+    <string name="system_application">系統應用程式</string>
+    <string name="app_permissions">應用程式權限</string>
+    <string name="app_not_found">找不到應用程式</string>
+    <string name="app_not_found2">按住可啟動應用程式</string>
+    <string name="app_not_found3">發生錯誤</string>
 </resources>

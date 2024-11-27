@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Einstellungen</string>
+    <string name="app_name2">App-Manager</string>
     <string name="searchs">Suchen</string>
     <string name="your_name">Ihr Name</string>
     <string name="your_gmail_account">Ihr Gmail-Konto</string>
@@ -171,4 +171,9 @@
     <string name="im_sj_hp">Ich freue mich sehr, wenn Ihnen diese Anwendung gefällt. Bitte aktualisieren Sie auf die Pro-Version, um das beste Erlebnis zu erzielen und uns bei den Betriebskosten zu helfen. Vielen Dank</string>
     <string name="add_profile_picture">Profilbild hinzufügen</string>
     <string name="back">Zurück</string>
+    <string name="system_application">Systemanwendung</string>
+    <string name="app_permissions">App-Berechtigungen</string>
+    <string name="app_not_found">App nicht gefunden</string>
+    <string name="app_not_found2">Gedrückt halten, um die Anwendung zu starten</string>
+    <string name="app_not_found3">Es ist ein Fehler aufgetreten</string>
 </resources>

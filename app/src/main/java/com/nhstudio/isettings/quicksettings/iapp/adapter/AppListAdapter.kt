@@ -111,6 +111,11 @@ class AppListAdapter(private val packageManager: PackageManager) :
 
                 }
                 root.setPreventDoubleClick {
+//                    if(itemView.context.config.showToast){
+//                        itemView.context.config.showToast = false
+//                        Toast.makeText( itemView.context,
+//                            itemView.context.getString(R.string.app_not_found2), Toast.LENGTH_LONG).show()
+//                    }
                     openAppDetails(itemView.context,appInfo.packageName)
                 }
                 root.setOnLongClickListener {

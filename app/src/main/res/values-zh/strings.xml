@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">设置</string>
+    <string name="app_name2">应用程序管理器</string>
     <string name="searchs">搜索</string>
     <string name="your_name">您的姓名</string>
     <string name="your_gmail_account">您的 gmail 帐户</string>
@@ -26,7 +25,6 @@
     <string name="vpn">VPN</string>
     <string name="display_and_brightness">显示和亮度</string>
     <string name="video_cast">视频广播</string>
-
     <string name="install_unknown_apps">安装未知应用</string>
     <string name="auto_rotate">自动旋转</string>
     <string name="add_account">添加帐户</string>
@@ -60,7 +58,6 @@
     <string name="no_star">请选择上面的星星为应用评分</string>
     <string name="do_you_want_to_exit">您要退出吗？</string>
     <string name="if_you_like_app_please_rate_5_star">如果您喜欢应用，请评分 5 星</string>
-
     <string name="dark">深色</string>
     <string name="light">浅色</string>
     <string name="auto">自动</string>
@@ -72,7 +69,6 @@
     <string name="more_ios_app_from_us">更多 iOS 应用</string>
     <string name="reset_upate">重启应用以更新</string>
     <string name="share_via">分享方式</string>
-
     <string name="date_settings">日期 &amp;时间</string>
     <string name="ACTION_ACCESSIBILITY_SETTINGS">辅助功能设置</string>
     <string name="ACTION_ADD_ACCOUNT">添加帐户</string>
@@ -133,15 +129,10 @@
     <string name="ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS">通知策略访问设置</string>
     <string name="ACTION_PRINT_SETTINGS">打印设置</string>
     <string name="ACTION_PRIVACY_SETTINGS">隐私设置</string>
-
-
-
-
     <string name="ACTION_QUICK_ACCESS_WALLET_SETTINGS">快速访问钱包设置</string>
     <string name="ACTION_QUICK_LAUNCH_SETTINGS">快速启动设置</string>
     <string name="ACTION_REQUEST_MANAGE_MEDIA">媒体文件权限设置</string>
     <string name="ACTION_REQUEST_SCHEDULE_EXACT_ALARM">精确闹钟安排设置</string>
-
     <string name="ACTION_REQUEST_SET_AUTOFILL_SERVICE">自动填充服务设置</string>
     <string name="ACTION_SEARCH_SETTINGS">搜索设置</string>
     <string name="ACTION_SECURITY_SETTINGS">安全设置</string>
@@ -168,8 +159,6 @@
     <string name="suggest">建议</string>
     <string name="signature">签名</string>
     <string name="your_information">您的信息</string>
-
-
     <string name="home">主页</string>
     <string name="loading_content">正在加载内容...</string>
     <string name="ad_show">将出现全屏广告</string>
@@ -180,4 +169,11 @@
     <string name="just_pay_one_time_only_and_use_forever">+只需支付一次即可永久使用</string>
     <string name="not_subscription_is_required_to_use">+无需订阅即可使用</string>
     <string name="im_sj_hp">当您喜欢这个应用程序时，我非常高兴。请升级到专业版以获得最佳体验，并帮助我们降低运营成本，非常感谢</string>
+    <string name="add_profile_picture">添加个人资料图片</string>
+    <string name="back">返回</string>
+    <string name="system_application">系统应用程序</string>
+    <string name="app_permissions">应用程序权限</string>
+    <string name="app_not_found">找不到应用程序</string>
+    <string name="app_not_found2">按住可启动应用程序</string>
+    <string name="app_not_found3">发生错误</string>
 </resources>

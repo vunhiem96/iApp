@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">設定</string>
+    <string name="app_name2">アプリマネージャー</string>
     <string name="searchs">検索</string>
     <string name="your_name">君の名は。</string>
     <string name="your_gmail_account">あなたのGmailアカウント</string>
@@ -171,4 +171,9 @@
     <string name="im_sj_hp">このアプリケーションを気に入っていただけてとてもうれしいです。最高のエクスペリエンスを得るためにプロバージョンにアップグレードしてください。また、運営コストを支援してください。ありがとうございました。</string>
     <string name="add_profile_picture">プロフィール写真を追加</string>
     <string name="back">戻る</string>
+    <string name="system_application">システムアプリケーション</string>
+    <string name="app_permissions">アプリの権限</string>
+    <string name="app_not_found">アプリが見つかりません</string>
+    <string name="app_not_found2">長押ししてアプリケーションを起動します</string>
+    <string name="app_not_found3">エラーが発生しました</string>
 </resources>

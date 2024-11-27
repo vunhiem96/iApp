@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"> Occasus</string>
+    <string name="app_name2"> app Procurator</string>
     <string name="searchs">Quaerere</string>
     <string name="your_name"> nomen tuum</string>
     <string name="your_gmail_account"> Gmail</string>
@@ -171,4 +171,9 @@
     <string name="im_sj_hp">Im tam felix cum hanc applicationem amas. Quaeso upgrade pro version ad optimam experientiam, tum adiuva nos ut sumptus ad operandum, gratias tibi tam.</string>
     <string name="add_profile_picture"> Add profile picture</string>
     <string name="back">Back</string>
+    <string name="system_application"> Ratio applicationis</string>
+    <string name="app_permissions"> App permissiones</string>
+    <string name="app_not_found"> App non inveni</string>
+    <string name="app_not_found2"> Press ac tenere ad applicationem ad launch</string>
+    <string name="app_not_found3"> Error occurrit</string>
 </resources>

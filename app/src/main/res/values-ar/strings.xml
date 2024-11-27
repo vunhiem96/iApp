@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">الإعدادات</string>
+    <string name="app_name2"> مدير التطبيقات</string>
     <string name="searchs">البحث</string>
     <string name="your_name">اسمك</string>
     <string name="your_gmail_account">حسابك في Gmail</string>
@@ -171,4 +171,9 @@
     <string name="im_sj_hp">أنا سعيد جدًا عندما تحب هذا التطبيق. يرجى الترقية إلى الإصدار الاحترافي للحصول على أفضل تجربة، وكذلك مساعدتنا في تحمل تكلفة التشغيل، شكرًا جزيلاً لك</string>
     <string name="add_profile_picture">إضافة صورة الملف الشخصي</string>
     <string name="back">العودة</string>
+    <string name="system_application">تطبيق النظام</string>
+    <string name="app_permissions">أذونات التطبيق</string>
+    <string name="app_not_found">لم يتم العثور على التطبيق</string>
+    <string name="app_not_found2">اضغط مع الاستمرار لتشغيل التطبيق</string>
+    <string name="app_not_found3">حدث خطأ</string>
 </resources>

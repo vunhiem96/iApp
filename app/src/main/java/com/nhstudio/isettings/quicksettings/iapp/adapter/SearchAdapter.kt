@@ -45,7 +45,8 @@ class SearchAdapter(
                     intent.data = uri
                     context.startActivity(intent)
                 } catch (_: Exception) {
-                    Toast.makeText(context, "An error occurred", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(tvPin.context,
+                        tvPin.context.getString(R.string.app_not_found3), Toast.LENGTH_LONG).show()
                 }
             }
         }

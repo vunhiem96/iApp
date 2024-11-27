@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ayarlar</string>
+    <string name="app_name2">Uygulama Yöneticisi</string>
     <string name="searchs">Ara</string>
     <string name="your_name">Adınız</string>
     <string name="your_gmail_account">Gmail hesabınız</string>
@@ -171,4 +171,9 @@
     <string name="im_sj_hp">Bu uygulamayı sevdiğinizde çok mutlu oluyorum. En iyi deneyim için lütfen pro sürümüne yükseltin, ayrıca işletme maliyetini karşılamamıza yardımcı olun, çok teşekkür ederim</string>
     <string name="add_profile_picture">Profil resmi ekle</string>
     <string name="back">Geri</string>
+    <string name="system_application">Sistem uygulaması</string>
+    <string name="app_permissions">Uygulama izinleri</string>
+    <string name="app_not_found">Uygulama bulunamadı</string>
+    <string name="app_not_found2">Uygulamayı başlatmak için basılı tutun</string>
+    <string name="app_not_found3">Bir hata oluştu</string>
 </resources>

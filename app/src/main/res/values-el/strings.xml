@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ρυθμίσεις</string>
+    <string name="app_name2">Διαχειριστής εφαρμογών</string>
     <string name="searchs">Αναζήτηση</string>
     <string name="your_name">Το όνομά σας</string>
     <string name="your_gmail_account">Ο λογαριασμός σας στο gmail</string>
@@ -171,4 +171,9 @@
     <string name="im_sj_hp">Είμαι τόσο χαρούμενος όταν αγαπάτε αυτήν την εφαρμογή. Κάντε αναβάθμιση στην έκδοση pro για την καλύτερη εμπειρία, καθώς και βοηθήστε μας να έχουμε το κόστος λειτουργίας, σας ευχαριστούμε πολύ</string>
     <string name="add_profile_picture">Προσθήκη φωτογραφίας προφίλ</string>
     <string name="back">Επιστροφή</string>
+    <string name="system_application">Εφαρμογή συστήματος</string>
+    <string name="app_permissions">Δικαιώματα εφαρμογής</string>
+    <string name="app_not_found">Η εφαρμογή δεν βρέθηκε</string>
+    <string name="app_not_found2">Πατήστε παρατεταμένα για να εκκινήσετε την εφαρμογή</string>
+    <string name="app_not_found3">Παρουσιάστηκε σφάλμα</string>
 </resources>

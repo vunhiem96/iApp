@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Quản lý app</string>
+    <string name="app_name2">Trình quản lý ứng dụng</string>
     <string name="searchs">Tìm kiếm</string>
     <string name="your_name">Tên của bạn</string>
     <string name="your_gmail_account">Tài khoản gmail của bạn</string>
@@ -171,4 +171,9 @@
     <string name="im_sj_hp">Tôi rất vui khi bạn thích ứng dụng này. Vui lòng nâng cấp lên phiên bản pro để có trải nghiệm tốt nhất, cũng như giúp chúng tôi có chi phí vận hành, cảm ơn bạn rất nhiều</string>
     <string name="add_profile_picture">Thêm ảnh hồ sơ</string>
     <string name="back">Quay lại</string>
+    <string name="system_application">Ứng dụng hệ thống</string>
+    <string name="app_permissions">Quyền ứng dụng</string>
+    <string name="app_not_found">Không tìm thấy ứng dụng</string>
+    <string name="app_not_found2">Nhấn và giữ để khởi chạy ứng dụng</string>
+    <string name="app_not_found3">Đã xảy ra lỗi</string>
 </resources>

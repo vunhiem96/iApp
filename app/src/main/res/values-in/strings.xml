@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pengaturan</string>
+    <string name="app_name2">Manajer Aplikasi</string>
     <string name="searchs">Pencarian</string>
     <string name="your_name">Nama Anda</string>
     <string name="your_gmail_account">Akun gmail Anda</string>
@@ -171,4 +171,9 @@
     <string name="im_sj_hp">Saya sangat senang saat Anda menyukai aplikasi ini. Harap tingkatkan ke versi pro untuk pengalaman terbaik, serta bantu kami menanggung biaya operasional, terima kasih banyak</string>
     <string name="add_profile_picture">Tambahkan gambar profil</string>
     <string name="back">Kembali</string>
+    <string name="system_application">Aplikasi sistem</string>
+    <string name="app_permissions">Izin aplikasi</string>
+    <string name="app_not_found">Aplikasi tidak ditemukan</string>
+    <string name="app_not_found2">Tekan dan tahan untuk meluncurkan aplikasi</string>
+    <string name="app_not_found3">Terjadi kesalahan</string>
 </resources>

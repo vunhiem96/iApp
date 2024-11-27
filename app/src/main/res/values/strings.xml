@@ -184,6 +184,8 @@
     <string name="system_application">System application</string>
     <string name="app_permissions">App permissions</string>
     <string name="app_not_found">App not found</string>
+    <string name="app_not_found2">Press and hold to launch the application</string>
+    <string name="app_not_found3">An error occurred</string>
 
 
 </resources>

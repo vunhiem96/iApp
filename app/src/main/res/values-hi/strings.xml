@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">सेटिंग्स</string>
+    <string name="app_name2"> ऐप मैनेजर</string>
     <string name="searchs">खोजें</string>
     <string name="your_name">आपका नाम</string>
     <string name="your_gmail_account">आपका जीमेल अकाउंट</string>
@@ -171,4 +171,9 @@
     <string name="im_sj_hp">जब आपको यह एप्लिकेशन पसंद आया तो मुझे बहुत खुशी हुई। सर्वोत्तम अनुभव के लिए कृपया प्रो संस्करण में अपग्रेड करें, साथ ही संचालन की लागत में भी हमारी मदद करें, बहुत-बहुत धन्यवाद</string>
     <string name="add_profile_picture">प्रोफ़ाइल चित्र जोड़ें</string>
     <string name="back">वापस</string>
+    <string name="system_application">सिस्टम एप्लीकेशन</string>
+    <string name="app_permissions">ऐप अनुमतियाँ</string>
+    <string name="app_not_found"> ऐप नहीं मिला</string>
+    <string name="app_not_found2">एप्लिकेशन लॉन्च करने के लिए दबाकर रखें</string>
+    <string name="app_not_found3">एक त्रुटि उत्पन्न हुई</string>
 </resources>

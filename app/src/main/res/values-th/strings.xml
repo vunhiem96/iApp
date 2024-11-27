@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">การตั้งค่า</string>
+    <string name="app_name2">ตัวจัดการแอพ</string>
     <string name="searchs">ค้นหา</string>
     <string name="your_name">ชื่อของคุณ</string>
     <string name="your_gmail_account">บัญชี Gmail ของคุณ</string>
@@ -171,4 +171,9 @@
     <string name="im_sj_hp">ฉันดีใจมากเมื่อคุณชอบแอปพลิเคชันนี้ โปรดอัปเกรดเป็นเวอร์ชันโปรเพื่อประสบการณ์ที่ดีที่สุด รวมทั้งช่วยให้เรามีค่าใช้จ่ายในการดำเนินการ ขอบคุณมาก</string>
     <string name="add_profile_picture">เพิ่มรูปโปรไฟล์</string>
     <string name="back">ย้อนกลับ</string>
+    <string name="system_application">แอปพลิเคชันระบบ</string>
+    <string name="app_permissions">สิทธิ์ของแอป</string>
+    <string name="app_not_found">ไม่พบแอป</string>
+    <string name="app_not_found2">กดค้างไว้เพื่อเปิดแอปพลิเคชัน</string>
+    <string name="app_not_found3">เกิดข้อผิดพลาด</string>
 </resources>

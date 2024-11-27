@@ -46,4 +46,9 @@ open class BaseConfig(val context: Context) {
         set(loadAd) = prefs.edit()
             .putBoolean("loadAd", loadAd).apply()
 
+    var showToast: Boolean
+        get() = prefs.getBoolean("showToast", true)
+        set(showToast) = prefs.edit()
+            .putBoolean("showToast", showToast).apply()
+
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Настройки</string>
+    <string name="app_name2">Менеджер приложений</string>
     <string name="searchs">Поиск</string>
     <string name="your_name">Ваше имя</string>
     <string name="your_gmail_account">Ваш аккаунт gmail</string>
@@ -171,4 +171,9 @@
     <string name="im_sj_hp">Я так счастлив, когда вам нравится это приложение. Пожалуйста, обновитесь до версии pro для лучшего опыта, а также помогите нам с расходами на эксплуатацию, спасибо вам большое</string>
     <string name="add_profile_picture">Добавить изображение профиля.</string>
     <string name="back">Назад</string>
+    <string name="system_application">Системное приложение</string>
+    <string name="app_permissions">Разрешения приложения.</string>
+    <string name="app_not_found">Приложение не найдено.</string>
+    <string name="app_not_found2">Нажмите и удерживайте, чтобы запустить приложение.</string>
+    <string name="app_not_found3">Произошла ошибка.</string>
 </resources>
