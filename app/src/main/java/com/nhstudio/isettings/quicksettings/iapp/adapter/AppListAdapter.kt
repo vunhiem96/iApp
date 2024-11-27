@@ -20,6 +20,8 @@ import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.ItemAppBinding
 import com.nhstudio.iapp.appmanager.databinding.ItemLetterBinding
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
+import com.nhstudio.isettings.quicksettings.iapp.extension.canShowOpenAds
+import com.nhstudio.isettings.quicksettings.iapp.extension.config
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClick
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClickAlphaItemView
@@ -111,11 +113,12 @@ class AppListAdapter(private val packageManager: PackageManager) :
 
                 }
                 root.setPreventDoubleClick {
-//                    if(itemView.context.config.showToast){
-//                        itemView.context.config.showToast = false
-//                        Toast.makeText( itemView.context,
-//                            itemView.context.getString(R.string.app_not_found2), Toast.LENGTH_LONG).show()
-//                    }
+                    canShowOpenAds = true
+                    if(itemView.context.config.showToast){
+                        itemView.context.config.showToast = false
+                        Toast.makeText( itemView.context,
+                            itemView.context.getString(R.string.app_not_found2), Toast.LENGTH_LONG).show()
+                    }
                     openAppDetails(itemView.context,appInfo.packageName)
                 }
                 root.setOnLongClickListener {

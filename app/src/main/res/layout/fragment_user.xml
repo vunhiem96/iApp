@@ -38,7 +38,7 @@
                 android:layout_toEndOf="@id/img_back"
                 android:fontFamily="@font/font"
                 android:gravity="center_vertical"
-                android:text="@string/back"
+                android:text="@string/app_permissions"
                 android:textColor="@color/main_color"
                 android:textSize="@dimen/_14sdp" />
 
