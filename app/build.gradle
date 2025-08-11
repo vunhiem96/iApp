@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace 'com.nhstudio.iapp.appmanager'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.nhstudio.iapp.appmanager"
         minSdk 26
-        targetSdk 34
+        targetSdk 35
         versionCode 1
         versionName "1.0.0"
 
@@ -96,13 +96,13 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.14.2'
     implementation 'com.github.getActivity:XXPermissions:20.0'
 
-    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+    implementation(platform("com.google.firebase:firebase-bom:34.1.0"))
     implementation("com.google.firebase:firebase-crashlytics")
     implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.android.gms:play-services-ads:23.3.0")
+    implementation("com.google.android.gms:play-services-ads:24.5.0")
 
     implementation 'com.google.android.ump:user-messaging-platform:2.1.0'
     implementation 'androidx.preference:preference:1.2.0'
 
-    implementation 'com.github.voliovietnam:LibIAP:1.2.0'
+    implementation 'com.github.voliovietnam:LibIAP:1.2.6'
 }

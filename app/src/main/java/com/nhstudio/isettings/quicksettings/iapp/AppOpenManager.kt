@@ -110,7 +110,6 @@ class AppOpenManager(
                     activity,
                     AD_UNIT_ID_DEBUG,
                     request,
-                    AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
                     loadCallback as AppOpenAd.AppOpenAdLoadCallback
                 )
             } else {
@@ -118,7 +117,6 @@ class AppOpenManager(
                     activity,
                     AD_UNIT_ID,
                     request,
-                    AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
                     loadCallback as AppOpenAd.AppOpenAdLoadCallback
                 )
             }

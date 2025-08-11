@@ -87,7 +87,6 @@ class HomeFragment : Fragment() {
     private fun getAllApp() {
         if (defaultSortList.isEmpty()) {
             LoadAppUtils.getAppsAll {
-            Log.i("dasdasdasdasdasdsa","vao1")
                 binding.loadingView.beGone()
                 defaultSortList.clear()
                 defaultSortList.addAll(it.sortedBy { item ->
@@ -99,12 +98,13 @@ class HomeFragment : Fragment() {
 
             }
         } else {
-            Log.i("dasdasdasdasdasdsa","vao2")
+
 //            initRvApp()
         }
     }
 
     private fun initRvApp() {
+        binding.isLight = !darkMode
         CoroutineScope(Dispatchers.IO).launch {
             context?.let {
                 val groupedApps = groupAppsAlphabetically(
@@ -144,7 +144,7 @@ class HomeFragment : Fragment() {
         packageManager: PackageManager
     ): Map<Char, List<ApplicationInfo>> {
         return appList.groupBy {
-            it.loadLabel(packageManager).toString().firstOrNull()?.toUpperCase() ?: '#'
+            it.loadLabel(packageManager).toString().firstOrNull()?.uppercaseChar() ?: '#'
         }
     }
 

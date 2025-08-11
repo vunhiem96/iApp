@@ -317,7 +317,7 @@ class RateFragment : Fragment() {
         canShowOpenAds = true
         if(!showInterOk){
             checkInter = true
-            Log.i("asdasdasdasasdsa","$checkInter")
+
         }
     }
 

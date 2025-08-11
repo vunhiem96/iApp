@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.Choreographer
+import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.iaplibrary.IapConnector
@@ -46,10 +48,34 @@ class MainActivity : AppCompatActivity() {
 //            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
 //            insets
 //        }
-        setUpAds()
-        getIAP()
+        runWhenFirstFrameDrawn{
+            setUpAds()
+            getIAP()
+        }
+
     }
 
+    fun runWhenFirstFrameDrawn(onDrawn: () -> Unit) {
+        val rootView = window.decorView
+        val handler = Handler(Looper.getMainLooper())
+        var isCalled = false
+
+        val drawListener = object : ViewTreeObserver.OnDrawListener {
+            override fun onDraw() {
+                if (isCalled) return
+                isCalled = true
+
+                handler.post {
+                    Choreographer.getInstance().postFrameCallback {
+                        rootView.viewTreeObserver.takeIf { it.isAlive }?.removeOnDrawListener(this)
+                        onDrawn()
+                    }
+                }
+            }
+        }
+
+        rootView.viewTreeObserver.addOnDrawListener(drawListener)
+    }
 
     fun showDialogAd() {
         if (mInterstitialAdmob != null && config.pu && loadInterAd) {
@@ -221,7 +247,7 @@ class MainActivity : AppCompatActivity() {
     private fun getIAP() {
         IapConnector.listPurchased.observe(this) {
             val data = IapConnector.getAllProductModel()
-            Log.i("dasdasdasdasdasadasdsa","$data")
+
             data.forEach { product ->
                 if (product.productId == PRODUCT_ID) {
                     priceString = product.inAppDetails?.formattedPrice.toString()

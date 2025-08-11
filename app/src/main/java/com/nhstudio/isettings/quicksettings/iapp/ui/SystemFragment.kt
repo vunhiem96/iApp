@@ -101,7 +101,7 @@ class SystemFragment : Fragment() {
         packageManager: PackageManager
     ): Map<Char, List<ApplicationInfo>> {
         return appList.groupBy {
-            it.loadLabel(packageManager).toString().firstOrNull()?.toUpperCase() ?: '#'
+            it.loadLabel(packageManager).toString().firstOrNull()?.uppercaseChar() ?: '#'
         }
     }
     var defaultSortList: MutableList<ApplicationInfo> = mutableListOf()

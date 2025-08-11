@@ -3,6 +3,8 @@
     <style name="Base.Theme.ISettings" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
          <item name="colorPrimary">@color/black</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:ignore="NewApi">true</item>
+
     </style>
 
     <style name="Theme.ISettings" parent="Base.Theme.ISettings" />

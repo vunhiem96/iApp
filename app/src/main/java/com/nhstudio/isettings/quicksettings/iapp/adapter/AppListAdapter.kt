@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.provider.Settings
 import android.view.LayoutInflater
@@ -19,12 +20,15 @@ import com.bumptech.glide.Glide
 import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.ItemAppBinding
 import com.nhstudio.iapp.appmanager.databinding.ItemLetterBinding
+import com.nhstudio.isettings.quicksettings.iapp.extension.applyColorFilter
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
 import com.nhstudio.isettings.quicksettings.iapp.extension.canShowOpenAds
 import com.nhstudio.isettings.quicksettings.iapp.extension.config
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClick
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClickAlphaItemView
+import com.nhstudio.isettings.quicksettings.iapp.extension.setTextColor
+import androidx.core.graphics.toColorInt
 
 class AppListAdapter(private val packageManager: PackageManager) :
     ListAdapter<AppListAdapter.AppListItem, RecyclerView.ViewHolder>(DiffCallback()) {
@@ -77,6 +81,15 @@ class AppListAdapter(private val packageManager: PackageManager) :
         private val binding: ItemAppBinding,
         private val packageManager: PackageManager
     ) : RecyclerView.ViewHolder(binding.root) {
+        init {
+            if(darkMode){
+                binding.apply {
+                    appNameTextView.setTextColor(Color.WHITE)
+                    ivNext.applyColorFilter("#545456".toColorInt())
+                    viewBot.setBackgroundColor("#3D3D41".toColorInt())
+                }
+            }
+        }
 
         fun bind(appInfo: ApplicationInfo, appItem: AppListItem.AppItem) {
             Glide.with(itemView.context).load(appInfo.loadIcon(packageManager))

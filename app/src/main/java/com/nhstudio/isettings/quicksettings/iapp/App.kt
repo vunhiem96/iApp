@@ -9,6 +9,6 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         LoadAppUtils.init(this)
-        IapConnector.initIap(this, "iap_id.json",10000L, BuildConfig.DEBUG)
+        IapConnector.initIap(this, "iap_id.json",15000L, BuildConfig.DEBUG){}
     }
 }

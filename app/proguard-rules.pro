@@ -32,3 +32,6 @@
 -keep class com.google.android.gms.internal.ads.** { *; }
 
 -keep class com.google.android.gms.internal.consent_sdk.** { <fields>; }
+
+-dontwarn android.media.LoudnessCodecController$OnLoudnessCodecUpdateListener
+-dontwarn android.media.LoudnessCodecController

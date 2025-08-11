@@ -27,7 +27,6 @@
 
         <TextView
             android:id="@+id/appNameTextView"
-            setTextColor="@{isLight}"
             android:layout_width="match_parent"
             android:layout_toStartOf="@id/ivNext"
             android:layout_height="wrap_content"
@@ -43,7 +42,6 @@
 
         <ImageView
             android:id="@+id/ivNext"
-            colorfilter="@{isLight}"
             android:layout_width="@dimen/_5sdp"
             android:layout_height="@dimen/_9sdp"
             android:layout_alignParentEnd="true"
@@ -53,7 +51,6 @@
 
         <View
             android:id="@+id/viewBot"
-            setViewBackground="@{isLight}"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_alignParentBottom="true"
