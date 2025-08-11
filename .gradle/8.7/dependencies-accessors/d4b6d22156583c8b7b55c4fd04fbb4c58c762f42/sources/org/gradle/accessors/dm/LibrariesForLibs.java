@@ -259,7 +259,7 @@ public class LibrariesForLibs extends AbstractExternalDependencyFactory {
         public Provider<String> getJunitVersion() { return getVersion("junitVersion"); }
 
         /**
-         * Version alias <b>kotlin</b> with value <b>1.9.0</b>
+         * Version alias <b>kotlin</b> with value <b>2.1.0</b>
          * <p>
          * If the version is a rich version and cannot be represented as a
          * single version string, an empty string is returned.
