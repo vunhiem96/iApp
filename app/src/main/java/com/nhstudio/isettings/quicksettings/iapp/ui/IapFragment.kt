@@ -11,10 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.iaplibrary.IapConnector
+import com.example.iaplibrary.IapConnectorV2
 import com.example.iaplibrary.SubscribeInterface
 import com.example.iaplibrary.model.IapModel
 import com.nhstudio.iapp.appmanager.R
+import com.nhstudio.iapp.appmanager.databinding.FragmentBigIconBinding
 import com.nhstudio.iapp.appmanager.databinding.FragmentRemoveAdBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.extension.PRODUCT_ID
@@ -32,12 +33,17 @@ import kotlinx.coroutines.launch
 
 
 class IapFragment : Fragment() {
-    private lateinit var binding: FragmentRemoveAdBinding
+//    private lateinit var binding: FragmentRemoveAdBinding
+
+    private var _binding: FragmentRemoveAdBinding? = null
+    private val binding get() = _binding!!
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentRemoveAdBinding.inflate(inflater, container, false)
+        _binding = FragmentRemoveAdBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -52,9 +58,9 @@ class IapFragment : Fragment() {
     private fun getIap() {
         binding.pricePiap.text = priceString
         binding.pricePiapFake.text = priceStringFake
-        IapConnector.addIAPListener(iapListener)
-        IapConnector.listPurchased.observe(viewLifecycleOwner) {
-            val data = IapConnector.getAllProductModel()
+        IapConnectorV2.addIAPListener(iapListener)
+        IapConnectorV2.listPurchased.observe(viewLifecycleOwner) {
+            val data = IapConnectorV2.getAllProductModel()
             data.forEach { product ->
                 if (product.productId == PRODUCT_ID) {
                     priceString = product.inAppDetails?.formattedPrice.toString()
@@ -72,6 +78,11 @@ class IapFragment : Fragment() {
         }
 
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     fun buyIAP() {
@@ -93,6 +104,10 @@ class IapFragment : Fragment() {
     }
 
     val iapListener = object : SubscribeInterface {
+        override fun subscribeError(code: Int, error: String) {
+
+        }
+
         override fun subscribeSuccess(productModel: IapModel) {
             CoroutineScope(Dispatchers.Main).launch {
                 config?.pu = false
@@ -114,12 +129,7 @@ class IapFragment : Fragment() {
             }
         }
 
-        override fun subscribeError(error: String) {
-            if (error != "") {
 
-                //  Toast.makeText(this@MainActivity, "Purchase failed", Toast.LENGTH_LONG).show()
-            }
-        }
 
     }
 

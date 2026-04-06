@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.nhstudio.iapp.appmanager.R
+import com.nhstudio.iapp.appmanager.databinding.FragmentSearchBinding
 import com.nhstudio.iapp.appmanager.databinding.FragmentSettingBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.dialog.ConfirmationDialog
@@ -31,12 +32,18 @@ import java.util.Calendar
 
 
 class SettingFragment : Fragment() {
-    private val binding by lazy { FragmentSettingBinding.inflate(layoutInflater) }
+//    private val binding by lazy { FragmentSettingBinding.inflate(layoutInflater) }
+
+    private var _binding: FragmentSettingBinding? = null
+    private val binding get() = _binding!!
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        _binding = FragmentSettingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -61,6 +68,12 @@ class SettingFragment : Fragment() {
             }
         }
 
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun loadImage() {

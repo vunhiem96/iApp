@@ -8,7 +8,7 @@ import android.view.Choreographer
 import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.iaplibrary.IapConnector
+import com.example.iaplibrary.IapConnectorV2
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
@@ -240,13 +240,13 @@ class MainActivity : AppCompatActivity() {
     }
     fun resetIAP() {
         if (BuildConfig.DEBUG) {
-            IapConnector.resetIap(this)
+            IapConnectorV2.resetIap(this)
         }
     }
 
     private fun getIAP() {
-        IapConnector.listPurchased.observe(this) {
-            val data = IapConnector.getAllProductModel()
+        IapConnectorV2.listPurchased.observe(this) {
+            val data = IapConnectorV2.getAllProductModel()
 
             data.forEach { product ->
                 if (product.productId == PRODUCT_ID) {
@@ -266,7 +266,7 @@ class MainActivity : AppCompatActivity() {
 
     fun buyIAP() {
         try {
-            IapConnector.buyIap(this, PRODUCT_ID)
+            IapConnectorV2.buyIap(this, PRODUCT_ID)
         } catch (e: Exception) {
             Toast.makeText(this, "Try again", Toast.LENGTH_SHORT).show()
         }

@@ -35,3 +35,37 @@
 
 -dontwarn android.media.LoudnessCodecController$OnLoudnessCodecUpdateListener
 -dontwarn android.media.LoudnessCodecController
+
+-dontwarn com.android.billingclient.api.AcknowledgePurchaseParams$Builder
+-dontwarn com.android.billingclient.api.AcknowledgePurchaseParams
+-dontwarn com.android.billingclient.api.AcknowledgePurchaseResponseListener
+-dontwarn com.android.billingclient.api.BillingClient$Builder
+-dontwarn com.android.billingclient.api.BillingClient
+-dontwarn com.android.billingclient.api.BillingClientKotlinKt
+-dontwarn com.android.billingclient.api.BillingClientStateListener
+-dontwarn com.android.billingclient.api.BillingFlowParams$Builder
+-dontwarn com.android.billingclient.api.BillingFlowParams$ProductDetailsParams$Builder
+-dontwarn com.android.billingclient.api.BillingFlowParams$ProductDetailsParams
+-dontwarn com.android.billingclient.api.BillingFlowParams
+-dontwarn com.android.billingclient.api.BillingResult$Builder
+-dontwarn com.android.billingclient.api.BillingResult
+-dontwarn com.android.billingclient.api.ConsumeParams$Builder
+-dontwarn com.android.billingclient.api.ConsumeParams
+-dontwarn com.android.billingclient.api.ConsumeResult
+-dontwarn com.android.billingclient.api.ProductDetails$OneTimePurchaseOfferDetails
+-dontwarn com.android.billingclient.api.ProductDetails$PricingPhase
+-dontwarn com.android.billingclient.api.ProductDetails$PricingPhases
+-dontwarn com.android.billingclient.api.ProductDetails$SubscriptionOfferDetails
+-dontwarn com.android.billingclient.api.ProductDetails
+-dontwarn com.android.billingclient.api.ProductDetailsResult
+-dontwarn com.android.billingclient.api.Purchase
+-dontwarn com.android.billingclient.api.PurchasesResult
+-dontwarn com.android.billingclient.api.PurchasesUpdatedListener
+-dontwarn com.android.billingclient.api.QueryProductDetailsParams$Builder
+-dontwarn com.android.billingclient.api.QueryProductDetailsParams$Product$Builder
+-dontwarn com.android.billingclient.api.QueryProductDetailsParams$Product
+-dontwarn com.android.billingclient.api.QueryProductDetailsParams
+-dontwarn com.android.billingclient.api.QueryPurchasesParams$Builder
+-dontwarn com.android.billingclient.api.QueryPurchasesParams
+-dontwarn com.google.gson.Gson
+-dontwarn com.google.gson.annotations.SerializedName

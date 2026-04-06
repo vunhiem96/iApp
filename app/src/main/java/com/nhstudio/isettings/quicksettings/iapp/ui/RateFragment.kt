@@ -29,7 +29,9 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.nhstudio.iapp.appmanager.R
+import com.nhstudio.iapp.appmanager.databinding.FragmentBigIconBinding
 import com.nhstudio.iapp.appmanager.databinding.FragmentRateBinding
+import com.nhstudio.iapp.appmanager.databinding.FragmentUserBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
 import com.nhstudio.isettings.quicksettings.iapp.extension.beInvisible
@@ -53,7 +55,11 @@ import kotlin.system.exitProcess
 
 class RateFragment : Fragment() {
 
-    private val binding by lazy { FragmentRateBinding.inflate(layoutInflater) }
+//    private val binding by lazy { FragmentRateBinding.inflate(layoutInflater) }
+
+    private var _binding: FragmentRateBinding? = null
+    private val binding get() = _binding!!
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,8 +69,9 @@ class RateFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
+        _binding = FragmentRateBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -79,6 +86,8 @@ class RateFragment : Fragment() {
         loadBannerAdmob()
 
     }
+
+
 
 
     private val adSize: AdSize?
@@ -174,6 +183,7 @@ class RateFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         mAdViewAdmob?.destroy()
+        _binding = null
     }
     private fun setOnClick() {
         binding.apply {

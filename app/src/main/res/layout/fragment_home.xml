@@ -146,6 +146,54 @@
 
                     </RelativeLayout>
                     <RelativeLayout
+                        android:id="@+id/rlZoom"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_38sdp"
+                        android:background="@drawable/button_selector_light">
+
+                        <ImageView
+                            android:layout_width="@dimen/_23sdp"
+                            android:layout_height="@dimen/_23sdp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:background="@drawable/background_radius_8"
+                            android:backgroundTint="@color/mau_do_nhat"
+                            android:padding="@dimen/_4sdp"
+                            android:src="@drawable/ic_zoom_icon" />
+
+                        <TextView
+                            android:id="@+id/tvZoom"
+                            setTextColor="@{isLight}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_45sdp"
+                            android:fontFamily="@font/font"
+                            android:text="@string/big_icons"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <ImageView
+                            android:id="@+id/ivNextZoom"
+                            colorfilter="@{isLight}"
+                            android:layout_width="@dimen/_5sdp"
+                            android:layout_height="@dimen/_9sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:src="@drawable/ic_next" />
+
+
+                        <View
+                            android:id="@+id/viewZoom"
+                            setViewBackground="@{isLight}"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/_45sdp"
+                            android:background="#E2E2E3" />
+                    </RelativeLayout>
+                    <RelativeLayout
                         android:id="@+id/rlSystem"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_38sdp"
@@ -193,6 +241,8 @@
                             android:layout_marginStart="@dimen/_45sdp"
                             android:background="#E2E2E3" />
                     </RelativeLayout>
+
+
                     <RelativeLayout
                         android:id="@+id/rlDevelop"
                         android:layout_width="match_parent"

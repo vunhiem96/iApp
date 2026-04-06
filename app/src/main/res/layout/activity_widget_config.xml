@@ -1,0 +1,79 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- PREVIEW -->
+    <LinearLayout
+        android:id="@+id/previewContainer"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#000"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/previewIcon"
+            android:layout_width="64dp"
+            android:layout_height="64dp"/>
+
+        <TextView
+            android:id="@+id/previewName"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <!-- NAME -->
+    <EditText
+        android:id="@+id/editName"
+        android:hint="Tên app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- SHOW NAME -->
+    <Switch
+        android:id="@+id/switchShowName"
+        android:text="Hiển thị tên"
+        android:checked="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <!-- COLOR PICKER SIMPLE -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View android:id="@+id/colorWhite" android:background="#FFFFFF"
+            android:layout_width="40dp" android:layout_height="40dp"/>
+
+        <View android:id="@+id/colorRed" android:background="#FF0000"
+            android:layout_width="40dp" android:layout_height="40dp"/>
+
+        <View android:id="@+id/colorBlue" android:background="#2196F3"
+            android:layout_width="40dp" android:layout_height="40dp"/>
+
+        <View android:id="@+id/colorGreen" android:background="#4CAF50"
+            android:layout_width="40dp" android:layout_height="40dp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnPickImage"
+        android:text="Chọn ảnh icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <!-- SAVE -->
+    <Button
+        android:id="@+id/btnSave"
+        android:text="Lưu widget"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

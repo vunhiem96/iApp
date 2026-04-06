@@ -21,6 +21,8 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.nhstudio.iapp.appmanager.R
+import com.nhstudio.iapp.appmanager.databinding.FragmentBigIconBinding
+import com.nhstudio.iapp.appmanager.databinding.FragmentSettingBinding
 import com.nhstudio.iapp.appmanager.databinding.FragmentSystemBinding
 import com.nhstudio.iapp.appmanager.databinding.FragmentUserBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
@@ -43,12 +45,16 @@ import kotlinx.coroutines.withContext
 
 
 class SystemFragment : Fragment() {
-    private val binding by lazy { FragmentSystemBinding.inflate(layoutInflater) }
+//    private val binding by lazy { FragmentSystemBinding.inflate(layoutInflater) }
+
+    private var _binding: FragmentSystemBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        _binding = FragmentSystemBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -58,6 +64,11 @@ class SystemFragment : Fragment() {
         loadBannerAdmob()
         setOnClick()
         initRvApp()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun initRvApp() {

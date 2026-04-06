@@ -40,6 +40,13 @@
             app:exitAnim="@anim/slide_out_left"
             android:id="@+id/action_homeFragment_to_systemFragment"
             app:destination="@id/systemFragment" />
+        <action
+            app:popExitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            android:id="@+id/action_homeFragment_to_bigIconFragment"
+            app:destination="@id/bigIconFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -91,6 +98,10 @@
         android:id="@+id/systemFragment"
         android:name="com.nhstudio.isettings.quicksettings.iapp.ui.SystemFragment"
         android:label="SystemFragment" />
+    <fragment
+        android:id="@+id/bigIconFragment"
+        android:name="com.nhstudio.isettings.quicksettings.iapp.ui.BigIconFragment"
+        android:label="BigIconFragment" />
 
 
 </navigation>

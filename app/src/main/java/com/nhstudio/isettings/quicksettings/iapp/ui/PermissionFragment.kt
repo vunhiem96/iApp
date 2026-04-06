@@ -31,6 +31,7 @@ import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.nhstudio.iapp.appmanager.R
+import com.nhstudio.iapp.appmanager.databinding.FragmentBigIconBinding
 import com.nhstudio.iapp.appmanager.databinding.FragmentUserBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
@@ -49,12 +50,17 @@ import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClick
 class PermissionFragment : Fragment() {
 
 
-    private val binding by lazy { FragmentUserBinding.inflate(layoutInflater) }
+//    private val binding by lazy { FragmentUserBinding.inflate(layoutInflater) }
+
+    private var _binding: FragmentUserBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
+        _binding = FragmentUserBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -64,6 +70,12 @@ class PermissionFragment : Fragment() {
         loadBannerAdmob()
         setOnClick()
         setupColor()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        mAdViewAdmob?.destroy()
     }
 
     private fun setupColor() {

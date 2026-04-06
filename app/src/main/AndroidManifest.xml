@@ -6,8 +6,10 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
+
 
 
     <application
@@ -21,7 +23,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ISettings"
         tools:targetApi="31">
+        <activity
+            android:screenOrientation="portrait"
+            android:name="com.nhstudio.isettings.quicksettings.iapp.shortcut.WidgetConfigActivity"
+            android:exported="false" />
 
+        <receiver
+            android:label="@string/big_icons"
+            android:name="com.nhstudio.isettings.quicksettings.iapp.shortcut.MyWidgetProvider"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
         <activity
             android:name="com.nhstudio.isettings.quicksettings.iapp.MainActivity"
             android:exported="true"
@@ -31,13 +49,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+        </activity> <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9589105932398084~8188692844" />
-
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
             android:value="true" />

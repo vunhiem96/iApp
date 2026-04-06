@@ -33,6 +33,7 @@ import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.nhstudio.iapp.appmanager.R
+import com.nhstudio.iapp.appmanager.databinding.FragmentBigIconBinding
 import com.nhstudio.iapp.appmanager.databinding.FragmentHomeBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.adapter.AppListAdapter
@@ -57,7 +58,11 @@ import kotlin.text.toUpperCase
 
 class HomeFragment : Fragment() {
 
-    private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
+//    private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
+
+
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreateView(
@@ -65,7 +70,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -85,6 +90,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getAllApp() {
+        binding.isLight = !darkMode
         if (defaultSortList.isEmpty()) {
             LoadAppUtils.getAppsAll {
                 binding.loadingView.beGone()
@@ -104,7 +110,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRvApp() {
-        binding.isLight = !darkMode
         CoroutineScope(Dispatchers.IO).launch {
             context?.let {
                 val groupedApps = groupAppsAlphabetically(
@@ -228,6 +233,25 @@ class HomeFragment : Fragment() {
 
             }
 
+            rlZoom.setPreventDoubleClick {
+                if (loadInterAd && config!!.pu) {
+                    (activity as MainActivity).showDialogAd()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        (activity as MainActivity).showInter()
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            if (findNavController().currentDestination!!.id == R.id.homeFragment) {
+                                findNavController().navigate(R.id.action_homeFragment_to_bigIconFragment)
+                            }
+                        }, 110)
+                    }, 400)
+                } else {
+                    if (findNavController().currentDestination!!.id == R.id.homeFragment) {
+                        findNavController().navigate(R.id.action_homeFragment_to_bigIconFragment)
+                    }
+                }
+
+            }
+
 
         }
     }
@@ -237,6 +261,11 @@ class HomeFragment : Fragment() {
         super.onResume()
         activity?.setFullScreen()
         binding.isLight = !darkMode
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
 

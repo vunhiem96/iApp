@@ -187,5 +187,31 @@
     <string name="app_not_found2">Press and hold to launch the application</string>
     <string name="app_not_found3">An error occurred</string>
 
+    <string name="big_icons">Big Icons</string>
+
+    <string name="guide_text">
+    <![CDATA[
+    <b>How to Add a Big Icons Widget to Your Home Screen</b><br/><br/><br/>
+
+    <b>1. Touch and Hold the Home Screen</b><br/>
+    Tap and hold on an empty space on your home screen until a menu appears.<br/><br/>
+
+    <b>2. Tap on Widgets</b><br/>
+    In the menu that appears, tap Widgets...<br/><br/>
+
+    <b>3. Find Big Icons</b><br/>
+    Scroll through the widget list...<br/><br/>
+
+    <b>4. Choose a Widget Size</b><br/>
+    Big Icons offers different sizes...<br/><br/>
+
+    <b>5. Select an App</b><br/>
+    After placing the widget...<br/><br/>
+
+    <b>6. Done!</b><br/>
+    The big app icon will now appear...
+    ]]>
+</string>
+
 
 </resources>

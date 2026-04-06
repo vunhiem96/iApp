@@ -19,6 +19,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
+import com.nhstudio.iapp.appmanager.databinding.FragmentRateBinding
 import com.nhstudio.iapp.appmanager.databinding.FragmentSearchBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.adapter.SearchAdapter
@@ -40,12 +41,18 @@ import java.util.Locale
 
 
 class SearchFragment : Fragment() {
-    private val binding by lazy { FragmentSearchBinding.inflate(layoutInflater) }
+//    private val binding by lazy { FragmentSearchBinding.inflate(layoutInflater) }
+
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -218,6 +225,11 @@ class SearchFragment : Fragment() {
 
             binding.layoutAds.beGone()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 
