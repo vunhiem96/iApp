@@ -95,11 +95,13 @@ class SystemFragment : Fragment() {
                     }
                 }
                 withContext(Dispatchers.Main) {
-                    binding.recyclerView.adapter = AppListAdapter(it.packageManager)
-                    binding.recyclerView.layoutManager = LinearLayoutManager(it)
-                    binding.recyclerView.setItemViewCacheSize(300)
-                    (binding.recyclerView.adapter as AppListAdapter).submitList(appListItems)
-                    binding.loadingView.beGone()
+                    if(_binding!=null) {
+                        binding.recyclerView.adapter = AppListAdapter(it.packageManager)
+                        binding.recyclerView.layoutManager = LinearLayoutManager(it)
+                        binding.recyclerView.setItemViewCacheSize(300)
+                        (binding.recyclerView.adapter as AppListAdapter).submitList(appListItems)
+                        binding.loadingView.beGone()
+                    }
                 }
             }
 

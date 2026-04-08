@@ -42,14 +42,14 @@
                 <RelativeLayout
                     android:id="@+id/search_ree"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="@dimen/_32sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:background="@{isLight?@drawable/background_search_light:@drawable/background_search_dark}">
 
                     <EditText
                         android:id="@+id/edit_result"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_height="@dimen/_32sdp"
                         android:layout_marginStart="@dimen/_6sdp"
                         android:layout_marginEnd="@dimen/_15sdp"
                         android:layout_toEndOf="@id/ic"

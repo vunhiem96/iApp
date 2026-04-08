@@ -91,22 +91,23 @@ class HomeFragment : Fragment() {
 
     private fun getAllApp() {
         binding.isLight = !darkMode
-        if (defaultSortList.isEmpty()) {
+//        if (defaultSortList.isEmpty()) {
             LoadAppUtils.getAppsAll {
-                binding.loadingView.beGone()
-                defaultSortList.clear()
-                defaultSortList.addAll(it.sortedBy { item ->
-                    if (checkSelect(item)) {
-                        -1
-                    } else 1
-                })
-                initRvApp()
+                if(_binding!=null) {
+                    binding.loadingView.beGone()
+                    defaultSortList.clear()
+                    defaultSortList.addAll(it.sortedBy { item ->
+                        if (checkSelect(item)) {
+                            -1
+                        } else 1
+                    })
+                    initRvApp()
+                }
 
             }
-        } else {
-
-//            initRvApp()
-        }
+//        } else {
+//
+//        }
     }
 
     private fun initRvApp() {
@@ -132,9 +133,11 @@ class HomeFragment : Fragment() {
                     }
                 }
                 withContext(Dispatchers.Main) {
-                    binding.recyclerView.adapter = AppListAdapter(it.packageManager)
-                    binding.recyclerView.layoutManager = LinearLayoutManager(it)
-                    (binding.recyclerView.adapter as AppListAdapter).submitList(appListItems)
+                    if(_binding!=null) {
+                        binding.recyclerView.adapter = AppListAdapter(it.packageManager)
+                        binding.recyclerView.layoutManager = LinearLayoutManager(it)
+                        (binding.recyclerView.adapter as AppListAdapter).submitList(appListItems)
+                    }
                 }
             }
 
