@@ -176,4 +176,34 @@
     <string name="app_not_found">Η εφαρμογή δεν βρέθηκε</string>
     <string name="app_not_found2">Πατήστε παρατεταμένα για να εκκινήσετε την εφαρμογή</string>
     <string name="app_not_found3">Παρουσιάστηκε σφάλμα</string>
+
+    <string name="big_icons">Μεγάλα εικονίδια</string>
+
+    <string name="guide_text">
+<![CDATA[
+<b>Πώς να προσθέσετε ένα widget μεγάλων εικονιδίων στην αρχική οθόνη</b><br/><br/><br/>
+
+<b>1. Πατήστε παρατεταμένα την αρχική οθόνη</b><br/>
+Πατήστε και κρατήστε πατημένο ένα κενό σημείο στην αρχική οθόνη μέχρι να εμφανιστεί ένα μενού.<br/><br/>
+
+<b>2. Πατήστε «Γραφικά στοιχεία»</b><br/>
+Στο μενού που εμφανίζεται, πατήστε «Γραφικά στοιχεία»...<br/><br/>
+
+<b>3. Βρείτε τον Διαχειριστή εφαρμογών</b><br/>
+Κάντε κύλιση στη λίστα των widgets...<br/><br/>
+
+<b>4. Επιλέξτε μια εφαρμογή</b><br/>
+Αφού τοποθετήσετε το widget...<br/><br/>
+
+<b>5. Έτοιμο!</b><br/>
+Το μεγάλο εικονίδιο της εφαρμογής θα εμφανιστεί τώρα...
+]]>
+</string>
+
+    <string name="please_select_an_app">Παρακαλώ επιλέξτε μια εφαρμογή</string>
+    <string name="show_app_name">Εμφάνιση ονόματος εφαρμογής</string>
+    <string name="app_name_text_color">Χρώμα κειμένου</string>
+    <string name="save_widget">Δημιουργία μεγάλου εικονιδίου</string>
+    <string name="select_app">Επιλογή εφαρμογής</string>
+    <string name="edit_app_name">Επεξεργασία ονόματος εφαρμογής</string>
 </resources>

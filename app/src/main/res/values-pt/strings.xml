@@ -176,4 +176,34 @@
     <string name="app_not_found">Aplicativo não encontrado</string>
     <string name="app_not_found2">Pressione e segure para iniciar o aplicativo</string>
     <string name="app_not_found3">Ocorreu um erro</string>
+
+    <string name="big_icons">Ícones grandes</string>
+
+    <string name="guide_text">
+<![CDATA[
+<b>Como adicionar um widget de ícones grandes à tela inicial</b><br/><br/><br/>
+
+<b>1. Pressione e segure a tela inicial</b><br/>
+Pressione e segure um espaço vazio na tela inicial até aparecer um menu.<br/><br/>
+
+<b>2. Toque em “Widgets”</b><br/>
+No menu exibido, toque em “Widgets”...<br/><br/>
+
+<b>3. Encontre o Gerenciador de apps</b><br/>
+Role pela lista de widgets...<br/><br/>
+
+<b>4. Selecione um app</b><br/>
+Após posicionar o widget...<br/><br/>
+
+<b>5. Concluído!</b><br/>
+O ícone grande do app aparecerá agora...
+]]>
+</string>
+
+    <string name="please_select_an_app">Selecione um app</string>
+    <string name="show_app_name">Mostrar nome do app</string>
+    <string name="app_name_text_color">Cor do texto</string>
+    <string name="save_widget">Criar ícone grande</string>
+    <string name="select_app">Selecionar app</string>
+    <string name="edit_app_name">Editar nome do app</string>
 </resources>

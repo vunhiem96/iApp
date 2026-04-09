@@ -176,4 +176,34 @@
     <string name="app_not_found">找不到应用程序</string>
     <string name="app_not_found2">按住可启动应用程序</string>
     <string name="app_not_found3">发生错误</string>
+
+    <string name="big_icons">大图标</string>
+
+    <string name="guide_text">
+<![CDATA[
+<b>如何将大图标小组件添加到主屏幕</b><br/><br/><br/>
+
+<b>1. 长按主屏幕</b><br/>
+在主屏幕空白处长按，直到出现菜单。<br/><br/>
+
+<b>2. 点击“桌面小组件”</b><br/>
+在出现的菜单中点击“小组件”...<br/><br/>
+
+<b>3. 找到应用管理器</b><br/>
+滚动浏览小组件列表...<br/><br/>
+
+<b>4. 选择一个应用</b><br/>
+放置小组件后...<br/><br/>
+
+<b>5. 完成！</b><br/>
+现在将显示大应用图标...
+]]>
+</string>
+
+    <string name="please_select_an_app">请选择一个应用</string>
+    <string name="show_app_name">显示应用名称</string>
+    <string name="app_name_text_color">文字颜色</string>
+    <string name="save_widget">创建大图标</string>
+    <string name="select_app">选择应用</string>
+    <string name="edit_app_name">编辑应用名称</string>
 </resources>

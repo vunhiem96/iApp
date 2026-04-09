@@ -176,4 +176,34 @@
     <string name="app_not_found">Приложение не найдено.</string>
     <string name="app_not_found2">Нажмите и удерживайте, чтобы запустить приложение.</string>
     <string name="app_not_found3">Произошла ошибка.</string>
+
+    <string name="big_icons">Большие значки</string>
+
+    <string name="guide_text">
+<![CDATA[
+<b>Как добавить виджет больших значков на главный экран</b><br/><br/><br/>
+
+<b>1. Нажмите и удерживайте главный экран</b><br/>
+Нажмите и удерживайте пустое место на главном экране, пока не появится меню.<br/><br/>
+
+<b>2. Нажмите «Виджеты»</b><br/>
+В появившемся меню нажмите «Виджеты»...<br/><br/>
+
+<b>3. Найдите менеджер приложений</b><br/>
+Прокрутите список виджетов...<br/><br/>
+
+<b>4. Выберите приложение</b><br/>
+После размещения виджета...<br/><br/>
+
+<b>5. Готово!</b><br/>
+Теперь появится большой значок приложения...
+]]>
+</string>
+
+    <string name="please_select_an_app">Пожалуйста, выберите приложение</string>
+    <string name="show_app_name">Показать имя приложения</string>
+    <string name="app_name_text_color">Цвет текста</string>
+    <string name="save_widget">Создать большой значок</string>
+    <string name="select_app">Выбрать приложение</string>
+    <string name="edit_app_name">Редактировать имя приложения</string>
 </resources>

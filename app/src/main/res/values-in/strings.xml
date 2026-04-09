@@ -176,4 +176,34 @@
     <string name="app_not_found">Aplikasi tidak ditemukan</string>
     <string name="app_not_found2">Tekan dan tahan untuk meluncurkan aplikasi</string>
     <string name="app_not_found3">Terjadi kesalahan</string>
+
+    <string name="big_icons">Ikon besar</string>
+
+    <string name="guide_text">
+<![CDATA[
+<b>Cara menambahkan widget ikon besar ke layar beranda</b><br/><br/><br/>
+
+<b>1. Tekan dan tahan layar beranda</b><br/>
+Tekan dan tahan area kosong di layar beranda hingga menu muncul.<br/><br/>
+
+<b>2. Ketuk “Widget”</b><br/>
+Pada menu yang muncul, ketuk “Widget”...<br/><br/>
+
+<b>3. Temukan Manajer Aplikasi</b><br/>
+Gulir daftar widget...<br/><br/>
+
+<b>4. Pilih aplikasi</b><br/>
+Setelah menempatkan widget...<br/><br/>
+
+<b>5. Selesai!</b><br/>
+Ikon aplikasi besar sekarang akan muncul...
+]]>
+</string>
+
+    <string name="please_select_an_app">Silakan pilih aplikasi</string>
+    <string name="show_app_name">Tampilkan nama aplikasi</string>
+    <string name="app_name_text_color">Warna teks</string>
+    <string name="save_widget">Buat ikon besar</string>
+    <string name="select_app">Pilih aplikasi</string>
+    <string name="edit_app_name">Edit nama aplikasi</string>
 </resources>

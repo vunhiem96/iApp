@@ -58,11 +58,11 @@ import kotlin.text.toUpperCase
 
 class HomeFragment : Fragment() {
 
-//    private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
+    private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
 
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+//    private var _binding: FragmentHomeBinding? = null
+//    private val binding get() = _binding!!
 
 
     override fun onCreateView(
@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+//        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -91,9 +91,8 @@ class HomeFragment : Fragment() {
 
     private fun getAllApp() {
         binding.isLight = !darkMode
-//        if (defaultSortList.isEmpty()) {
+        if (defaultSortList.isEmpty()) {
             LoadAppUtils.getAppsAll {
-                if(_binding!=null) {
                     binding.loadingView.beGone()
                     defaultSortList.clear()
                     defaultSortList.addAll(it.sortedBy { item ->
@@ -102,12 +101,12 @@ class HomeFragment : Fragment() {
                         } else 1
                     })
                     initRvApp()
-                }
+
 
             }
-//        } else {
-//
-//        }
+        } else {
+
+        }
     }
 
     private fun initRvApp() {
@@ -133,11 +132,10 @@ class HomeFragment : Fragment() {
                     }
                 }
                 withContext(Dispatchers.Main) {
-                    if(_binding!=null) {
                         binding.recyclerView.adapter = AppListAdapter(it.packageManager)
                         binding.recyclerView.layoutManager = LinearLayoutManager(it)
                         (binding.recyclerView.adapter as AppListAdapter).submitList(appListItems)
-                    }
+
                 }
             }
 
@@ -266,9 +264,6 @@ class HomeFragment : Fragment() {
         binding.isLight = !darkMode
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
 }
 

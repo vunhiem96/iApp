@@ -176,4 +176,34 @@
     <string name="app_not_found">アプリが見つかりません</string>
     <string name="app_not_found2">長押ししてアプリケーションを起動します</string>
     <string name="app_not_found3">エラーが発生しました</string>
+
+    <string name="big_icons">大きなアイコン</string>
+
+    <string name="guide_text">
+<![CDATA[
+<b>ホーム画面に大きなアイコンウィジェットを追加する方法</b><br/><br/><br/>
+
+<b>1. ホーム画面を長押し</b><br/>
+ホーム画面の空いている場所を長押ししてメニューを表示します。<br/><br/>
+
+<b>2. 「ウィジェット」をタップ</b><br/>
+表示されたメニューで「ウィジェット」をタップします...<br/><br/>
+
+<b>3. アプリマネージャーを探す</b><br/>
+ウィジェット一覧をスクロールします...<br/><br/>
+
+<b>4. アプリを選択</b><br/>
+ウィジェットを配置した後...<br/><br/>
+
+<b>5. 完了！</b><br/>
+大きなアプリアイコンが表示されます...
+]]>
+</string>
+
+    <string name="please_select_an_app">アプリを選択してください</string>
+    <string name="show_app_name">アプリ名を表示</string>
+    <string name="app_name_text_color">テキストの色</string>
+    <string name="save_widget">大きなアイコンを作成</string>
+    <string name="select_app">アプリを選択</string>
+    <string name="edit_app_name">アプリ名を編集</string>
 </resources>

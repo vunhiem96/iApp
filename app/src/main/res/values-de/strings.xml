@@ -176,4 +176,34 @@
     <string name="app_not_found">App nicht gefunden</string>
     <string name="app_not_found2">Gedrückt halten, um die Anwendung zu starten</string>
     <string name="app_not_found3">Es ist ein Fehler aufgetreten</string>
+
+    <string name="big_icons">Große Symbole</string>
+
+    <string name="guide_text">
+<![CDATA[
+<b>So fügen Sie ein Widget für große Symbole zum Startbildschirm hinzu</b><br/><br/><br/>
+
+<b>1. Startbildschirm gedrückt halten</b><br/>
+Tippen und halten Sie eine leere Stelle auf dem Startbildschirm, bis ein Menü erscheint.<br/><br/>
+
+<b>2. Auf „Widgets“ tippen</b><br/>
+Tippen Sie im angezeigten Menü auf „Widgets“...<br/><br/>
+
+<b>3. App Manager finden</b><br/>
+Scrollen Sie durch die Widget-Liste...<br/><br/>
+
+<b>4. App auswählen</b><br/>
+Nachdem Sie das Widget platziert haben...<br/><br/>
+
+<b>5. Fertig!</b><br/>
+Das große App-Symbol wird nun angezeigt...
+]]>
+</string>
+
+    <string name="please_select_an_app">Bitte wählen Sie eine App aus</string>
+    <string name="show_app_name">App-Name anzeigen</string>
+    <string name="app_name_text_color">Textfarbe</string>
+    <string name="save_widget">Großes Symbol erstellen</string>
+    <string name="select_app">App auswählen</string>
+    <string name="edit_app_name">App-Name bearbeiten</string>
 </resources>

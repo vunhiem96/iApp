@@ -47,23 +47,45 @@
         <LinearLayout
             setViewBackgroundZone="@{isLight}"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginVertical="@dimen/_15sdp"
             android:background="@drawable/background_white_radius"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/layoutAds"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/rl_top">
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/tvGuide"
-                    android:padding="@dimen/_15sdp"
-                    android:text="@string/guide_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvGuide"
+                        setTextColor="@{isLight}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font"
+                        android:padding="@dimen/_15sdp"
+                        android:text="@string/guide_text" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_100sdp"
+                        android:src="@drawable/iv_tutorial1" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:src="@drawable/iv_tutorial_2" />
+                </LinearLayout>
+
             </androidx.core.widget.NestedScrollView>
         </LinearLayout>
 

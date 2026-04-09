@@ -176,4 +176,34 @@
     <string name="app_not_found">لم يتم العثور على التطبيق</string>
     <string name="app_not_found2">اضغط مع الاستمرار لتشغيل التطبيق</string>
     <string name="app_not_found3">حدث خطأ</string>
+
+    <string name="big_icons">أيقونات كبيرة</string>
+
+    <string name="guide_text">
+<![CDATA[
+<b>كيفية إضافة ويدجت أيقونات كبيرة إلى الشاشة الرئيسية</b><br/><br/><br/>
+
+<b>1. اضغط مطولاً على الشاشة الرئيسية</b><br/>
+اضغط مطولاً على مساحة فارغة في الشاشة الرئيسية حتى تظهر قائمة.<br/><br/>
+
+<b>2. اضغط على "الأدوات"</b><br/>
+في القائمة التي تظهر، اضغط على الأدوات...<br/><br/>
+
+<b>3. ابحث عن مدير التطبيقات</b><br/>
+قم بالتمرير عبر قائمة الأدوات...<br/><br/>
+
+<b>4. اختر تطبيقاً</b><br/>
+بعد وضع الأداة...<br/><br/>
+
+<b>5. تم!</b><br/>
+ستظهر الآن أيقونة التطبيق الكبيرة...
+]]>
+</string>
+
+    <string name="please_select_an_app">يرجى اختيار تطبيق</string>
+    <string name="show_app_name">إظهار اسم التطبيق</string>
+    <string name="app_name_text_color">لون النص</string>
+    <string name="save_widget">إنشاء أيقونة كبيرة</string>
+    <string name="select_app">اختيار تطبيق</string>
+    <string name="edit_app_name">تعديل اسم التطبيق</string>
 </resources>

@@ -176,4 +176,34 @@
     <string name="app_not_found"> ऐप नहीं मिला</string>
     <string name="app_not_found2">एप्लिकेशन लॉन्च करने के लिए दबाकर रखें</string>
     <string name="app_not_found3">एक त्रुटि उत्पन्न हुई</string>
+
+    <string name="big_icons">बड़े आइकन</string>
+
+    <string name="guide_text">
+<![CDATA[
+<b>होम स्क्रीन पर बड़े आइकन विजेट कैसे जोड़ें</b><br/><br/><br/>
+
+<b>1. होम स्क्रीन को दबाकर रखें</b><br/>
+होम स्क्रीन पर खाली जगह को दबाकर रखें जब तक मेनू दिखाई न दे।<br/><br/>
+
+<b>2. “विजेट्स” पर टैप करें</b><br/>
+दिखाई देने वाले मेनू में “विजेट्स” पर टैप करें...<br/><br/>
+
+<b>3. ऐप मैनेजर खोजें</b><br/>
+विजेट सूची में स्क्रॉल करें...<br/><br/>
+
+<b>4. एक ऐप चुनें</b><br/>
+विजेट रखने के बाद...<br/><br/>
+
+<b>5. हो गया!</b><br/>
+अब बड़ा ऐप आइकन दिखाई देगा...
+]]>
+</string>
+
+    <string name="please_select_an_app">कृपया एक ऐप चुनें</string>
+    <string name="show_app_name">ऐप का नाम दिखाएं</string>
+    <string name="app_name_text_color">टेक्स्ट का रंग</string>
+    <string name="save_widget">बड़ा आइकन बनाएं</string>
+    <string name="select_app">ऐप चुनें</string>
+    <string name="edit_app_name">ऐप का नाम संपादित करें</string>
 </resources>
