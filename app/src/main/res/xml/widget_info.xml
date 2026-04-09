@@ -8,4 +8,5 @@
     android:minHeight="130dp"
     android:resizeMode="vertical|horizontal"
     android:updatePeriodMillis="0"
+    android:previewImage="@drawable/big_icon_preview_300w"
     android:widgetCategory="home_screen" />
