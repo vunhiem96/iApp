@@ -42,30 +42,28 @@ object LoadAppUtils {
                     )
                 }
 
-                if (pkgAppsList != null) {
-                    val list = pkgAppsList.mapNotNull { it.activityInfo.applicationInfo }
-                        .filter { it.packageName != BuildConfig.APPLICATION_ID }
-                        .distinctBy { it.packageName }
-                        .toMutableList()
-                    list.sortBy { getAppName(it).lowercase() }
-                    listApp.clear()
-                    listApp.addAll(list.toList())
-                    list.find { it.packageName == BuildConfig.APPLICATION_ID }?.let {
-                        list.remove(it)
-                    }
-                    withContext(Dispatchers.Main) {
-                        Log.d("HUUIYYYIUIYUI", "${list.size}")
-                        listCallback.forEach {
-                            kotlin.runCatching {
-                                it.invoke(list)
-                            }.onFailure {
-                                Log.d("HUUIYYYIUIYUI", "${it.message}")
-                                it.printStackTrace()
+                try {
+                    if (pkgAppsList != null) {
+                        val list = pkgAppsList.mapNotNull { it.activityInfo.applicationInfo }
+                            .filter { it.packageName != BuildConfig.APPLICATION_ID }
+                            .distinctBy { it.packageName }
+                            .toMutableList()
+                        list.sortBy { getAppName(it).lowercase() }
+                        listApp.clear()
+                        listApp.addAll(list.toList())
+                        withContext(Dispatchers.Main) {
+                            listCallback.forEach { cb ->
+                                kotlin.runCatching {
+                                    cb.invoke(list)
+                                }.onFailure {
+                                    Log.d("HUUIYYYIUIYUI", "${it.message}")
+                                    it.printStackTrace()
+                                }
                             }
+                            listCallback.clear()
                         }
-                        listCallback.clear()
-//                        onSuccess(list)
                     }
+                } finally {
                     isRunning = false
                 }
             }

@@ -206,4 +206,12 @@
     <string name="save_widget">大きなアイコンを作成</string>
     <string name="select_app">アプリを選択</string>
     <string name="edit_app_name">アプリ名を編集</string>
+
+    <string name="loading_initial_data">初回起動用のデータを読み込んでいます…</string>
+
+    <string name="loading_initial_data1">データを同期しています…</string>
+
+    <string name="loading_initial_data2">セットアップを完了しています…</string>
+
+    <string name="loading_initial_data3">セットアップ完了！</string>
 </resources>

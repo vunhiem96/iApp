@@ -176,4 +176,8 @@
     <string name="app_not_found">Apl tidak ditemui</string>
     <string name="app_not_found2">Tekan dan tahan untuk melancarkan aplikasi</string>
     <string name="app_not_found3">Ralat berlaku</string>
+    <string name="loading_initial_data">Memuatkan data untuk pelancaran pertama…</string>
+    <string name="loading_initial_data1">Menyegerakkan data anda...</string>
+    <string name="loading_initial_data2">Memuktamadkan persediaan...</string>
+    <string name="loading_initial_data3">Persediaan selesai!</string>há
 </resources>

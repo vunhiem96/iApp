@@ -206,4 +206,12 @@
     <string name="save_widget">创建大图标</string>
     <string name="select_app">选择应用</string>
     <string name="edit_app_name">编辑应用名称</string>
+
+    <string name="loading_initial_data">正在加载首次启动数据…</string>
+
+    <string name="loading_initial_data1">正在同步您的数据…</string>
+
+    <string name="loading_initial_data2">正在完成设置…</string>
+
+    <string name="loading_initial_data3">设置完成！</string>
 </resources>

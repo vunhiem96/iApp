@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:layout_width="@dimen/_75sdp"
+        android:layout_height="@dimen/_75sdp"
+        android:layout_above="@id/tvAppName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:src="@mipmap/ic_launcher"
+        app:riv_corner_radius="@dimen/_10sdp" />
+
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/font"
+        android:gravity="center"
+        android:text="@string/app_name2"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/btnNext"
+        android:paddingHorizontal="@dimen/_55sdp"
+        android:text="NEXT"
+        android:background="@drawable/backround_button_rate"
+        android:backgroundTint="@color/main_color"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16ssp"
+        android:fontFamily="@font/font"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvAppName"
+        android:paddingVertical="@dimen/_9sdp"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvLoading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/progressBar"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/font"
+        android:gravity="center"
+        android:text="@string/loading_initial_data"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_11ssp" />
+
+    <com.nhstudio.isettings.quicksettings.iapp.extension.LoadingView
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_5sdp"
+        app:lv_progress_background_color="#F0F0F0"
+        app:lv_progress_color="@color/main_color"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/_25sdp"
+        android:layout_marginBottom="@dimen/_30sdp" />
+
+</RelativeLayout>

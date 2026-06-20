@@ -207,4 +207,12 @@ Biểu tượng ứng dụng lớn sẽ xuất hiện...
     <string name="save_widget">Tạo biểu tượng lớn</string>
     <string name="select_app">Chọn ứng dụng</string>
     <string name="edit_app_name">Chỉnh sửa tên ứng dụng</string>
+
+    <string name="loading_initial_data">Đang tải dữ liệu cho lần khởi chạy đầu tiên…</string>
+
+    <string name="loading_initial_data1">Đồng bộ hóa dữ liệu của bạn…</string>
+
+    <string name="loading_initial_data2">Hoàn tất thiết lập…</string>
+
+    <string name="loading_initial_data3">Thiết lập hoàn tất!</string>há
 </resources>

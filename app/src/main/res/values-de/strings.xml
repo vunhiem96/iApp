@@ -206,4 +206,12 @@ Das große App-Symbol wird nun angezeigt...
     <string name="save_widget">Großes Symbol erstellen</string>
     <string name="select_app">App auswählen</string>
     <string name="edit_app_name">App-Name bearbeiten</string>
+
+    <string name="loading_initial_data">Lade Daten für den ersten Start…</string>
+
+    <string name="loading_initial_data1">Synchronisierung Ihrer Daten…</string>
+
+    <string name="loading_initial_data2">Einrichtung wird abgeschlossen…</string>
+
+    <string name="loading_initial_data3">Einrichtung abgeschlossen!</string>
 </resources>

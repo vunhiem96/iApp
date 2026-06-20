@@ -206,4 +206,13 @@
     <string name="save_widget">큰 아이콘 만들기</string>
     <string name="select_app">앱 선택</string>
     <string name="edit_app_name">앱 이름 편집</string>
+
+
+    <string name="loading_initial_data">첫 실행을 위한 데이터 로딩 중…</string>
+
+    <string name="loading_initial_data1">데이터 동기화 중…</string>
+
+    <string name="loading_initial_data2">설정 완료…</string>
+
+    <string name="loading_initial_data3">설정 완료!</string>há
 </resources>

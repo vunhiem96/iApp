@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.provider.Settings
 import android.view.LayoutInflater
@@ -98,10 +99,10 @@ class AppBigAdapter(
 
         fun bind(appInfo: ApplicationInfo, appItem: AppListItem.AppItem) {
             Glide.with(itemView.context)
-                .load(appInfo.loadIcon(packageManager))
+                .load(appItem.icon)
                 .into(binding.appIconImageView)
 
-            binding.appNameTextView.text = appInfo.loadLabel(packageManager)
+            binding.appNameTextView.text = appItem.label
             binding.isLight = !darkMode
 
             binding.apply {
@@ -179,6 +180,12 @@ class AppBigAdapter(
         }
 
         override fun areContentsTheSame(oldItem: AppListItem, newItem: AppListItem): Boolean {
+            if (oldItem is AppListItem.AppItem && newItem is AppListItem.AppItem) {
+                return oldItem.appInfo.packageName == newItem.appInfo.packageName &&
+                        oldItem.label == newItem.label &&
+                        oldItem.isFirst == newItem.isFirst &&
+                        oldItem.isLast == newItem.isLast
+            }
             return oldItem == newItem
         }
     }
@@ -188,6 +195,8 @@ class AppBigAdapter(
         data class LetterItem(val letter: Char) : AppListItem()
         data class AppItem(
             val appInfo: ApplicationInfo,
+            val label: String,
+            val icon: Drawable,
             var isSelected: Boolean = false,
             var isFirst: Boolean = false,
             var isLast: Boolean = false

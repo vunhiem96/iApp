@@ -206,4 +206,12 @@
     <string name="save_widget">إنشاء أيقونة كبيرة</string>
     <string name="select_app">اختيار تطبيق</string>
     <string name="edit_app_name">تعديل اسم التطبيق</string>
+
+    <string name="loading_initial_data">جارٍ تحميل البيانات للتشغيل الأول...</string>
+
+    <string name="loading_initial_data1">جارٍ مزامنة بياناتك...</string>
+
+    <string name="loading_initial_data2">جارٍ إنهاء الإعداد...</string>
+
+    <string name="loading_initial_data3">اكتمل الإعداد!</string>
 </resources>

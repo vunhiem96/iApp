@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.ItemSearchBinding
-import com.nhstudio.isettings.quicksettings.iapp.data.SettingModel
+import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClick
 
@@ -35,7 +35,7 @@ class SearchAdapter(
         val viewBind = holder.binding
         holder.binding.isLight = !darkMode
         viewBind.apply {
-            tvPin.text =  item.loadLabel(tvPin.context.packageManager)
+            tvPin.text = LoadAppUtils.getAppName(item)
             Glide.with(tvPin.context).load(item.loadIcon(tvPin.context.packageManager))
                 .into(appIconImageView)
             root.setPreventDoubleClick {

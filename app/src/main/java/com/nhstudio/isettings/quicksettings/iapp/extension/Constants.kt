@@ -16,6 +16,8 @@ var loadInterAd = false
 var showInterOk = false
 var initOpenAds = false
 var canShowOpenAds = false
+var loadInterSplash = false
+var setUpOpenAds = false
 
 
 var priceString = "1,29$"

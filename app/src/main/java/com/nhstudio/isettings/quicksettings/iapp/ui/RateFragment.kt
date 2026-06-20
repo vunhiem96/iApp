@@ -28,6 +28,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
+import com.google.android.play.core.review.ReviewManagerFactory
 import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.FragmentBigIconBinding
 import com.nhstudio.iapp.appmanager.databinding.FragmentRateBinding
@@ -247,13 +248,16 @@ class RateFragment : Fragment() {
                     if (isChoseStar) {
                         config.rateApp = true
                         if (isFiveStar) {
-                            gotoMarket()
+                            showInAppReview()
                             Toast.makeText(
                                 this,
                                 getString(R.string.rate_5start),
                                 Toast.LENGTH_LONG
                             ).show()
-                            finish()
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                setUpRate()
+                            },2000)
+//                            finish()
                         } else {
                             Toast.makeText(
                                 this,
@@ -299,6 +303,26 @@ class RateFragment : Fragment() {
         }
     }
 
+    private fun showInAppReview() {
+        activity?.let {
+            val manager = ReviewManagerFactory.create(it)
+            val request = manager.requestReviewFlow()
+            request.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val reviewInfo = task.result
+                    manager.launchReviewFlow(it, reviewInfo)
+                        .addOnCompleteListener {
+
+                        }
+
+                } else {
+                    gotoMarket()
+                }
+            }
+        }
+
+    }
+
     private fun gotoMarket() {
         val uri = Uri.parse("market://details?id=" + activity?.packageName)
         val goToMarket = Intent(Intent.ACTION_VIEW, uri)
@@ -332,19 +356,22 @@ class RateFragment : Fragment() {
     }
 
     private fun setUpRate() {
-        binding.apply {
-            activity.let {
+        if(_binding!=null) {
+            binding.apply {
+                activity.let {
 
-                if (it!!.config.rateApp == false) {
-                    llRate.visibility = View.VISIBLE
-                    clickRate()
-                } else {
-                    llExit.visibility = View.VISIBLE
+                    if (it!!.config.rateApp == false) {
+                        llRate.visibility = View.VISIBLE
+                        llExit.visibility = View.GONE
+                        clickRate()
+                    } else {
+                        llExit.visibility = View.VISIBLE
+                        llRate.visibility = View.GONE
+                    }
                 }
+
             }
-
         }
-
     }
 
     private var isFiveStar = false

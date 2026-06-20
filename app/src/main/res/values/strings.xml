@@ -216,5 +216,8 @@
     <string name="select_app">Select app</string>
     <string name="edit_app_name">Edit app name</string>
 
-
+    <string name="loading_initial_data">Loading data for first launch…</string>
+    <string name="loading_initial_data1">Syncing your data...</string>
+    <string name="loading_initial_data2">Finalizing setup...</string>
+    <string name="loading_initial_data3">Setup complete!</string>
 </resources>

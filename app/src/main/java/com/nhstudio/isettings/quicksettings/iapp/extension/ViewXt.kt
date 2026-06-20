@@ -7,6 +7,8 @@ import android.content.res.ColorStateList
 import android.graphics.PorterDuff
 import android.graphics.Rect
 import android.net.ConnectivityManager
+import android.os.Handler
+import android.os.Looper
 import android.os.SystemClock
 import android.util.TypedValue
 import android.view.MotionEvent
@@ -217,6 +219,9 @@ fun View.setPreventDoubleClickAlphaItemView(debounceTime: Long = 200, action: ()
                 //action down: scale view down
                 rect = Rect(v.left, v.top, v.right, v.bottom)
                 v.alpha = (0.4f)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    v.alpha = (1f)
+                },debounceTime)
             } else if (rect != null && !rect!!.contains(
                     v.left + event.x.toInt(),
                     v.top + event.y.toInt()

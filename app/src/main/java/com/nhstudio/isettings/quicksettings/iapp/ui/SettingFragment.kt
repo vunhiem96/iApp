@@ -157,7 +157,7 @@ class SettingFragment : Fragment() {
                     requireActivity(),
                     "Open Google Play to download app?"
                 ) {
-                    newApp("N-HStudio")
+                    context?.openDeveloperPage("N-HStudio")
                 }.show()
 
             }
@@ -228,22 +228,42 @@ class SettingFragment : Fragment() {
                     "Open Google Play to download app?"
                 ) {
 
-                    newApp("N-HStudio")
+                    context?.openDeveloperPage("N-HStudio")
                 }.show()
             }
         }
 
     }
 
-    fun newApp(idDeveloper: String) {
-        val uri = Uri.parse("market://search?q=pub:$idDeveloper")
-        val myAppLinkToMarket = Intent(Intent.ACTION_VIEW, uri)
-        try {
-            startActivity(myAppLinkToMarket)
-        } catch (e: ActivityNotFoundException) {
-        }
+//    fun newApp(idDeveloper: String) {
+//        val uri = Uri.parse("market://search?q=pub:$idDeveloper")
+//        val myAppLinkToMarket = Intent(Intent.ACTION_VIEW, uri)
+//        try {
+//            startActivity(myAppLinkToMarket)
+//        } catch (e: ActivityNotFoundException) {
+//        }
+//    }
+fun Context.openDeveloperPage(developerId: String) {
+    val marketUri = Uri.parse("market://developer?id=$developerId")
+    val marketIntent = Intent(Intent.ACTION_VIEW, marketUri).apply {
+        setPackage("com.android.vending")
+        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
 
+    try {
+        startActivity(marketIntent)
+    } catch (e: Exception) {
+        val webUri = Uri.parse("https://play.google.com/store/apps/developer?id=$developerId")
+        val webIntent = Intent(Intent.ACTION_VIEW, webUri).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+        try {
+            startActivity(webIntent)
+        } catch (error: Exception) {
+            Toast.makeText(this, "Google Play Not Available", Toast.LENGTH_SHORT).show()
+        }
+    }
+}
     fun Context.shareApp() {
         val linkApk =
             "https://play.google.com/store/apps/details?id=" + applicationContext!!.packageName

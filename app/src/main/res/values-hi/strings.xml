@@ -206,4 +206,9 @@
     <string name="save_widget">बड़ा आइकन बनाएं</string>
     <string name="select_app">ऐप चुनें</string>
     <string name="edit_app_name">ऐप का नाम संपादित करें</string>
+
+    <string name="loading_initial_data">पहले लॉन्च के लिए डेटा लोड हो रहा है…</string>
+    <string name="loading_initial_data1">आपका डेटा सिंक हो रहा है...</string>
+    <string name="loading_initial_data2">सेटअप फ़ाइनल हो रहा है...</string>
+    <string name="loading_initial_data3">सेटअप पूरा हो गया!</string>há
 </resources>

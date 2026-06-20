@@ -13,6 +13,7 @@ import android.os.Looper
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -938,4 +939,11 @@ fun showDialogAds(
     }
 
 
+}
+fun Activity.onScreen() {
+    window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON )
+}
+
+fun Activity.onScreenCancel() {
+    window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 }

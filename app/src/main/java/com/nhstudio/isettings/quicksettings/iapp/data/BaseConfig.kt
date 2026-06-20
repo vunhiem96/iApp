@@ -1,6 +1,7 @@
 package com.nhstudio.isettings.quicksettings.iapp.data
 
 import android.content.Context
+import androidx.core.content.edit
 import com.nhstudio.isettings.quicksettings.iapp.extension.getSharedPrefs
 
 open class BaseConfig(val context: Context) {
@@ -50,5 +51,12 @@ open class BaseConfig(val context: Context) {
         get() = prefs.getBoolean("showToast", true)
         set(showToast) = prefs.edit()
             .putBoolean("showToast", showToast).apply()
+
+    var isFO: Boolean
+        get() = prefs.getBoolean("isFO", true)
+        set(isFO) = prefs.edit {
+            putBoolean("isFO", isFO)
+        }
+
 
 }

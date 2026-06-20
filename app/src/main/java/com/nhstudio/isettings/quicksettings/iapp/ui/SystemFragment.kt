@@ -38,7 +38,7 @@ import com.nhstudio.isettings.quicksettings.iapp.extension.isTesting
 import com.nhstudio.isettings.quicksettings.iapp.extension.loadInterAd
 import com.nhstudio.isettings.quicksettings.iapp.extension.setFullScreen
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClickAlphaItemView
-import kotlinx.coroutines.CoroutineScope
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -72,40 +72,36 @@ class SystemFragment : Fragment() {
     }
 
     private fun initRvApp() {
-        CoroutineScope(Dispatchers.IO).launch {
-            context?.let {
-                defaultSortList = getAllSystemApps(it).toMutableList()
-                val groupedApps = groupAppsAlphabetically(
-                   defaultSortList,
-                    packageManager = it.packageManager
-                )
-                val appListItems = mutableListOf<AppListAdapter.AppListItem>()
-                for ((letter, apps) in groupedApps) {
-                    appListItems.add(AppListAdapter.AppListItem.LetterItem(letter))
-                    apps.forEachIndexed { index, appInfo ->
-                        val isFirst = index == 0
-                        val isLast = index == apps.size - 1
-                        appListItems.add(
-                            AppListAdapter.AppListItem.AppItem(
-                                appInfo,
-                                isFirst = isFirst,
-                                isLast = isLast
-                            )
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val ctx = context ?: return@launch
+            defaultSortList = getAllSystemApps(ctx).toMutableList()
+            val groupedApps = groupAppsAlphabetically(defaultSortList, ctx.packageManager)
+            val appListItems = mutableListOf<AppListAdapter.AppListItem>()
+            for ((letter, apps) in groupedApps) {
+                appListItems.add(AppListAdapter.AppListItem.LetterItem(letter))
+                apps.forEachIndexed { index, appInfo ->
+                    val label = appInfo.loadLabel(ctx.packageManager).toString()
+                    val icon = appInfo.loadIcon(ctx.packageManager)
+                    appListItems.add(
+                        AppListAdapter.AppListItem.AppItem(
+                            appInfo = appInfo,
+                            label = label,
+                            icon = icon,
+                            isFirst = index == 0,
+                            isLast = index == apps.size - 1
                         )
-                    }
-                }
-                withContext(Dispatchers.Main) {
-                    if(_binding!=null) {
-                        binding.recyclerView.adapter = AppListAdapter(it.packageManager)
-                        binding.recyclerView.layoutManager = LinearLayoutManager(it)
-                        binding.recyclerView.setItemViewCacheSize(300)
-                        (binding.recyclerView.adapter as AppListAdapter).submitList(appListItems)
-                        binding.loadingView.beGone()
-                    }
+                    )
                 }
             }
-
-
+            withContext(Dispatchers.Main) {
+                if (_binding != null) {
+                    binding.recyclerView.adapter = AppListAdapter(ctx.packageManager)
+                    binding.recyclerView.layoutManager = LinearLayoutManager(ctx)
+                    binding.recyclerView.setItemViewCacheSize(300)
+                    (binding.recyclerView.adapter as AppListAdapter).submitList(appListItems)
+                    binding.loadingView.beGone()
+                }
+            }
         }
     }
 

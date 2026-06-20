@@ -176,4 +176,12 @@
     <string name="app_not_found">App non trovata</string>
     <string name="app_not_found2">Tenere premuto per avviare l\'applicazione</string>
     <string name="app_not_found3">Si è verificato un errore</string>
+
+    <string name="loading_initial_data">Caricamento dei dati per il primo avvio…</string>
+
+    <string name="loading_initial_data1">Sincronizzazione dei dati in corso…</string>
+
+    <string name="loading_initial_data2">Finalizzazione della configurazione in corso…</string>
+
+    <string name="loading_initial_data3">Configurazione completata!</string>
 </resources>

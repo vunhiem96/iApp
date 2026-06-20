@@ -206,4 +206,12 @@
     <string name="save_widget">Создать большой значок</string>
     <string name="select_app">Выбрать приложение</string>
     <string name="edit_app_name">Редактировать имя приложения</string>
+
+    <string name="loading_initial_data">Загрузка данных для первого запуска…</string>
+
+    <string name="loading_initial_data1">Синхронизация ваших данных...</string>
+
+    <string name="loading_initial_data2">Завершение настройки...</string>
+
+    <string name="loading_initial_data3">Настройка завершена!</string>há
 </resources>

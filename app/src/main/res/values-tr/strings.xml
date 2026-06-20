@@ -176,4 +176,12 @@
     <string name="app_not_found">Uygulama bulunamadı</string>
     <string name="app_not_found2">Uygulamayı başlatmak için basılı tutun</string>
     <string name="app_not_found3">Bir hata oluştu</string>
+
+    <string name="loading_initial_data">İlk çalıştırma için veriler yükleniyor…</string>
+
+    <string name="loading_initial_data1">Verileriniz senkronize ediliyor...</string>
+
+    <string name="loading_initial_data2">Kurulum tamamlanıyor...</string>
+
+    <string name="loading_initial_data3">Kurulum tamamlandı!</string>há
 </resources>

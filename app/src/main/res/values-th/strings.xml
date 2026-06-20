@@ -176,4 +176,9 @@
     <string name="app_not_found">ไม่พบแอป</string>
     <string name="app_not_found2">กดค้างไว้เพื่อเปิดแอปพลิเคชัน</string>
     <string name="app_not_found3">เกิดข้อผิดพลาด</string>
+
+    <string name="loading_initial_data">กำลังโหลดข้อมูลสำหรับการเปิดใช้งานครั้งแรก…</string>
+    <string name="loading_initial_data1">กำลังซิงค์ข้อมูลของคุณ…</string>
+    <string name="loading_initial_data2">กำลังดำเนินการตั้งค่าขั้นสุดท้าย…</string>
+    <string name="loading_initial_data3">การตั้งค่าเสร็จสมบูรณ์!</string>há
 </resources>

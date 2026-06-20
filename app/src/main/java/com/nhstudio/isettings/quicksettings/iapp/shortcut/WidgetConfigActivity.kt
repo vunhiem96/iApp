@@ -4,10 +4,8 @@ import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,12 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.ActivityWidgetConfigBinding
 import com.nhstudio.isettings.quicksettings.iapp.adapter.AppBigAdapter
-import com.nhstudio.isettings.quicksettings.iapp.adapter.AppListAdapter
 import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
 import com.nhstudio.isettings.quicksettings.iapp.extension.defaultSortList
-import kotlinx.coroutines.CoroutineScope
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -56,74 +53,57 @@ class WidgetConfigActivity : AppCompatActivity() {
     }
 
     private fun getAllApp() {
-//        binding.isLight = !darkMode
-//        if (defaultSortList.isEmpty()) {
         LoadAppUtils.getAppsAll {
             binding.loadingView.beGone()
             defaultSortList.clear()
-            defaultSortList.addAll(it.sortedBy { item ->
-                if (checkSelect(item)) {
-                    -1
-                } else 1
-            })
+            defaultSortList.addAll(it)
             initRvApp()
-
         }
-
     }
 
     private fun initRvApp() {
-        Log.i("dasdasdasdasdassa", "vao")
-        CoroutineScope(Dispatchers.IO).launch {
-            val groupedApps = groupAppsAlphabetically(
-                defaultSortList,
-                packageManager = this@WidgetConfigActivity.packageManager
-            )
+        lifecycleScope.launch(Dispatchers.IO) {
+            val sorted = defaultSortList.sortedBy { item ->
+                if (checkSelect(item)) -1 else 1
+            }
+            val groupedApps = groupAppsAlphabetically(sorted)
             val appListItems = mutableListOf<AppBigAdapter.AppListItem>()
             for ((letter, apps) in groupedApps) {
                 appListItems.add(AppBigAdapter.AppListItem.LetterItem(letter))
                 apps.forEachIndexed { index, appInfo ->
-                    val isFirst = index == 0
-                    val isLast = index == apps.size - 1
+                    val label = LoadAppUtils.getAppName(appInfo)
+                    val icon = appInfo.loadIcon(packageManager)
                     appListItems.add(
                         AppBigAdapter.AppListItem.AppItem(
-                            appInfo,
-                            isFirst = isFirst,
-                            isLast = isLast
+                            appInfo = appInfo,
+                            label = label,
+                            icon = icon,
+                            isFirst = index == 0,
+                            isLast = index == apps.size - 1
                         )
                     )
                 }
             }
             withContext(Dispatchers.Main) {
                 binding.recyclerView.adapter = AppBigAdapter(packageManager) {
-                    // Nếu từ app → chưa có widgetId
                     packageName = it.packageName
                     appName = getAppName(this@WidgetConfigActivity, packageName!!)
-
-                    // Sử dụng binding. để truy cập view thay vì gọi trực tiếp ID
                     binding.editName.setText(appName)
                     binding.previewName.text = appName
-
                     loadIcon()
-
                 }
-                binding.recyclerView.layoutManager =
-                    LinearLayoutManager(this@WidgetConfigActivity)
+                binding.recyclerView.layoutManager = LinearLayoutManager(this@WidgetConfigActivity)
                 (binding.recyclerView.adapter as AppBigAdapter).submitList(appListItems)
-
             }
-
-
         }
     }
 
 
-    fun groupAppsAlphabetically(
-        appList: List<ApplicationInfo>,
-        packageManager: PackageManager
+    private fun groupAppsAlphabetically(
+        appList: List<ApplicationInfo>
     ): Map<Char, List<ApplicationInfo>> {
         return appList.groupBy {
-            it.loadLabel(packageManager).toString().firstOrNull()?.uppercaseChar() ?: '#'
+            LoadAppUtils.getAppName(it).firstOrNull()?.uppercaseChar() ?: '#'
         }
     }
 

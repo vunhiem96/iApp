@@ -8,6 +8,7 @@ import android.view.Choreographer
 import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import com.example.iaplibrary.IapConnectorV2
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -15,6 +16,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.nhstudio.iapp.appmanager.BuildConfig
+import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.ActivityMainBinding
 import com.nhstudio.isettings.quicksettings.iapp.cmp.CMPCallback
 import com.nhstudio.isettings.quicksettings.iapp.cmp.CMPController
@@ -30,6 +32,7 @@ import com.nhstudio.isettings.quicksettings.iapp.extension.isTesting
 import com.nhstudio.isettings.quicksettings.iapp.extension.loadInterAd
 import com.nhstudio.isettings.quicksettings.iapp.extension.priceString
 import com.nhstudio.isettings.quicksettings.iapp.extension.priceStringFake
+import com.nhstudio.isettings.quicksettings.iapp.extension.setUpOpenAds
 import com.nhstudio.isettings.quicksettings.iapp.extension.showDialogAds
 import com.nhstudio.isettings.quicksettings.iapp.extension.showInterOk
 import kotlinx.coroutines.CoroutineScope
@@ -43,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 //        enableEdgeToEdge()
         setContentView(binding.root)
+        setUpNav()
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
 //            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
 //            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -55,6 +59,21 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun setUpNav() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val inflater = navHostFragment.navController.navInflater
+        val graph = inflater.inflate(R.navigation.main_nav)
+        if (config.isFO) {
+            graph.setStartDestination(R.id.splashFragment)
+        } else {
+            graph.setStartDestination(R.id.homeFragment)
+        }
+
+
+        val navController = navHostFragment.navController
+        navController.setGraph(graph, intent.extras)
+    }
     fun runWhenFirstFrameDrawn(onDrawn: () -> Unit) {
         val rootView = window.decorView
         val handler = Handler(Looper.getMainLooper())
@@ -92,7 +111,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpAds() {
-        if(config.pu) {
+        if (config.pu && !config.isFO) {
+//            Log.i("dasdasdasdasdasdas","vao2")
             CMPController(this).showCMP(BuildConfig.DEBUG,
                 object : CMPCallback {
                     override fun onShowAd() {
@@ -117,7 +137,8 @@ class MainActivity : AppCompatActivity() {
     }
 
      fun setupOpenAds() {
-        if (config.pu) {
+        if (config.pu && !setUpOpenAds) {
+            setUpOpenAds = true
             Handler(Looper.getMainLooper()).postDelayed({
                 AppOpenManager(
                     this,

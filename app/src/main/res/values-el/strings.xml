@@ -206,4 +206,9 @@
     <string name="save_widget">Δημιουργία μεγάλου εικονιδίου</string>
     <string name="select_app">Επιλογή εφαρμογής</string>
     <string name="edit_app_name">Επεξεργασία ονόματος εφαρμογής</string>
+
+    <string name="loading_initial_data">Φόρτωση δεδομένων για την πρώτη εκκίνηση…</string>
+    <string name="loading_initial_data1">Συγχρονισμός των δεδομένων σας...</string>
+    <string name="loading_initial_data2">Οριστικοποίηση εγκατάστασης...</string>
+    <string name="loading_initial_data3">Η εγκατάσταση ολοκληρώθηκε!</string>
 </resources>

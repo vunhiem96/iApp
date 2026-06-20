@@ -13,7 +13,13 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.activity.addCallback
 import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
@@ -23,6 +29,7 @@ import com.nhstudio.iapp.appmanager.databinding.FragmentRateBinding
 import com.nhstudio.iapp.appmanager.databinding.FragmentSearchBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.adapter.SearchAdapter
+import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
 import com.nhstudio.isettings.quicksettings.iapp.extension.canShowOpenAds
 import com.nhstudio.isettings.quicksettings.iapp.extension.checkInter
@@ -41,10 +48,11 @@ import java.util.Locale
 
 
 class SearchFragment : Fragment() {
-//    private val binding by lazy { FragmentSearchBinding.inflate(layoutInflater) }
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
+
+    private var searchJob: Job? = null
 
 
     override fun onCreateView(
@@ -107,29 +115,31 @@ class SearchFragment : Fragment() {
 
 
             context?.let { ctx ->
-                editResult.doAfterTextChanged {
-                    val text = it.toString()
-                    if (text.isNotEmpty()) {
-                        val listSearch = defaultSortList.filter { info ->
-                            info.loadLabel(requireContext().packageManager).toString()
-                                .lowercase(Locale.ROOT)
-                                .contains(text.lowercase(Locale.ROOT))
+                editResult.doAfterTextChanged { editable ->
+                    val query = editable.toString().lowercase(Locale.ROOT)
+                    searchJob?.cancel()
+                    searchJob = viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                        delay(200)
+                        val result = if (query.isNotEmpty()) {
+                            defaultSortList.filter { info ->
+                                LoadAppUtils.getAppName(info).lowercase(Locale.ROOT).contains(query)
+                            }
+                        } else {
+                            emptyList()
                         }
-                        val adapter = SearchAdapter(ctx, listSearch)
-                        binding.rvSearch.adapter = adapter
-                    } else {
-                        val adapter = SearchAdapter(ctx, arrayListOf())
-                        binding.rvSearch.adapter = adapter
+                        withContext(Dispatchers.Main) {
+                            if (_binding != null) {
+                                binding.rvSearch.adapter = SearchAdapter(ctx, result)
+                            }
+                        }
                     }
                 }
-                var listSearch = defaultSortList
-                if (defaultSortList.size > 5) {
-                    listSearch = defaultSortList.shuffled().take(5).toMutableList()
+                val initial = if (defaultSortList.size > 5) {
+                    defaultSortList.shuffled().take(5)
+                } else {
+                    defaultSortList.toList()
                 }
-
-
-                val adapter = SearchAdapter(ctx, listSearch)
-                binding.rvSearch.adapter = adapter
+                binding.rvSearch.adapter = SearchAdapter(ctx, initial)
             }
 
         }
