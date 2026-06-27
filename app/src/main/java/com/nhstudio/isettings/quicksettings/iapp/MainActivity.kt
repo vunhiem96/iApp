@@ -20,6 +20,7 @@ import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.ActivityMainBinding
 import com.nhstudio.isettings.quicksettings.iapp.cmp.CMPCallback
 import com.nhstudio.isettings.quicksettings.iapp.cmp.CMPController
+import com.nhstudio.isettings.quicksettings.iapp.cmp.CMPControllerNew
 import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
 import com.nhstudio.isettings.quicksettings.iapp.extension.PRODUCT_ID
 import com.nhstudio.isettings.quicksettings.iapp.extension.PRODUCT_ID_FAKE
@@ -113,7 +114,7 @@ class MainActivity : AppCompatActivity() {
     private fun setUpAds() {
         if (config.pu && !config.isFO) {
 //            Log.i("dasdasdasdasdasdas","vao2")
-            CMPController(this).showCMP(BuildConfig.DEBUG,
+            CMPControllerNew(this,10000L).showCMP(BuildConfig.DEBUG,
                 object : CMPCallback {
                     override fun onShowAd() {
                         if (config.pu) {

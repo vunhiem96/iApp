@@ -69,3 +69,7 @@
 -dontwarn com.android.billingclient.api.QueryPurchasesParams
 -dontwarn com.google.gson.Gson
 -dontwarn com.google.gson.annotations.SerializedName
+
+-dontwarn com.google.android.gms.ads.InterstitialAd
+-dontwarn com.google.android.gms.ads.query.AdInfo
+-dontwarn com.google.android.gms.ads.rewarded.RewardedAdCallback

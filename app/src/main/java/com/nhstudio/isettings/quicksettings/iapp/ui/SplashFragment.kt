@@ -24,6 +24,7 @@ import com.nhstudio.iapp.appmanager.databinding.FragmentSplashBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.cmp.CMPCallback
 import com.nhstudio.isettings.quicksettings.iapp.cmp.CMPController
+import com.nhstudio.isettings.quicksettings.iapp.cmp.CMPControllerNew
 import com.nhstudio.isettings.quicksettings.iapp.extension.beVisible
 import com.nhstudio.isettings.quicksettings.iapp.extension.config
 import com.nhstudio.isettings.quicksettings.iapp.extension.haveInternet
@@ -79,7 +80,7 @@ class SplashFragment : Fragment() {
             it.onScreen()
 //            Log.i("dasdasdasdasdasdas","vao1")
 //            binding.progressBar.startAnim(10000) {}
-            CMPController(it).showCMP(
+            CMPControllerNew(it).showCMP(
                 BuildConfig.DEBUG,
                 object : CMPCallback {
                     override fun onShowAd() {
@@ -118,7 +119,10 @@ class SplashFragment : Fragment() {
             if (isTesting) {
                 idAdmob = "ca-app-pub-3940256099942544/1033173712"
             }
-            if (loadInterSplash) return
+            if (loadInterSplash){
+                handler.postDelayed(timeoutRunnable, timeoutMillis)
+                return
+            }
             setUpText()
             binding.progressBar.startAnim(15000) {
                 if (_binding != null) {
