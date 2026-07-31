@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.ItemSearchBinding
 import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
@@ -35,9 +34,20 @@ class SearchAdapter(
         val viewBind = holder.binding
         holder.binding.isLight = !darkMode
         viewBind.apply {
+            val packageName = item.packageName
             tvPin.text = LoadAppUtils.getAppName(item)
-            Glide.with(tvPin.context).load(item.loadIcon(tvPin.context.packageManager))
-                .into(appIconImageView)
+            appIconImageView.tag = packageName
+            val cachedIcon = LoadAppUtils.getCachedIcon(packageName)
+            if (cachedIcon != null) {
+                appIconImageView.setImageDrawable(cachedIcon)
+            } else {
+                appIconImageView.setImageResource(R.drawable.ic_app)
+                LoadAppUtils.getIconApp(item) { icon ->
+                    if (appIconImageView.tag == packageName) {
+                        appIconImageView.setImageDrawable(icon)
+                    }
+                }
+            }
             root.setPreventDoubleClick {
                 try {
                     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)

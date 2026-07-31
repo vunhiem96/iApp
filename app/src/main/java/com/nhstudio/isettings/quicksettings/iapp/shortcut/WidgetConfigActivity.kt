@@ -53,6 +53,11 @@ class WidgetConfigActivity : AppCompatActivity() {
     }
 
     private fun getAllApp() {
+        if (defaultSortList.isNotEmpty()) {
+            binding.loadingView.beGone()
+            initRvApp()
+            return
+        }
         LoadAppUtils.getAppsAll {
             binding.loadingView.beGone()
             defaultSortList.clear()
@@ -71,13 +76,10 @@ class WidgetConfigActivity : AppCompatActivity() {
             for ((letter, apps) in groupedApps) {
                 appListItems.add(AppBigAdapter.AppListItem.LetterItem(letter))
                 apps.forEachIndexed { index, appInfo ->
-                    val label = LoadAppUtils.getAppName(appInfo)
-                    val icon = appInfo.loadIcon(packageManager)
                     appListItems.add(
                         AppBigAdapter.AppListItem.AppItem(
                             appInfo = appInfo,
-                            label = label,
-                            icon = icon,
+                            label = LoadAppUtils.getAppName(appInfo),
                             isFirst = index == 0,
                             isLast = index == apps.size - 1
                         )

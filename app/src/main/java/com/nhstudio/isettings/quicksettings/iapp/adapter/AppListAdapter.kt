@@ -1,38 +1,32 @@
 package com.nhstudio.isettings.quicksettings.iapp.adapter
 
 import android.content.ActivityNotFoundException
-import android.content.Context
-import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.net.Uri
-import android.provider.Settings
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.ItemAppBinding
 import com.nhstudio.iapp.appmanager.databinding.ItemLetterBinding
+import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
 import com.nhstudio.isettings.quicksettings.iapp.extension.applyColorFilter
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
 import com.nhstudio.isettings.quicksettings.iapp.extension.canShowOpenAds
 import com.nhstudio.isettings.quicksettings.iapp.extension.config
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClick
-import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClickAlphaItemView
-import com.nhstudio.isettings.quicksettings.iapp.extension.setTextColor
 import androidx.core.graphics.toColorInt
 
-class AppListAdapter(private val packageManager: PackageManager) :
-    ListAdapter<AppListAdapter.AppListItem, RecyclerView.ViewHolder>(DiffCallback()) {
+class AppListAdapter(
+    private val packageManager: PackageManager,
+    private val onItemClick: (String) -> Unit
+) : ListAdapter<AppListAdapter.AppListItem, RecyclerView.ViewHolder>(DiffCallback()) {
 
     companion object {
         private const val VIEW_TYPE_LETTER = 0
@@ -42,7 +36,7 @@ class AppListAdapter(private val packageManager: PackageManager) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             VIEW_TYPE_LETTER -> LetterViewHolder.from(parent)
-            VIEW_TYPE_APP -> AppViewHolder.from(parent, packageManager)
+            VIEW_TYPE_APP -> AppViewHolder.from(parent, packageManager, onItemClick)
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -80,7 +74,8 @@ class AppListAdapter(private val packageManager: PackageManager) :
 
     class AppViewHolder private constructor(
         private val binding: ItemAppBinding,
-        private val packageManager: PackageManager
+        private val packageManager: PackageManager,
+        private val onItemClick: (String) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
             if(darkMode){
@@ -93,8 +88,19 @@ class AppListAdapter(private val packageManager: PackageManager) :
         }
 
         fun bind(appInfo: ApplicationInfo, appItem: AppListItem.AppItem) {
-            Glide.with(itemView.context).load(appItem.icon)
-                .into(binding.appIconImageView)
+            val packageName = appInfo.packageName
+            binding.appIconImageView.tag = packageName
+            val cachedIcon = LoadAppUtils.getCachedIcon(packageName)
+            if (cachedIcon != null) {
+                binding.appIconImageView.setImageDrawable(cachedIcon)
+            } else {
+                binding.appIconImageView.setImageResource(R.drawable.ic_app)
+                LoadAppUtils.getIconApp(appInfo) { icon ->
+                    if (binding.appIconImageView.tag == packageName) {
+                        binding.appIconImageView.setImageDrawable(icon)
+                    }
+                }
+            }
             binding.appNameTextView.text = appItem.label
             binding.isLight = !darkMode
             binding.apply {
@@ -128,12 +134,7 @@ class AppListAdapter(private val packageManager: PackageManager) :
                 }
                 root.setPreventDoubleClick {
                     canShowOpenAds = true
-                    if(itemView.context.config.showToast){
-                        itemView.context.config.showToast = false
-                        Toast.makeText( itemView.context,
-                            itemView.context.getString(R.string.app_not_found2), Toast.LENGTH_LONG).show()
-                    }
-                    openAppDetails(itemView.context,appInfo.packageName)
+                    onItemClick(appInfo.packageName)
                 }
                 root.setOnLongClickListener {
                     try {
@@ -156,22 +157,16 @@ class AppListAdapter(private val packageManager: PackageManager) :
             // Hiển thị trạng thái select
 //            binding.root.isSelected = appItem.isSelected
         }
-        fun openAppDetails(context: Context, packageName: String) {
-            try {
-                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                val uri = Uri.fromParts("package", packageName, null)
-                intent.data = uri
-                context.startActivity(intent)
-            } catch (_: Exception) {
-              Toast.makeText(context,"An error occurred",Toast.LENGTH_SHORT).show()
-            }
-        }
 
         companion object {
-            fun from(parent: ViewGroup, packageManager: PackageManager): AppViewHolder {
+            fun from(
+                parent: ViewGroup,
+                packageManager: PackageManager,
+                onItemClick: (String) -> Unit
+            ): AppViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = ItemAppBinding.inflate(layoutInflater, parent, false)
-                return AppViewHolder(binding, packageManager)
+                return AppViewHolder(binding, packageManager, onItemClick)
             }
         }
     }
@@ -208,7 +203,6 @@ class AppListAdapter(private val packageManager: PackageManager) :
         data class AppItem(
             val appInfo: ApplicationInfo,
             val label: String,
-            val icon: Drawable,
             var isSelected: Boolean = false,
             var isFirst: Boolean = false,
             var isLast: Boolean = false

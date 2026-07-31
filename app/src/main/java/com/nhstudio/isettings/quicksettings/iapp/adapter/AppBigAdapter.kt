@@ -6,9 +6,6 @@ import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.net.Uri
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -16,10 +13,10 @@ import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.ItemAppBinding
 import com.nhstudio.iapp.appmanager.databinding.ItemLetterBinding
+import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
 import com.nhstudio.isettings.quicksettings.iapp.extension.applyColorFilter
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
@@ -98,9 +95,19 @@ class AppBigAdapter(
         }
 
         fun bind(appInfo: ApplicationInfo, appItem: AppListItem.AppItem) {
-            Glide.with(itemView.context)
-                .load(appItem.icon)
-                .into(binding.appIconImageView)
+            val packageName = appInfo.packageName
+            binding.appIconImageView.tag = packageName
+            val cachedIcon = LoadAppUtils.getCachedIcon(packageName)
+            if (cachedIcon != null) {
+                binding.appIconImageView.setImageDrawable(cachedIcon)
+            } else {
+                binding.appIconImageView.setImageResource(R.drawable.ic_app)
+                LoadAppUtils.getIconApp(appInfo) { icon ->
+                    if (binding.appIconImageView.tag == packageName) {
+                        binding.appIconImageView.setImageDrawable(icon)
+                    }
+                }
+            }
 
             binding.appNameTextView.text = appItem.label
             binding.isLight = !darkMode
@@ -196,7 +203,6 @@ class AppBigAdapter(
         data class AppItem(
             val appInfo: ApplicationInfo,
             val label: String,
-            val icon: Drawable,
             var isSelected: Boolean = false,
             var isFirst: Boolean = false,
             var isLast: Boolean = false

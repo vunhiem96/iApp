@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.Log
+import android.util.LruCache
 import com.nhstudio.iapp.appmanager.BuildConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,8 +19,10 @@ object LoadAppUtils {
     private var packetManager: PackageManager? = null
     private var listApp: MutableList<ApplicationInfo> = mutableListOf()
     private var hashMap: HashMap<String, String?> = hashMapOf()
+    private val iconCache = LruCache<String, Drawable>(120)
     private var listCallback: MutableList<(List<ApplicationInfo>) -> Unit> = mutableListOf()
     private var isRunning: Boolean = false
+
     fun init(context: Context?) {
         packetManager = context?.packageManager
     }
@@ -71,6 +74,7 @@ object LoadAppUtils {
     }
 
     fun getListAllApps() = listApp.toList()
+
     fun getAppName(packageInfo: ApplicationInfo): String {
         var lab = hashMap[packageInfo.packageName]
         if (lab != null) return lab
@@ -88,6 +92,7 @@ object LoadAppUtils {
                 withContext(Dispatchers.Main) {
                     onSuccess(lab)
                 }
+                return@launch
             }
             val labNew = packetManager?.let {
                 packageInfo.loadLabel(it).toString()
@@ -101,12 +106,20 @@ object LoadAppUtils {
         }
     }
 
+    fun getCachedIcon(packageName: String): Drawable? = iconCache.get(packageName)
+
     fun getIconApp(packageInfo: ApplicationInfo, onSuccess: (Drawable) -> Unit) {
+        val cached = iconCache.get(packageInfo.packageName)
+        if (cached != null) {
+            onSuccess(cached)
+            return
+        }
         CoroutineScope(Dispatchers.Default).launch {
-            packageInfo.loadIcon(packetManager)?.let {
-                withContext(Dispatchers.Main) {
-                    onSuccess(it)
-                }
+            val pm = packetManager ?: return@launch
+            val icon = packageInfo.loadIcon(pm) ?: return@launch
+            iconCache.put(packageInfo.packageName, icon)
+            withContext(Dispatchers.Main) {
+                onSuccess(icon)
             }
         }
     }

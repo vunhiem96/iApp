@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nhstudio.iapp.appmanager.R
@@ -38,7 +39,8 @@ import kotlin.text.firstOrNull
 class HomeFragment : Fragment() {
 
     private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
-
+    private var appListAdapter: AppListAdapter? = null
+    private var listenersBound = false
 
 //    private var _binding: FragmentHomeBinding? = null
 //    private val binding get() = _binding!!
@@ -63,13 +65,21 @@ class HomeFragment : Fragment() {
             }
         }
 
-        setOnClickListener()
+        if (!listenersBound) {
+            setOnClickListener()
+            listenersBound = true
+        }
         getAllApp()
 
     }
 
     private fun getAllApp() {
         binding.isLight = !darkMode
+        // Keep existing list when returning from AppDetail to avoid jank during pop animation.
+        if (appListAdapter != null && (appListAdapter?.itemCount ?: 0) > 0) {
+            binding.loadingView.beGone()
+            return
+        }
         if (defaultSortList.isEmpty()) {
             LoadAppUtils.getAppsAll {
                 binding.loadingView.beGone()
@@ -94,13 +104,10 @@ class HomeFragment : Fragment() {
             for ((letter, apps) in groupedApps) {
                 appListItems.add(AppListAdapter.AppListItem.LetterItem(letter))
                 apps.forEachIndexed { index, appInfo ->
-                    val label = LoadAppUtils.getAppName(appInfo)
-                    val icon = appInfo.loadIcon(pm)
                     appListItems.add(
                         AppListAdapter.AppListItem.AppItem(
                             appInfo = appInfo,
-                            label = label,
-                            icon = icon,
+                            label = LoadAppUtils.getAppName(appInfo),
                             isFirst = index == 0,
                             isLast = index == apps.size - 1
                         )
@@ -108,9 +115,24 @@ class HomeFragment : Fragment() {
                 }
             }
             withContext(Dispatchers.Main) {
-                binding.recyclerView.adapter = AppListAdapter(pm)
-                binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                (binding.recyclerView.adapter as AppListAdapter).submitList(appListItems)
+                val adapter = appListAdapter ?: AppListAdapter(pm) { packageName ->
+                    if (findNavController().currentDestination?.id == R.id.homeFragment) {
+                        findNavController().navigate(
+                            R.id.action_homeFragment_to_appDetailFragment,
+                            bundleOf(AppDetailFragment.ARG_PACKAGE_NAME to packageName)
+                        )
+                    }
+                }.also { created ->
+                    appListAdapter = created
+                    binding.recyclerView.apply {
+                        layoutManager = LinearLayoutManager(requireContext())
+                        setHasFixedSize(true)
+                        itemAnimator = null
+                        setItemViewCacheSize(20)
+                        this.adapter = created
+                    }
+                }
+                adapter.submitList(appListItems)
             }
         }
     }

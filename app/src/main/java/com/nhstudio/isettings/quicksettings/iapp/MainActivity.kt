@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
     private fun setUpAds() {
         if (config.pu && !config.isFO) {
 //            Log.i("dasdasdasdasdasdas","vao2")
-            CMPControllerNew(this,10000L).showCMP(BuildConfig.DEBUG,
+            CMPControllerNew(this,7000L).showCMP(BuildConfig.DEBUG,
                 object : CMPCallback {
                     override fun onShowAd() {
                         if (config.pu) {

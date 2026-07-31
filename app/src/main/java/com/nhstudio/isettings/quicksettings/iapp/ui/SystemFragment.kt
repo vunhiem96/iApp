@@ -1,12 +1,15 @@
 package com.nhstudio.isettings.quicksettings.iapp.ui
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.Settings
 import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,18 +24,15 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.nhstudio.iapp.appmanager.R
-import com.nhstudio.iapp.appmanager.databinding.FragmentBigIconBinding
-import com.nhstudio.iapp.appmanager.databinding.FragmentSettingBinding
 import com.nhstudio.iapp.appmanager.databinding.FragmentSystemBinding
-import com.nhstudio.iapp.appmanager.databinding.FragmentUserBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.adapter.AppListAdapter
+import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
 import com.nhstudio.isettings.quicksettings.iapp.extension.canShowOpenAds
 import com.nhstudio.isettings.quicksettings.iapp.extension.checkInter
 import com.nhstudio.isettings.quicksettings.iapp.extension.config
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
-import com.nhstudio.isettings.quicksettings.iapp.extension.gone
 import com.nhstudio.isettings.quicksettings.iapp.extension.haveInternet
 import com.nhstudio.isettings.quicksettings.iapp.extension.isTesting
 import com.nhstudio.isettings.quicksettings.iapp.extension.loadInterAd
@@ -49,6 +49,7 @@ class SystemFragment : Fragment() {
 
     private var _binding: FragmentSystemBinding? = null
     private val binding get() = _binding!!
+    private var cachedAppListItems: List<AppListAdapter.AppListItem>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,45 +73,71 @@ class SystemFragment : Fragment() {
     }
 
     private fun initRvApp() {
+        val cached = cachedAppListItems
+        if (cached != null) {
+            bindRecycler(cached)
+            return
+        }
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val ctx = context ?: return@launch
             defaultSortList = getAllSystemApps(ctx).toMutableList()
-            val groupedApps = groupAppsAlphabetically(defaultSortList, ctx.packageManager)
+            val groupedApps = groupAppsAlphabetically(defaultSortList)
             val appListItems = mutableListOf<AppListAdapter.AppListItem>()
             for ((letter, apps) in groupedApps) {
                 appListItems.add(AppListAdapter.AppListItem.LetterItem(letter))
                 apps.forEachIndexed { index, appInfo ->
-                    val label = appInfo.loadLabel(ctx.packageManager).toString()
-                    val icon = appInfo.loadIcon(ctx.packageManager)
                     appListItems.add(
                         AppListAdapter.AppListItem.AppItem(
                             appInfo = appInfo,
-                            label = label,
-                            icon = icon,
+                            label = LoadAppUtils.getAppName(appInfo),
                             isFirst = index == 0,
                             isLast = index == apps.size - 1
                         )
                     )
                 }
             }
+            cachedAppListItems = appListItems
             withContext(Dispatchers.Main) {
                 if (_binding != null) {
-                    binding.recyclerView.adapter = AppListAdapter(ctx.packageManager)
-                    binding.recyclerView.layoutManager = LinearLayoutManager(ctx)
-                    binding.recyclerView.setItemViewCacheSize(300)
-                    (binding.recyclerView.adapter as AppListAdapter).submitList(appListItems)
-                    binding.loadingView.beGone()
+                    bindRecycler(appListItems)
                 }
             }
         }
     }
 
+    private fun bindRecycler(appListItems: List<AppListAdapter.AppListItem>) {
+        val ctx = context ?: return
+        val adapter = AppListAdapter(ctx.packageManager) { packageName ->
+            openAppSettings(packageName)
+        }
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(ctx)
+            setHasFixedSize(true)
+            itemAnimator = null
+            setItemViewCacheSize(20)
+            this.adapter = adapter
+        }
+        adapter.submitList(appListItems)
+        binding.loadingView.beGone()
+    }
+
+    private fun openAppSettings(packageName: String) {
+        canShowOpenAds = true
+        try {
+            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                data = Uri.fromParts("package", packageName, null)
+            }
+            startActivity(intent)
+        } catch (_: Exception) {
+            // ignore
+        }
+    }
+
     fun groupAppsAlphabetically(
-        appList: List<ApplicationInfo>,
-        packageManager: PackageManager
+        appList: List<ApplicationInfo>
     ): Map<Char, List<ApplicationInfo>> {
         return appList.groupBy {
-            it.loadLabel(packageManager).toString().firstOrNull()?.uppercaseChar() ?: '#'
+            LoadAppUtils.getAppName(it).firstOrNull()?.uppercaseChar() ?: '#'
         }
     }
     var defaultSortList: MutableList<ApplicationInfo> = mutableListOf()

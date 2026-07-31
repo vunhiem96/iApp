@@ -47,6 +47,13 @@
             app:exitAnim="@anim/slide_out_left"
             android:id="@+id/action_homeFragment_to_bigIconFragment"
             app:destination="@id/bigIconFragment" />
+        <action
+            app:popExitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            android:id="@+id/action_homeFragment_to_appDetailFragment"
+            app:destination="@id/appDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -102,6 +109,15 @@
         android:id="@+id/bigIconFragment"
         android:name="com.nhstudio.isettings.quicksettings.iapp.ui.BigIconFragment"
         android:label="BigIconFragment" />
+    <fragment
+        android:id="@+id/appDetailFragment"
+        android:name="com.nhstudio.isettings.quicksettings.iapp.ui.AppDetailFragment"
+        android:label="AppDetailFragment"
+        tools:layout="@layout/fragment_app_detail">
+        <argument
+            android:name="packageName"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.nhstudio.isettings.quicksettings.iapp.ui.SplashFragment"

@@ -214,5 +214,20 @@ Biểu tượng ứng dụng lớn sẽ xuất hiện...
 
     <string name="loading_initial_data2">Hoàn tất thiết lập…</string>
 
-    <string name="loading_initial_data3">Thiết lập hoàn tất!</string>há
+    <string name="loading_initial_data3">Thiết lập hoàn tất!</string>
+
+    <string name="app_details">Chi tiết ứng dụng</string>
+    <string name="open_app">Mở ứng dụng</string>
+    <string name="open_google_play">Mở Google Play</string>
+    <string name="open_app_settings">Mở trong Cài đặt</string>
+    <string name="app_version">Phiên bản</string>
+    <string name="app_version_code">Mã phiên bản</string>
+    <string name="app_first_install">Cài đặt</string>
+    <string name="app_last_update">Cập nhật</string>
+    <string name="app_target_sdk">Target SDK</string>
+    <string name="app_apk_size">Dung lượng APK</string>
+    <string name="app_type">Loại</string>
+    <string name="app_type_system">Hệ thống</string>
+    <string name="app_type_user">Người dùng</string>
+    <string name="unknown_value">Không rõ</string>
 </resources>
