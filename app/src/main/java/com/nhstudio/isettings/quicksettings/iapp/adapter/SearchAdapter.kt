@@ -1,24 +1,20 @@
 package com.nhstudio.isettings.quicksettings.iapp.adapter
 
-import android.content.Context
-import android.content.Intent
 import android.content.pm.ApplicationInfo
-import android.net.Uri
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.ItemSearchBinding
 import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
+import com.nhstudio.isettings.quicksettings.iapp.extension.canShowOpenAds
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClick
 
 
 class SearchAdapter(
-    var context: Context,
-    var listImage: List<ApplicationInfo>
+    var listImage: List<ApplicationInfo>,
+    private val onItemClick: (String) -> Unit
 ) : RecyclerView.Adapter<ImageViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val binding = ItemSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -49,15 +45,8 @@ class SearchAdapter(
                 }
             }
             root.setPreventDoubleClick {
-                try {
-                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                    val uri = Uri.fromParts("package", item.packageName, null)
-                    intent.data = uri
-                    context.startActivity(intent)
-                } catch (_: Exception) {
-                    Toast.makeText(tvPin.context,
-                        tvPin.context.getString(R.string.app_not_found3), Toast.LENGTH_LONG).show()
-                }
+                canShowOpenAds = true
+                onItemClick(packageName)
             }
         }
 
@@ -66,12 +55,3 @@ class SearchAdapter(
 }
 
 class ImageViewHolder(val binding: ItemSearchBinding) : RecyclerView.ViewHolder(binding.root)
-
-
-
-
-
-
-
-
-

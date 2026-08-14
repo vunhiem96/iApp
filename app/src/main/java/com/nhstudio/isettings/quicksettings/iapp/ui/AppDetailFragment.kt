@@ -45,6 +45,7 @@ class AppDetailFragment : Fragment() {
 
     private var packageNameArg: String = ""
     private var mAdViewAdmob: AdView? = null
+    private var handledMissing = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,6 +73,24 @@ class AppDetailFragment : Fragment() {
         super.onResume()
         canShowOpenAds = true
         activity?.setFullScreen()
+        if (packageNameArg.isNotBlank() && !isPackageInstalled()) {
+            handleAppMissing()
+        }
+    }
+
+    private fun isPackageInstalled(): Boolean {
+        val pm = context?.packageManager ?: return false
+        return try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                pm.getApplicationInfo(packageNameArg, PackageManager.ApplicationInfoFlags.of(0))
+            } else {
+                @Suppress("DEPRECATION")
+                pm.getApplicationInfo(packageNameArg, 0)
+            }
+            true
+        } catch (_: Exception) {
+            false
+        }
     }
 
     override fun onDestroyView() {
@@ -123,10 +142,17 @@ class AppDetailFragment : Fragment() {
             binding.tvUpdateTime.text = formatTime(packageInfo.lastUpdateTime)
             binding.tvTargetSdk.text = appInfo.targetSdkVersion.toString()
         } catch (_: Exception) {
-            Toast.makeText(requireContext(), getString(R.string.app_not_found), Toast.LENGTH_SHORT)
-                .show()
-            findNavController().popBackStack()
+            handleAppMissing()
         }
+    }
+
+    private fun handleAppMissing() {
+        if (!isAdded || handledMissing) return
+        handledMissing = true
+        LoadAppUtils.removePackage(packageNameArg)
+//        Toast.makeText(requireContext(), getString(R.string.app_not_found), Toast.LENGTH_SHORT)
+//            .show()
+        findNavController().popBackStack()
     }
 
     private fun formatTime(millis: Long): String {
@@ -159,15 +185,10 @@ class AppDetailFragment : Fragment() {
                 canShowOpenAds = true
                 startActivity(intent)
             } else {
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.app_not_found),
-                    Toast.LENGTH_SHORT
-                ).show()
+                handleAppMissing()
             }
         } catch (_: ActivityNotFoundException) {
-            Toast.makeText(requireContext(), getString(R.string.app_not_found), Toast.LENGTH_SHORT)
-                .show()
+            handleAppMissing()
         }
     }
 

@@ -12,9 +12,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.activity.addCallback
+import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.nhstudio.iapp.appmanager.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -114,35 +116,47 @@ class SearchFragment : Fragment() {
 
 
 
-            context?.let { ctx ->
-                editResult.doAfterTextChanged { editable ->
-                    val query = editable.toString().lowercase(Locale.ROOT)
-                    searchJob?.cancel()
-                    searchJob = viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-                        delay(200)
-                        val result = if (query.isNotEmpty()) {
-                            defaultSortList.filter { info ->
-                                LoadAppUtils.getAppName(info).lowercase(Locale.ROOT).contains(query)
-                            }
-                        } else {
-                            emptyList()
+            editResult.doAfterTextChanged { editable ->
+                val query = editable.toString().lowercase(Locale.ROOT)
+                searchJob?.cancel()
+                searchJob = viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                    delay(200)
+                    val result = if (query.isNotEmpty()) {
+                        defaultSortList.filter { info ->
+                            LoadAppUtils.getAppName(info).lowercase(Locale.ROOT).contains(query) ||
+                                info.packageName.lowercase(Locale.ROOT).contains(query)
                         }
-                        withContext(Dispatchers.Main) {
-                            if (_binding != null) {
-                                binding.rvSearch.adapter = SearchAdapter(ctx, result)
+                    } else {
+                        emptyList()
+                    }
+                    withContext(Dispatchers.Main) {
+                        if (_binding != null) {
+                            binding.rvSearch.adapter = SearchAdapter(result) { packageName ->
+                                openAppDetail(packageName)
                             }
                         }
                     }
                 }
-                val initial = if (defaultSortList.size > 5) {
-                    defaultSortList.shuffled().take(5)
-                } else {
-                    defaultSortList.toList()
-                }
-                binding.rvSearch.adapter = SearchAdapter(ctx, initial)
+            }
+            val initial = if (defaultSortList.size > 5) {
+                defaultSortList.shuffled().take(5)
+            } else {
+                defaultSortList.toList()
+            }
+            binding.rvSearch.adapter = SearchAdapter(initial) { packageName ->
+                openAppDetail(packageName)
             }
 
         }
+    }
+
+    private fun openAppDetail(packageName: String) {
+        if (findNavController().currentDestination?.id != R.id.searchFragment) return
+        binding.editResult.hideKeyboard()
+        findNavController().navigate(
+            R.id.action_searchFragment_to_appDetailFragment,
+            bundleOf(AppDetailFragment.ARG_PACKAGE_NAME to packageName)
+        )
     }
 
     override fun onStop() {

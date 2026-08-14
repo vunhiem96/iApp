@@ -59,7 +59,15 @@
         android:id="@+id/searchFragment"
         android:name="com.nhstudio.isettings.quicksettings.iapp.ui.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search">
+        <action
+            app:popExitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            android:id="@+id/action_searchFragment_to_appDetailFragment"
+            app:destination="@id/appDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.nhstudio.isettings.quicksettings.iapp.ui.SettingFragment"

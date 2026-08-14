@@ -56,6 +56,21 @@ class HomeFragment : Fragment() {
 
     }
 
+    private var pendingRefresh = false
+
+    private val appsChangedListener: () -> Unit = {
+        if (view != null) {
+            initRvApp()
+        } else {
+            pendingRefresh = true
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        LoadAppUtils.addAppsChangedListener(appsChangedListener)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -73,10 +88,17 @@ class HomeFragment : Fragment() {
 
     }
 
+    override fun onDestroy() {
+        LoadAppUtils.removeAppsChangedListener(appsChangedListener)
+        super.onDestroy()
+    }
+
     private fun getAllApp() {
         binding.isLight = !darkMode
+        val shouldRefresh = pendingRefresh
+        pendingRefresh = false
         // Keep existing list when returning from AppDetail to avoid jank during pop animation.
-        if (appListAdapter != null && (appListAdapter?.itemCount ?: 0) > 0) {
+        if (!shouldRefresh && appListAdapter != null && (appListAdapter?.itemCount ?: 0) > 0) {
             binding.loadingView.beGone()
             return
         }

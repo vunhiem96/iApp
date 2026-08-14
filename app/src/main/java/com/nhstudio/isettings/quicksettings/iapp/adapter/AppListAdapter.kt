@@ -142,13 +142,14 @@ class AppListAdapter(
                         if (intent != null) {
                             itemView.context.startActivity(intent)
                         } else {
-                            // App not found, handle the error (e.g., show a toast message)
                             Toast.makeText( itemView.context,
                                 itemView.context.getString(R.string.app_not_found), Toast.LENGTH_SHORT).show()
+                            LoadAppUtils.removePackage(appInfo.packageName)
                         }
                     } catch (e: ActivityNotFoundException) {
                         Toast.makeText( itemView.context,
                             itemView.context.getString(R.string.app_not_found), Toast.LENGTH_SHORT).show()
+                        LoadAppUtils.removePackage(appInfo.packageName)
                     }
                     true
                 }
