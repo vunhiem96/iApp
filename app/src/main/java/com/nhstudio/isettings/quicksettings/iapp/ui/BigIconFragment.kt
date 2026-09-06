@@ -31,6 +31,7 @@ import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
 import com.nhstudio.isettings.quicksettings.iapp.extension.haveInternet
 import com.nhstudio.isettings.quicksettings.iapp.extension.isTesting
 import com.nhstudio.isettings.quicksettings.iapp.extension.loadInterAd
+import com.nhstudio.isettings.quicksettings.iapp.extension.applySystemBarsInsets
 import com.nhstudio.isettings.quicksettings.iapp.extension.setFullScreen
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClick
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClickAlphaItemView
@@ -54,6 +55,7 @@ class BigIconFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.root.applySystemBarsInsets()
         setupColor()
         binding.tvGuide.text = Html.fromHtml(
             getString(R.string.guide_text),

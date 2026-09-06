@@ -27,6 +27,7 @@ import com.nhstudio.isettings.quicksettings.iapp.cmp.CMPController
 import com.nhstudio.isettings.quicksettings.iapp.cmp.CMPControllerNew
 import com.nhstudio.isettings.quicksettings.iapp.extension.beVisible
 import com.nhstudio.isettings.quicksettings.iapp.extension.config
+import com.nhstudio.isettings.quicksettings.iapp.extension.applySystemBarsInsets
 import com.nhstudio.isettings.quicksettings.iapp.extension.haveInternet
 import com.nhstudio.isettings.quicksettings.iapp.extension.isTesting
 import com.nhstudio.isettings.quicksettings.iapp.extension.loadInterSplash
@@ -72,6 +73,7 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.root.applySystemBarsInsets()
 
         activity?.let {
             Handler(Looper.getMainLooper()).postDelayed({

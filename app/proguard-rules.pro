@@ -19,10 +19,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep class com.example.iaplibrary.model.IapModel {
+-keep class com.nhstudio.isettings.quicksettings.iapp.iap.model.IapModel {
     <fields>;
 }
--keep class com.example.iaplibrary.model.IapIdModel {
+-keep class com.nhstudio.isettings.quicksettings.iapp.iap.model.IapIdModel {
     <fields>;
 }
 

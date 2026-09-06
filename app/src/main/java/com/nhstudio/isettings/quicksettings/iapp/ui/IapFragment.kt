@@ -11,15 +11,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.iaplibrary.IapConnectorV2
-import com.example.iaplibrary.SubscribeInterface
-import com.example.iaplibrary.model.IapModel
+import com.nhstudio.isettings.quicksettings.iapp.iap.IapConnectorV2
+import com.nhstudio.isettings.quicksettings.iapp.iap.SubscribeInterface
+import com.nhstudio.isettings.quicksettings.iapp.iap.model.IapModel
 import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.FragmentBigIconBinding
 import com.nhstudio.iapp.appmanager.databinding.FragmentRemoveAdBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.extension.PRODUCT_ID
 import com.nhstudio.isettings.quicksettings.iapp.extension.PRODUCT_ID_FAKE
+import com.nhstudio.isettings.quicksettings.iapp.extension.applySystemBarsInsets
 import com.nhstudio.isettings.quicksettings.iapp.extension.config
 import com.nhstudio.isettings.quicksettings.iapp.extension.haveInternet
 import com.nhstudio.isettings.quicksettings.iapp.extension.loadInterAd
@@ -49,6 +50,7 @@ class IapFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.root.applySystemBarsInsets()
         getIap()
         binding.btnBuy.setPreventDoubleClickAlphaItemView(1000) {
             buyIAP()

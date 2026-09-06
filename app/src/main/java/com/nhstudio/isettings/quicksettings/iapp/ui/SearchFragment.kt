@@ -43,6 +43,7 @@ import com.nhstudio.isettings.quicksettings.iapp.extension.haveInternet
 import com.nhstudio.isettings.quicksettings.iapp.extension.hideKeyboard
 import com.nhstudio.isettings.quicksettings.iapp.extension.isTesting
 import com.nhstudio.isettings.quicksettings.iapp.extension.loadInterAd
+import com.nhstudio.isettings.quicksettings.iapp.extension.applySystemBarsInsets
 import com.nhstudio.isettings.quicksettings.iapp.extension.setFullScreen
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClickAlphaItemView
 import com.nhstudio.isettings.quicksettings.iapp.extension.showKeyboard
@@ -68,6 +69,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.root.applySystemBarsInsets()
         binding.isLight = !darkMode
         setOnClick()
         loadBannerAdmob()
@@ -153,10 +155,25 @@ class SearchFragment : Fragment() {
     private fun openAppDetail(packageName: String) {
         if (findNavController().currentDestination?.id != R.id.searchFragment) return
         binding.editResult.hideKeyboard()
-        findNavController().navigate(
-            R.id.action_searchFragment_to_appDetailFragment,
-            bundleOf(AppDetailFragment.ARG_PACKAGE_NAME to packageName)
-        )
+        val go = {
+            if (findNavController().currentDestination?.id == R.id.searchFragment) {
+                findNavController().navigate(
+                    R.id.action_searchFragment_to_appDetailFragment,
+                    bundleOf(AppDetailFragment.ARG_PACKAGE_NAME to packageName)
+                )
+            }
+        }
+        if (loadInterAd && config!!.pu) {
+            (activity as MainActivity).showDialogAd()
+            Handler(Looper.getMainLooper()).postDelayed({
+                (activity as MainActivity).showInter()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    go()
+                }, 110)
+            }, 400)
+        } else {
+            go()
+        }
     }
 
     override fun onStop() {

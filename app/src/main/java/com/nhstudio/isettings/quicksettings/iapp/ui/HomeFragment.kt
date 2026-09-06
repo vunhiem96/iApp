@@ -26,6 +26,7 @@ import com.nhstudio.isettings.quicksettings.iapp.extension.config
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
 import com.nhstudio.isettings.quicksettings.iapp.extension.defaultSortList
 import com.nhstudio.isettings.quicksettings.iapp.extension.loadInterAd
+import com.nhstudio.isettings.quicksettings.iapp.extension.applySystemBarsInsets
 import com.nhstudio.isettings.quicksettings.iapp.extension.setFullScreen
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClick
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClickAlphaItemView
@@ -41,6 +42,7 @@ class HomeFragment : Fragment() {
     private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
     private var appListAdapter: AppListAdapter? = null
     private var listenersBound = false
+    private var appliedDarkMode: Boolean? = null
 
 //    private var _binding: FragmentHomeBinding? = null
 //    private val binding get() = _binding!!
@@ -73,6 +75,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.root.applySystemBarsInsets()
 
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             if (findNavController().currentDestination!!.id == R.id.homeFragment) {
@@ -138,7 +141,7 @@ class HomeFragment : Fragment() {
             }
             withContext(Dispatchers.Main) {
                 val adapter = appListAdapter ?: AppListAdapter(pm) { packageName ->
-                    if (findNavController().currentDestination?.id == R.id.homeFragment) {
+                    showInterThen {
                         findNavController().navigate(
                             R.id.action_homeFragment_to_appDetailFragment,
                             bundleOf(AppDetailFragment.ARG_PACKAGE_NAME to packageName)
@@ -184,8 +187,31 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun showInterThen(action: () -> Unit) {
+        if (loadInterAd && config!!.pu) {
+            (activity as MainActivity).showDialogAd()
+            Handler(Looper.getMainLooper()).postDelayed({
+                (activity as MainActivity).showInter()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    if (findNavController().currentDestination?.id == R.id.homeFragment) {
+                        action()
+                    }
+                }, 110)
+            }, 400)
+        } else {
+            if (findNavController().currentDestination?.id == R.id.homeFragment) {
+                action()
+            }
+        }
+    }
+
     private fun setOnClickListener() {
         binding.apply {
+            ivSetting.setPreventDoubleClick {
+                showInterThen {
+                    findNavController().navigate(R.id.action_homeFragment_to_settingFragment)
+                }
+            }
             rlApp.setPreventDoubleClick {
                 goToIntent(Settings.ACTION_MANAGE_ALL_APPLICATIONS_SETTINGS)
             }
@@ -273,6 +299,10 @@ class HomeFragment : Fragment() {
         super.onResume()
         activity?.setFullScreen()
         binding.isLight = !darkMode
+        if (appliedDarkMode != darkMode) {
+            appliedDarkMode = darkMode
+            appListAdapter?.notifyDataSetChanged()
+        }
     }
 
 

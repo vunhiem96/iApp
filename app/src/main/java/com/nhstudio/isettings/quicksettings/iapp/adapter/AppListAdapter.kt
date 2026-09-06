@@ -17,6 +17,7 @@ import com.nhstudio.iapp.appmanager.databinding.ItemLetterBinding
 import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
 import com.nhstudio.isettings.quicksettings.iapp.extension.applyColorFilter
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
+import com.nhstudio.isettings.quicksettings.iapp.extension.beVisible
 import com.nhstudio.isettings.quicksettings.iapp.extension.canShowOpenAds
 import com.nhstudio.isettings.quicksettings.iapp.extension.config
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
@@ -77,16 +78,6 @@ class AppListAdapter(
         private val packageManager: PackageManager,
         private val onItemClick: (String) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
-        init {
-            if(darkMode){
-                binding.apply {
-                    appNameTextView.setTextColor(Color.WHITE)
-                    ivNext.applyColorFilter("#545456".toColorInt())
-                    viewBot.setBackgroundColor("#3D3D41".toColorInt())
-                }
-            }
-        }
-
         fun bind(appInfo: ApplicationInfo, appItem: AppListItem.AppItem) {
             val packageName = appInfo.packageName
             binding.appIconImageView.tag = packageName
@@ -104,33 +95,22 @@ class AppListAdapter(
             binding.appNameTextView.text = appItem.label
             binding.isLight = !darkMode
             binding.apply {
-                if(darkMode){
-                    itemView.setBackgroundResource(R.drawable.bg_select_center_dark)
+                applyThemeColors()
+                val backgroundRes = when {
+                    appItem.isFirst && appItem.isLast ->
+                        if (darkMode) R.drawable.bg_select_bot_white_one_dark else R.drawable.bg_select_bot_white_one
+                    appItem.isFirst ->
+                        if (darkMode) R.drawable.bg_select_top_dark else R.drawable.bg_select_top_white
+                    appItem.isLast ->
+                        if (darkMode) R.drawable.bg_select_bot_dark else R.drawable.bg_select_bot_white
+                    else ->
+                        if (darkMode) R.drawable.bg_select_center_dark else R.drawable.bg_select_center_white
                 }
-                if (appItem.isFirst) {
-                    if(darkMode){
-                        itemView.setBackgroundResource(R.drawable.bg_select_top_dark)
-                    } else {
-                        itemView.setBackgroundResource(R.drawable.bg_select_top_white)
-                    }
-                }
+                itemView.setBackgroundResource(backgroundRes)
                 if (appItem.isLast) {
                     viewBot.beGone()
-                    if(darkMode){
-                        itemView.setBackgroundResource(R.drawable.bg_select_bot_dark)
-                    } else {
-                        itemView.setBackgroundResource(R.drawable.bg_select_bot_white)
-                    }
-
-                    // ... (Tùy chỉnh giao diện cho phần tử cuối cùng)
-                }
-                if (appItem.isFirst && appItem.isLast) {
-                    if(darkMode){
-                        itemView.setBackgroundResource(R.drawable.bg_select_bot_white_one_dark)
-                    } else {
-                        itemView.setBackgroundResource(R.drawable.bg_select_bot_white_one)
-                    }
-
+                } else {
+                    viewBot.beVisible()
                 }
                 root.setPreventDoubleClick {
                     canShowOpenAds = true
@@ -155,8 +135,18 @@ class AppListAdapter(
                 }
             }
 
-            // Hiển thị trạng thái select
-//            binding.root.isSelected = appItem.isSelected
+        }
+
+        private fun ItemAppBinding.applyThemeColors() {
+            if (darkMode) {
+                appNameTextView.setTextColor(Color.WHITE)
+                ivNext.applyColorFilter("#545456".toColorInt())
+                viewBot.setBackgroundColor("#3D3D41".toColorInt())
+            } else {
+                appNameTextView.setTextColor(Color.BLACK)
+                ivNext.colorFilter = null
+                viewBot.setBackgroundColor("#E2E2E3".toColorInt())
+            }
         }
 
         companion object {

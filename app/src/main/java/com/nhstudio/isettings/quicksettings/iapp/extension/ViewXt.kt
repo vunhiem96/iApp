@@ -19,8 +19,11 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.updatePadding
+import com.nhstudio.iapp.appmanager.R
 
 fun View.beInvisibleIf(beInvisible: Boolean) = if (beInvisible) beInvisible() else beVisible()
 
@@ -38,6 +41,55 @@ fun View.beVisible() {
 
 fun View.beGone() {
     visibility = View.GONE
+}
+
+/**
+ * Pads this view with system bar insets so content is not drawn under the
+ * status bar / navigation bar when [androidx.activity.enableEdgeToEdge] is on.
+ */
+fun View.applySystemBarsInsets(
+    applyLeft: Boolean = true,
+    applyTop: Boolean = true,
+    applyRight: Boolean = true,
+    applyBottom: Boolean = true
+) {
+    val tagId = R.id.tag_system_bars_insets_padding
+    if (getTag(tagId) != null) {
+        requestApplyInsetsWhenAttached()
+        return
+    }
+    val initialLeft = paddingLeft
+    val initialTop = paddingTop
+    val initialRight = paddingRight
+    val initialBottom = paddingBottom
+    setTag(tagId, true)
+
+    ViewCompat.setOnApplyWindowInsetsListener(this) { v, insets ->
+        val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+        v.updatePadding(
+            left = initialLeft + if (applyLeft) bars.left else 0,
+            top = initialTop + if (applyTop) bars.top else 0,
+            right = initialRight + if (applyRight) bars.right else 0,
+            bottom = initialBottom + if (applyBottom) bars.bottom else 0
+        )
+        insets
+    }
+    requestApplyInsetsWhenAttached()
+}
+
+private fun View.requestApplyInsetsWhenAttached() {
+    if (isAttachedToWindow) {
+        ViewCompat.requestApplyInsets(this)
+    } else {
+        addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
+            override fun onViewAttachedToWindow(v: View) {
+                v.removeOnAttachStateChangeListener(this)
+                ViewCompat.requestApplyInsets(v)
+            }
+
+            override fun onViewDetachedFromWindow(v: View) = Unit
+        })
+    }
 }
 
 fun ImageView.applyColorFilter(color: Int) = setColorFilter(color, PorterDuff.Mode.SRC_IN)

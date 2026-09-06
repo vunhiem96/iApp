@@ -40,6 +40,7 @@ import com.nhstudio.isettings.quicksettings.iapp.extension.canShowOpenAds
 import com.nhstudio.isettings.quicksettings.iapp.extension.checkInter
 import com.nhstudio.isettings.quicksettings.iapp.extension.config
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
+import com.nhstudio.isettings.quicksettings.iapp.extension.applySystemBarsInsets
 import com.nhstudio.isettings.quicksettings.iapp.extension.haveInternet
 import com.nhstudio.isettings.quicksettings.iapp.extension.isTesting
 import com.nhstudio.isettings.quicksettings.iapp.extension.loadInterAd
@@ -78,6 +79,7 @@ class RateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.root.applySystemBarsInsets()
         binding.isLight = !darkMode
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             requireActivity().finish()

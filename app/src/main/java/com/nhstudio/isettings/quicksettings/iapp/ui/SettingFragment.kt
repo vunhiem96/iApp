@@ -25,6 +25,7 @@ import com.nhstudio.isettings.quicksettings.iapp.extension.PhotorTool
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
 import com.nhstudio.isettings.quicksettings.iapp.extension.config
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
+import com.nhstudio.isettings.quicksettings.iapp.extension.applySystemBarsInsets
 import com.nhstudio.isettings.quicksettings.iapp.extension.loadInterAd
 import com.nhstudio.isettings.quicksettings.iapp.extension.setFullScreen
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClick
@@ -49,6 +50,7 @@ class SettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.root.applySystemBarsInsets()
         binding.isLight = !darkMode
         setUpFullScreen()
         darkMode()
@@ -301,6 +303,8 @@ fun Context.openDeveloperPage(developerId: String) {
 
             } else if (config.darkMode == 0) {
                 darkMode = true
+            } else {
+                darkMode = false
             }
             binding.isLight = !darkMode
         }

@@ -13,14 +13,14 @@
     <RelativeLayout
         android:background="@drawable/bg_select_center_white"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_38sdp">
+        android:layout_height="@dimen/_42sdp">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/appIconImageView"
-            android:layout_width="@dimen/_23sdp"
+            android:layout_width="@dimen/_24sdp"
             app:riv_corner_radius="@dimen/_5sdp"
             android:scaleType="fitXY"
-            android:layout_height="@dimen/_23sdp"
+            android:layout_height="@dimen/_24sdp"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_10sdp"
           />

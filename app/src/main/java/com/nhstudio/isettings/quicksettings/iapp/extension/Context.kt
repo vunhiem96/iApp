@@ -818,29 +818,37 @@ fun getListSetting(context: Context): ArrayList<SettingModel> {
     return arrayList
 }
 
+fun Activity.updateSystemBarAppearance(lightBackground: Boolean = !darkMode) {
+    kotlin.runCatching {
+        WindowCompat.getInsetsController(window, window.decorView).apply {
+            isAppearanceLightStatusBars = lightBackground
+            isAppearanceLightNavigationBars = lightBackground
+        }
+    }
+}
+
 fun Activity.setFullScreen() {
     checkInter = false
     if (config.setFullScreen) {
         kotlin.runCatching {
-            WindowCompat.getInsetsController(window!!, window.decorView).let {
-                it?.hide(WindowInsetsCompat.Type.navigationBars())
-                it?.hide(WindowInsetsCompat.Type.statusBars())
-                it?.systemBarsBehavior =
+            WindowCompat.getInsetsController(window, window.decorView).apply {
+                hide(WindowInsetsCompat.Type.navigationBars())
+                hide(WindowInsetsCompat.Type.statusBars())
+                systemBarsBehavior =
                     WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
             }
         }
-
     } else {
         kotlin.runCatching {
-            WindowInsetsControllerCompat(window, window.decorView).apply {
+            WindowCompat.getInsetsController(window, window.decorView).apply {
                 show(WindowInsetsCompat.Type.statusBars())
                 show(WindowInsetsCompat.Type.navigationBars())
                 systemBarsBehavior =
                     WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
             }
+            updateSystemBarAppearance()
         }
     }
-
 }
 
 fun Context.showDialogUser(

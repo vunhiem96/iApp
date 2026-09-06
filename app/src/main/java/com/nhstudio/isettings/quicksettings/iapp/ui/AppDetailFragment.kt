@@ -8,6 +8,8 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -15,6 +17,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.ads.AdListener
@@ -24,6 +27,7 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.FragmentAppDetailBinding
+import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
 import com.nhstudio.isettings.quicksettings.iapp.extension.canShowOpenAds
@@ -32,6 +36,8 @@ import com.nhstudio.isettings.quicksettings.iapp.extension.config
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
 import com.nhstudio.isettings.quicksettings.iapp.extension.haveInternet
 import com.nhstudio.isettings.quicksettings.iapp.extension.isTesting
+import com.nhstudio.isettings.quicksettings.iapp.extension.loadInterAd
+import com.nhstudio.isettings.quicksettings.iapp.extension.applySystemBarsInsets
 import com.nhstudio.isettings.quicksettings.iapp.extension.setFullScreen
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClick
 import com.nhstudio.isettings.quicksettings.iapp.extension.setPreventDoubleClickAlphaItemView
@@ -58,6 +64,7 @@ class AppDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.root.applySystemBarsInsets()
         binding.isLight = !darkMode
         packageNameArg = arguments?.getString(ARG_PACKAGE_NAME).orEmpty()
         if (packageNameArg.isBlank()) {
@@ -67,6 +74,9 @@ class AppDetailFragment : Fragment() {
         bindAppInfo()
         setOnClick()
         loadBannerAdmob()
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            popWithInter()
+        }
     }
 
     override fun onResume() {
@@ -161,10 +171,24 @@ class AppDetailFragment : Fragment() {
             .format(Date(millis))
     }
 
+    private fun popWithInter() {
+        if (loadInterAd && config!!.pu) {
+            (activity as MainActivity).showDialogAd()
+            Handler(Looper.getMainLooper()).postDelayed({
+                (activity as MainActivity).showInter()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    findNavController().popBackStack()
+                }, 110)
+            }, 400)
+        } else {
+            findNavController().popBackStack()
+        }
+    }
+
     private fun setOnClick() {
         binding.apply {
             rlTop.setPreventDoubleClickAlphaItemView {
-                findNavController().popBackStack()
+                popWithInter()
             }
             btnOpenApp.setPreventDoubleClickAlphaItemView {
                 openApp()

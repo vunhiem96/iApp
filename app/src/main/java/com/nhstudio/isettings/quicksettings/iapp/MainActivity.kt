@@ -7,9 +7,10 @@ import android.util.Log
 import android.view.Choreographer
 import android.view.ViewTreeObserver
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import com.example.iaplibrary.IapConnectorV2
+import com.nhstudio.isettings.quicksettings.iapp.iap.IapConnectorV2
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
@@ -36,6 +37,7 @@ import com.nhstudio.isettings.quicksettings.iapp.extension.priceStringFake
 import com.nhstudio.isettings.quicksettings.iapp.extension.setUpOpenAds
 import com.nhstudio.isettings.quicksettings.iapp.extension.showDialogAds
 import com.nhstudio.isettings.quicksettings.iapp.extension.showInterOk
+import com.nhstudio.isettings.quicksettings.iapp.extension.updateSystemBarAppearance
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -45,14 +47,9 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
+        enableEdgeToEdge()
         setContentView(binding.root)
         setUpNav()
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
         runWhenFirstFrameDrawn{
             setUpAds()
             getIAP()
@@ -257,8 +254,11 @@ class MainActivity : AppCompatActivity() {
 
         } else if (config.darkMode == 0) {
             darkMode = true
+        } else {
+            darkMode = false
         }
         binding.isLight = !darkMode
+        updateSystemBarAppearance()
     }
     fun resetIAP() {
         if (BuildConfig.DEBUG) {
