@@ -58,7 +58,7 @@
             <RelativeLayout
                 android:id="@+id/rlOverlay"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_38sdp"
+                android:layout_height="@dimen/_42sdp"
                 android:background="@drawable/button_selector_light_top">
 
                 <ImageView
@@ -105,7 +105,7 @@
             <RelativeLayout
                 android:id="@+id/rlAllFile"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_38sdp"
+                android:layout_height="@dimen/_42sdp"
                 android:background="@drawable/button_selector_light">
 
                 <ImageView
@@ -152,7 +152,7 @@
             <RelativeLayout
                 android:id="@+id/rlDefaultApp"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_38sdp"
+                android:layout_height="@dimen/_42sdp"
                 android:background="@drawable/button_selector_light">
 
                 <ImageView
@@ -199,7 +199,7 @@
             <RelativeLayout
                 android:id="@+id/rlNotification"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_38sdp"
+                android:layout_height="@dimen/_42sdp"
                 android:background="@drawable/button_selector_light">
 
                 <ImageView
@@ -246,7 +246,7 @@
             <RelativeLayout
                 android:id="@+id/rlHome"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_38sdp"
+                android:layout_height="@dimen/_42sdp"
                 android:background="@drawable/button_selector_light">
 
                 <ImageView
@@ -292,7 +292,7 @@
             <RelativeLayout
                 android:id="@+id/rlAlarm"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_38sdp"
+                android:layout_height="@dimen/_42sdp"
                 android:background="@drawable/button_selector_light">
 
                 <ImageView
@@ -338,7 +338,7 @@
             <RelativeLayout
                 android:id="@+id/rlModifySystem"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_38sdp"
+                android:layout_height="@dimen/_42sdp"
                 android:background="@drawable/button_selector_light_bottom">
 
                 <ImageView
@@ -384,7 +384,7 @@
             <RelativeLayout
                 android:id="@+id/rlUnknown"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_38sdp"
+                android:layout_height="@dimen/_42sdp"
                 android:background="@drawable/button_selector_light">
 
                 <ImageView
@@ -433,7 +433,7 @@
             <RelativeLayout
                 android:id="@+id/rlUsage"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_38sdp"
+                android:layout_height="@dimen/_42sdp"
                 android:background="@drawable/button_selector_light_bottom">
 
                 <ImageView
