@@ -1,7 +1,6 @@
 package com.nhstudio.isettings.quicksettings.iapp.ui
 
 import android.content.Intent
-import android.content.pm.ApplicationInfo
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -19,6 +18,7 @@ import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.FragmentHomeBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.adapter.AppListAdapter
+import com.nhstudio.isettings.quicksettings.iapp.extension.AppSort
 import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
 import com.nhstudio.isettings.quicksettings.iapp.extension.canShowOpenAds
@@ -43,6 +43,8 @@ class HomeFragment : Fragment() {
     private var appListAdapter: AppListAdapter? = null
     private var listenersBound = false
     private var appliedDarkMode: Boolean? = null
+    private var appliedSortMode: Int? = null
+    private var listGeneration = 0
 
 //    private var _binding: FragmentHomeBinding? = null
 //    private val binding get() = _binding!!
@@ -119,27 +121,45 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRvApp() {
+        val ctx = context ?: return
+        val sortMode = ctx.config.appSortMode
+        appliedSortMode = sortMode
+        val generation = ++listGeneration
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-            val pm = context?.packageManager ?: return@launch
-            val sorted = defaultSortList.sortedBy { item ->
-                if (checkSelect(item)) -1 else 1
-            }
-            val groupedApps = groupAppsAlphabetically(sorted)
+            val pm = ctx.packageManager
+            val sorted = AppSort.sort(ctx, defaultSortList, sortMode)
             val appListItems = mutableListOf<AppListAdapter.AppListItem>()
-            for ((letter, apps) in groupedApps) {
-                appListItems.add(AppListAdapter.AppListItem.LetterItem(letter))
-                apps.forEachIndexed { index, appInfo ->
+            if (AppSort.usesLetterGroups(sortMode)) {
+                val groupedApps = sorted.groupBy {
+                    LoadAppUtils.getAppName(it).firstOrNull()?.uppercaseChar() ?: '#'
+                }
+                for ((letter, apps) in groupedApps) {
+                    appListItems.add(AppListAdapter.AppListItem.LetterItem(letter))
+                    apps.forEachIndexed { index, appInfo ->
+                        appListItems.add(
+                            AppListAdapter.AppListItem.AppItem(
+                                appInfo = appInfo,
+                                label = LoadAppUtils.getAppName(appInfo),
+                                isFirst = index == 0,
+                                isLast = index == apps.lastIndex
+                            )
+                        )
+                    }
+                }
+            } else {
+                sorted.forEachIndexed { index, appInfo ->
                     appListItems.add(
                         AppListAdapter.AppListItem.AppItem(
                             appInfo = appInfo,
                             label = LoadAppUtils.getAppName(appInfo),
                             isFirst = index == 0,
-                            isLast = index == apps.size - 1
+                            isLast = index == sorted.lastIndex
                         )
                     )
                 }
             }
             withContext(Dispatchers.Main) {
+                if (generation != listGeneration) return@withContext
                 val adapter = appListAdapter ?: AppListAdapter(pm) { packageName ->
                     showInterThen {
                         findNavController().navigate(
@@ -160,19 +180,6 @@ class HomeFragment : Fragment() {
                 adapter.submitList(appListItems)
             }
         }
-    }
-
-    private fun groupAppsAlphabetically(
-        appList: List<ApplicationInfo>
-    ): Map<Char, List<ApplicationInfo>> {
-        return appList.groupBy {
-            LoadAppUtils.getAppName(it).firstOrNull()?.uppercaseChar() ?: '#'
-        }
-    }
-
-    private val listLockSelect: MutableList<String> = mutableListOf()
-    private fun checkSelect(packageInfo: ApplicationInfo): Boolean {
-        return listLockSelect.find { it == packageInfo.packageName } != null
     }
 
     private fun goToIntent(intent: String) {
@@ -302,6 +309,10 @@ class HomeFragment : Fragment() {
         if (appliedDarkMode != darkMode) {
             appliedDarkMode = darkMode
             appListAdapter?.notifyDataSetChanged()
+        }
+        val sortMode = context?.config?.appSortMode ?: AppSort.NAME_AZ
+        if (appliedSortMode != null && appliedSortMode != sortMode && appListAdapter != null) {
+            initRvApp()
         }
     }
 

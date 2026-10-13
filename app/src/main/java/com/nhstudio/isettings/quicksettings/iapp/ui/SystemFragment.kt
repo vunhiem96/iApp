@@ -27,6 +27,7 @@ import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.FragmentSystemBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.adapter.AppListAdapter
+import com.nhstudio.isettings.quicksettings.iapp.extension.AppSort
 import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
 import com.nhstudio.isettings.quicksettings.iapp.extension.canShowOpenAds
@@ -82,18 +83,35 @@ class SystemFragment : Fragment() {
         }
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val ctx = context ?: return@launch
-            defaultSortList = getAllSystemApps(ctx).toMutableList()
-            val groupedApps = groupAppsAlphabetically(defaultSortList)
+            val sortMode = ctx.config.appSortMode
+            val sorted = AppSort.sort(ctx, getAllSystemApps(ctx), sortMode)
+            defaultSortList = sorted.toMutableList()
             val appListItems = mutableListOf<AppListAdapter.AppListItem>()
-            for ((letter, apps) in groupedApps) {
-                appListItems.add(AppListAdapter.AppListItem.LetterItem(letter))
-                apps.forEachIndexed { index, appInfo ->
+            if (AppSort.usesLetterGroups(sortMode)) {
+                val groupedApps = sorted.groupBy {
+                    LoadAppUtils.getAppName(it).firstOrNull()?.uppercaseChar() ?: '#'
+                }
+                for ((letter, apps) in groupedApps) {
+                    appListItems.add(AppListAdapter.AppListItem.LetterItem(letter))
+                    apps.forEachIndexed { index, appInfo ->
+                        appListItems.add(
+                            AppListAdapter.AppListItem.AppItem(
+                                appInfo = appInfo,
+                                label = LoadAppUtils.getAppName(appInfo),
+                                isFirst = index == 0,
+                                isLast = index == apps.lastIndex
+                            )
+                        )
+                    }
+                }
+            } else {
+                sorted.forEachIndexed { index, appInfo ->
                     appListItems.add(
                         AppListAdapter.AppListItem.AppItem(
                             appInfo = appInfo,
                             label = LoadAppUtils.getAppName(appInfo),
                             isFirst = index == 0,
-                            isLast = index == apps.size - 1
+                            isLast = index == sorted.lastIndex
                         )
                     )
                 }
@@ -135,13 +153,6 @@ class SystemFragment : Fragment() {
         }
     }
 
-    fun groupAppsAlphabetically(
-        appList: List<ApplicationInfo>
-    ): Map<Char, List<ApplicationInfo>> {
-        return appList.groupBy {
-            LoadAppUtils.getAppName(it).firstOrNull()?.uppercaseChar() ?: '#'
-        }
-    }
     var defaultSortList: MutableList<ApplicationInfo> = mutableListOf()
 
     fun getAllSystemApps(context: Context): List<ApplicationInfo> {

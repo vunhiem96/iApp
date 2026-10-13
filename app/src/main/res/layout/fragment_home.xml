@@ -18,9 +18,9 @@
         tools:context=".ui.HomeFragment">
 
         <androidx.core.widget.NestedScrollView
-            android:overScrollMode="never"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:overScrollMode="never">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,7 +52,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:padding="@dimen/_2sdp"
-                        android:src="@drawable/ic_settings" />
+                        android:src="@drawable/ic_settings"
+                        app:tint="#B1B0B0" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -106,8 +107,6 @@
                 </RelativeLayout>
 
 
-
-
                 <LinearLayout
                     setViewBackgroundZone="@{isLight}"
                     android:layout_width="match_parent"
@@ -121,6 +120,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_42sdp"
                         android:background="@drawable/button_selector_light_top">
+
                         <ImageView
                             colorfilter="@{isLight}"
                             android:layout_width="@dimen/_5sdp"
@@ -147,6 +147,7 @@
                             android:layout_alignParentBottom="true"
                             android:layout_marginStart="@dimen/_45sdp"
                             android:background="#E2E2E3" />
+
                         <TextView
                             android:id="@+id/tvAirMode"
                             setTextColor="@{isLight}"
@@ -161,6 +162,7 @@
 
 
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:id="@+id/rlZoom"
                         android:layout_width="match_parent"
@@ -209,6 +211,7 @@
                             android:layout_marginStart="@dimen/_45sdp"
                             android:background="#E2E2E3" />
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:id="@+id/rlSystem"
                         android:layout_width="match_parent"
@@ -299,23 +302,27 @@
 
 
                 </LinearLayout>
+
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerView"
-                        android:overScrollMode="never"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never" />
+
                     <FrameLayout
                         android:id="@+id/loadingView"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_200sdp">
+
                         <ProgressBar
-                            android:indeterminateTint="@color/nuoc_bien"
-                            android:layout_gravity="center"
                             android:layout_width="@dimen/_38sdp"
-                            android:layout_height="@dimen/_38sdp"/>
+                            android:layout_height="@dimen/_38sdp"
+                            android:layout_gravity="center"
+                            android:indeterminateTint="@color/nuoc_bien" />
                     </FrameLayout>
 
 
@@ -330,7 +337,6 @@
 
 
         </androidx.core.widget.NestedScrollView>
-
 
 
     </RelativeLayout>

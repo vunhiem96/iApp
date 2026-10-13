@@ -31,6 +31,7 @@ import com.nhstudio.iapp.appmanager.databinding.FragmentRateBinding
 import com.nhstudio.iapp.appmanager.databinding.FragmentSearchBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.adapter.SearchAdapter
+import com.nhstudio.isettings.quicksettings.iapp.extension.AppSort
 import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
 import com.nhstudio.isettings.quicksettings.iapp.extension.canShowOpenAds
@@ -121,13 +122,15 @@ class SearchFragment : Fragment() {
             editResult.doAfterTextChanged { editable ->
                 val query = editable.toString().lowercase(Locale.ROOT)
                 searchJob?.cancel()
+                val ctx = context ?: return@doAfterTextChanged
                 searchJob = viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
                     delay(200)
                     val result = if (query.isNotEmpty()) {
-                        defaultSortList.filter { info ->
+                        val filtered = defaultSortList.filter { info ->
                             LoadAppUtils.getAppName(info).lowercase(Locale.ROOT).contains(query) ||
                                 info.packageName.lowercase(Locale.ROOT).contains(query)
                         }
+                        AppSort.sort(ctx, filtered)
                     } else {
                         emptyList()
                     }

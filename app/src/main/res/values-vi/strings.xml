@@ -66,6 +66,13 @@
     <string name="feed_back">Phản hồi</string>
     <string name="rm_ads">Xóa quảng cáo</string>
     <string name="set_full_screen">Đặt toàn màn hình</string>
+    <string name="sort_apps">Sắp xếp ứng dụng</string>
+    <string name="sort_name_az">Sắp xếp theo tên A-Z</string>
+    <string name="sort_name_za">Sắp xếp theo tên Z-A</string>
+    <string name="sort_install_time">Thời gian cài (mới nhất)</string>
+    <string name="sort_install_time_old">Thời gian cài (lâu nhất)</string>
+    <string name="sort_size_asc">Dung lượng tăng dần</string>
+    <string name="sort_size_desc">Dung lượng giảm dần</string>
     <string name="more_ios_app_from_us">Ứng dụng iOS khác</string>
     <string name="reset_upate">Khởi động lại ứng dụng để cập nhật</string>
     <string name="share_via">Chia sẻ qua</string>

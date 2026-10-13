@@ -45,7 +45,7 @@
             <RelativeLayout
                 android:id="@+id/rl_gomain"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_42sdp"
+               android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/button_selector_light_top"
                 android:clickable="true"
                 android:focusable="true">
@@ -96,7 +96,7 @@
             <RelativeLayout
                 android:id="@+id/rl_rate_pro"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_42sdp"
+               android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/button_selector_light"
                 android:clickable="true"
                 android:focusable="true">
@@ -147,7 +147,7 @@
             <RelativeLayout
                 android:id="@+id/rl_go_st"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_42sdp"
+               android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/button_selector_light_bottom"
                 android:clickable="true"
                 android:focusable="true">

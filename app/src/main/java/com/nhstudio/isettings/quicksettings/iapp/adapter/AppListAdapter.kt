@@ -51,7 +51,7 @@ class AppListAdapter(
 
             is AppViewHolder -> {
                 val item = getItem(position) as AppListItem.AppItem
-                holder.bind(item.appInfo, item)
+                holder.bind(item.appInfo, item, position)
             }
         }
     }
@@ -78,7 +78,7 @@ class AppListAdapter(
         private val packageManager: PackageManager,
         private val onItemClick: (String) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(appInfo: ApplicationInfo, appItem: AppListItem.AppItem) {
+        fun bind(appInfo: ApplicationInfo, appItem: AppListItem.AppItem, position: Int) {
             val packageName = appInfo.packageName
             binding.appIconImageView.tag = packageName
             val cachedIcon = LoadAppUtils.getCachedIcon(packageName)
@@ -93,6 +93,7 @@ class AppListAdapter(
                 }
             }
             binding.appNameTextView.text = appItem.label
+            updateTopMargin(position)
             binding.isLight = !darkMode
             binding.apply {
                 applyThemeColors()
@@ -135,6 +136,19 @@ class AppListAdapter(
                 }
             }
 
+        }
+
+        private fun updateTopMargin(position: Int) {
+            val topMargin = if (position == 0) {
+                itemView.resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._20sdp)
+            } else {
+                0
+            }
+            val params = itemView.layoutParams as? ViewGroup.MarginLayoutParams ?: return
+            if (params.topMargin != topMargin) {
+                params.topMargin = topMargin
+                itemView.layoutParams = params
+            }
         }
 
         private fun ItemAppBinding.applyThemeColors() {

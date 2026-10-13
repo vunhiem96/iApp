@@ -48,7 +48,7 @@ class AppBigAdapter(
             }
             is AppViewHolder -> {
                 val item = getItem(position) as AppListItem.AppItem
-                holder.bind(item.appInfo, item)
+                holder.bind(item.appInfo, item, position)
             }
         }
     }
@@ -94,7 +94,7 @@ class AppBigAdapter(
             }
         }
 
-        fun bind(appInfo: ApplicationInfo, appItem: AppListItem.AppItem) {
+        fun bind(appInfo: ApplicationInfo, appItem: AppListItem.AppItem, position: Int) {
             val packageName = appInfo.packageName
             binding.appIconImageView.tag = packageName
             val cachedIcon = LoadAppUtils.getCachedIcon(packageName)
@@ -110,6 +110,7 @@ class AppBigAdapter(
             }
 
             binding.appNameTextView.text = appItem.label
+            updateTopMargin(position)
             binding.isLight = !darkMode
 
             binding.apply {
@@ -145,6 +146,19 @@ class AppBigAdapter(
                     }
                     true
                 }
+            }
+        }
+
+        private fun updateTopMargin(position: Int) {
+            val topMargin = if (position == 0) {
+                itemView.resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._20sdp)
+            } else {
+                0
+            }
+            val params = itemView.layoutParams as? ViewGroup.MarginLayoutParams ?: return
+            if (params.topMargin != topMargin) {
+                params.topMargin = topMargin
+                itemView.layoutParams = params
             }
         }
 

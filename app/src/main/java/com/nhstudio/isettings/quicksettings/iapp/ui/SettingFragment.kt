@@ -21,6 +21,8 @@ import com.nhstudio.iapp.appmanager.databinding.FragmentSearchBinding
 import com.nhstudio.iapp.appmanager.databinding.FragmentSettingBinding
 import com.nhstudio.isettings.quicksettings.iapp.MainActivity
 import com.nhstudio.isettings.quicksettings.iapp.dialog.ConfirmationDialog
+import com.nhstudio.isettings.quicksettings.iapp.dialog.SortAppsDialog
+import com.nhstudio.isettings.quicksettings.iapp.extension.AppSort
 import com.nhstudio.isettings.quicksettings.iapp.extension.PhotorTool
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
 import com.nhstudio.isettings.quicksettings.iapp.extension.config
@@ -54,6 +56,7 @@ class SettingFragment : Fragment() {
         binding.isLight = !darkMode
         setUpFullScreen()
         darkMode()
+        setupAppSort()
         onClick()
         loadImage()
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
@@ -145,6 +148,19 @@ class SettingFragment : Fragment() {
                 }
             }
 
+        }
+    }
+
+    private fun setupAppSort() {
+        fun refreshLabel() {
+            val mode = context?.config?.appSortMode ?: AppSort.NAME_AZ
+            binding.tvSortValue.setText(AppSort.labelRes(mode))
+        }
+        refreshLabel()
+        binding.rlSortApps.setPreventDoubleClick(500) {
+            SortAppsDialog(requireContext()) {
+                refreshLabel()
+            }.show()
         }
     }
 

@@ -3,7 +3,6 @@ package com.nhstudio.isettings.quicksettings.iapp.shortcut
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ApplicationInfo
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -14,7 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.nhstudio.iapp.appmanager.R
 import com.nhstudio.iapp.appmanager.databinding.ActivityWidgetConfigBinding
 import com.nhstudio.isettings.quicksettings.iapp.adapter.AppBigAdapter
+import com.nhstudio.isettings.quicksettings.iapp.extension.AppSort
 import com.nhstudio.isettings.quicksettings.iapp.extension.LoadAppUtils
+import com.nhstudio.isettings.quicksettings.iapp.extension.config
 import com.nhstudio.isettings.quicksettings.iapp.extension.beGone
 import com.nhstudio.isettings.quicksettings.iapp.extension.darkMode
 import com.nhstudio.isettings.quicksettings.iapp.extension.defaultSortList
@@ -67,21 +68,35 @@ class WidgetConfigActivity : AppCompatActivity() {
     }
 
     private fun initRvApp() {
+        val sortMode = config.appSortMode
         lifecycleScope.launch(Dispatchers.IO) {
-            val sorted = defaultSortList.sortedBy { item ->
-                if (checkSelect(item)) -1 else 1
-            }
-            val groupedApps = groupAppsAlphabetically(sorted)
+            val sorted = AppSort.sort(this@WidgetConfigActivity, defaultSortList, sortMode)
             val appListItems = mutableListOf<AppBigAdapter.AppListItem>()
-            for ((letter, apps) in groupedApps) {
-                appListItems.add(AppBigAdapter.AppListItem.LetterItem(letter))
-                apps.forEachIndexed { index, appInfo ->
+            if (AppSort.usesLetterGroups(sortMode)) {
+                val groupedApps = sorted.groupBy {
+                    LoadAppUtils.getAppName(it).firstOrNull()?.uppercaseChar() ?: '#'
+                }
+                for ((letter, apps) in groupedApps) {
+                    appListItems.add(AppBigAdapter.AppListItem.LetterItem(letter))
+                    apps.forEachIndexed { index, appInfo ->
+                        appListItems.add(
+                            AppBigAdapter.AppListItem.AppItem(
+                                appInfo = appInfo,
+                                label = LoadAppUtils.getAppName(appInfo),
+                                isFirst = index == 0,
+                                isLast = index == apps.lastIndex
+                            )
+                        )
+                    }
+                }
+            } else {
+                sorted.forEachIndexed { index, appInfo ->
                     appListItems.add(
                         AppBigAdapter.AppListItem.AppItem(
                             appInfo = appInfo,
                             label = LoadAppUtils.getAppName(appInfo),
                             isFirst = index == 0,
-                            isLast = index == apps.size - 1
+                            isLast = index == sorted.lastIndex
                         )
                     )
                 }
@@ -100,19 +115,6 @@ class WidgetConfigActivity : AppCompatActivity() {
         }
     }
 
-
-    private fun groupAppsAlphabetically(
-        appList: List<ApplicationInfo>
-    ): Map<Char, List<ApplicationInfo>> {
-        return appList.groupBy {
-            LoadAppUtils.getAppName(it).firstOrNull()?.uppercaseChar() ?: '#'
-        }
-    }
-
-    private val listLockSelect: MutableList<String> = mutableListOf()
-    private fun checkSelect(packageInfo: ApplicationInfo): Boolean {
-        return listLockSelect.find { it == packageInfo.packageName } != null
-    }
 
     fun getAppName(context: Context, packageName: String): String? {
         return try {

@@ -107,6 +107,7 @@ object LoadAppUtils {
             }
         }.getOrNull() ?: return
         listApp.add(appInfo)
+        AppSort.invalidateInstallTimes()
         listApp.sortBy { getAppName(it).lowercase() }
         defaultSortList.clear()
         defaultSortList.addAll(listApp)

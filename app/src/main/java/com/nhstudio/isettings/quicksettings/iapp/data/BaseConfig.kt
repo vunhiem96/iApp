@@ -29,6 +29,10 @@ open class BaseConfig(val context: Context) {
         set(setFullScreen) = prefs.edit()
             .putBoolean("setFullScreen", setFullScreen).apply()
 
+    var appSortMode: Int
+        get() = prefs.getInt("appSortMode", 0)
+        set(appSortMode) = prefs.edit().putInt("appSortMode", appSortMode).apply()
+
     var nameUser: String
         get() = prefs.getString("nameUser", "")!!
         set(nameUser) = prefs.edit().putString("nameUser", nameUser).apply()
