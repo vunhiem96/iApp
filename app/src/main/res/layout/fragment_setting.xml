@@ -81,12 +81,13 @@
                         android:layout_height="@dimen/_15sdp"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
                         android:layout_marginTop="@dimen/_2sdp"
                         android:fontFamily="@font/font"
                         android:gravity="center"
                         android:text="Ad Sponsored"
                         android:textColor="@color/main_color"
-                        android:textSize="@dimen/_12sdp" />
+                        android:textSize="@dimen/_11sdp" />
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/card1"
@@ -382,7 +383,7 @@
                             android:maxLines="1"
                             android:text="@string/sort_name_az"
                             android:textColor="#8E8E93"
-                            android:textSize="@dimen/_12ssp" />
+                            android:textSize="@dimen/_11ssp" />
 
                         <TextView
                             android:id="@+id/tvSortApps"

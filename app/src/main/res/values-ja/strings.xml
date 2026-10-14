@@ -66,6 +66,13 @@
     <string name="feed_back">フィードバック</string>
     <string name="rm_ads">広告を削除する</string>
     <string name="set_full_screen">全画面を設定します</string>
+    <string name="sort_apps">並べ替え</string>
+    <string name="sort_name_az">名前順 A-Z</string>
+    <string name="sort_name_za">名前順 Z-A</string>
+    <string name="sort_install_time">インストール日時（新しい順）</string>
+    <string name="sort_install_time_old">インストール日時（古い順）</string>
+    <string name="sort_size_asc">サイズ昇順</string>
+    <string name="sort_size_desc">サイズ降順</string>
     <string name="more_ios_app_from_us">その他の iOS アプリ</string>
     <string name="reset_upate">アプリを再起動して更新します</string>
     <string name="share_via">経由で共有</string>

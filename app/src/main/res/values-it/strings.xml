@@ -66,6 +66,13 @@
     <string name="feed_back">Feedback</string>
     <string name="rm_ads">Rimuovi annunci</string>
     <string name="set_full_screen">Imposta schermo intero</string>
+    <string name="sort_apps">Ordina</string>
+    <string name="sort_name_az">Ordina per nome A-Z</string>
+    <string name="sort_name_za">Ordina per nome Z-A</string>
+    <string name="sort_install_time">Data di installazione (più recente)</string>
+    <string name="sort_install_time_old">Data di installazione (più vecchia)</string>
+    <string name="sort_size_asc">Dimensione crescente</string>
+    <string name="sort_size_desc">Dimensione decrescente</string>
     <string name="more_ios_app_from_us">Altre app iOS</string>
     <string name="reset_upate">Riavvia  app per aggiornare</string>
     <string name="share_via">Condividi tramite</string>

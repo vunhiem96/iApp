@@ -66,6 +66,13 @@
     <string name="feed_back">الملاحظات</string>
     <string name="rm_ads">إزالة الإعلانات</string>
     <string name="set_full_screen">تعيين ملء الشاشة</string>
+    <string name="sort_apps">ترتيب</string>
+    <string name="sort_name_az">ترتيب حسب الاسم A-Z</string>
+    <string name="sort_name_za">ترتيب حسب الاسم Z-A</string>
+    <string name="sort_install_time">وقت التثبيت (الأحدث)</string>
+    <string name="sort_install_time_old">وقت التثبيت (الأقدم)</string>
+    <string name="sort_size_asc">الحجم تصاعدياً</string>
+    <string name="sort_size_desc">الحجم تنازلياً</string>
     <string name="more_ios_app_from_us">المزيد من تطبيقات iOS</string>
     <string name="reset_upate">إعادة تشغيل التطبيق للتحديث</string>
     <string name="share_via">مشاركة عبر</string>

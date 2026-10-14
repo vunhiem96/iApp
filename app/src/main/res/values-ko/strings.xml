@@ -66,6 +66,13 @@
     <string name="feed_back">피드백</string>
     <string name="rm_ads">광고 제거</string>
     <string name="set_full_screen">전체 화면 설정</string>
+    <string name="sort_apps">정렬</string>
+    <string name="sort_name_az">이름순 A-Z</string>
+    <string name="sort_name_za">이름순 Z-A</string>
+    <string name="sort_install_time">설치 시간 (최신)</string>
+    <string name="sort_install_time_old">설치 시간 (오래된 순)</string>
+    <string name="sort_size_asc">크기 오름차순</string>
+    <string name="sort_size_desc">크기 내림차순</string>
     <string name="more_ios_app_from_us">더 많은 iOS 앱</string>
     <string name="reset_upate">업데이트하려면 앱을 다시 시작하세요.</string>
     <string name="share_via">공유 방법</string>

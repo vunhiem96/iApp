@@ -66,6 +66,13 @@
     <string name="feed_back">Umpan balik</string>
     <string name="rm_ads">Hapus iklan</string>
     <string name="set_full_screen">Tetapkan layar penuh</string>
+    <string name="sort_apps">Urutkan</string>
+    <string name="sort_name_az">Urutkan menurut nama A-Z</string>
+    <string name="sort_name_za">Urutkan menurut nama Z-A</string>
+    <string name="sort_install_time">Waktu pemasangan (terbaru)</string>
+    <string name="sort_install_time_old">Waktu pemasangan (terlama)</string>
+    <string name="sort_size_asc">Ukuran menaik</string>
+    <string name="sort_size_desc">Ukuran menurun</string>
     <string name="more_ios_app_from_us">Aplikasi iOS lainnya</string>
     <string name="reset_upate">Mulai ulang aplikasi untuk memperbarui</string>
     <string name="share_via">Bagikan melalui</string>

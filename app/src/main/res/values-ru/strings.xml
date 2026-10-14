@@ -66,6 +66,13 @@
     <string name="feed_back">Отзыв</string>
     <string name="rm_ads">Убрать рекламу</string>
     <string name="set_full_screen">Установить полноэкранный режим</string>
+    <string name="sort_apps">Сортировка</string>
+    <string name="sort_name_az">По имени А-Я</string>
+    <string name="sort_name_za">По имени Я-А</string>
+    <string name="sort_install_time">Время установки (новые)</string>
+    <string name="sort_install_time_old">Время установки (старые)</string>
+    <string name="sort_size_asc">Размер по возрастанию</string>
+    <string name="sort_size_desc">Размер по убыванию</string>
     <string name="more_ios_app_from_us">Еще приложение для iOS</string>
     <string name="reset_upate">Перезапустить приложение для обновления</string>
     <string name="share_via">Поделиться через</string>

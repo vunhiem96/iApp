@@ -66,6 +66,13 @@
     <string name="feed_back">คำติชม</string>
     <string name="rm_ads">ลบโฆษณา</string>
     <string name="set_full_screen">ตั้งค่าเต็มหน้าจอ</string>
+    <string name="sort_apps">จัดเรียง</string>
+    <string name="sort_name_az">เรียงตามชื่อ A-Z</string>
+    <string name="sort_name_za">เรียงตามชื่อ Z-A</string>
+    <string name="sort_install_time">เวลาติดตั้ง (ใหม่สุด)</string>
+    <string name="sort_install_time_old">เวลาติดตั้ง (เก่าสุด)</string>
+    <string name="sort_size_asc">ขนาดจากน้อยไปมาก</string>
+    <string name="sort_size_desc">ขนาดจากมากไปน้อย</string>
     <string name="more_ios_app_from_us">แอป iOS เพิ่มเติม</string>
     <string name="reset_upate">รีสตาร์ทแอพเพื่ออัปเดต</string>
     <string name="share_via">แชร์ผ่าน</string>

@@ -66,6 +66,13 @@
     <string name="feed_back">回饋</string>
     <string name="rm_ads">刪除廣告</string>
     <string name="set_full_screen">設定全螢幕</string>
+    <string name="sort_apps">排序</string>
+    <string name="sort_name_az">依名稱 A-Z</string>
+    <string name="sort_name_za">依名稱 Z-A</string>
+    <string name="sort_install_time">安裝時間（最新）</string>
+    <string name="sort_install_time_old">安裝時間（最早）</string>
+    <string name="sort_size_asc">大小遞增</string>
+    <string name="sort_size_desc">大小遞減</string>
     <string name="more_ios_app_from_us">更多 iOS 應用程式</string>
     <string name="reset_upate">重新啟動應用程式以更新</string>
     <string name="share_via">分享透過</string>

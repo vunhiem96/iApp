@@ -66,6 +66,13 @@
     <string name="feed_back"> प्रतिक्रिया</string>
     <string name="rm_ads"> विज्ञापनहरू हटाउनुहोस्</string>
     <string name="set_full_screen"> पूर्ण स्क्रिन सेट गर्नुहोस्</string>
+    <string name="sort_apps">क्रमबद्ध</string>
+    <string name="sort_name_az">नाम अनुसार A-Z</string>
+    <string name="sort_name_za">नाम अनुसार Z-A</string>
+    <string name="sort_install_time">स्थापना समय (नयाँ)</string>
+    <string name="sort_install_time_old">स्थापना समय (पुरानो)</string>
+    <string name="sort_size_asc">आकार बढ्दो</string>
+    <string name="sort_size_desc">आकार घट्दो</string>
     <string name="more_ios_app_from_us"> थप iOS एप</string>
     <string name="reset_upate"> अद्यावधिक गर्न अनुप्रयोग पुन: सुरु गर्नुहोस्</string>
     <string name="share_via"> मार्फत साझेदारी गर्नुहोस्</string>

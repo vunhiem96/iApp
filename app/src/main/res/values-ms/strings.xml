@@ -66,6 +66,13 @@
     <string name="feed_back">Maklum balas</string>
     <string name="rm_ads">Alih keluar iklan</string>
     <string name="set_full_screen">Tetapkan skrin penuh</string>
+    <string name="sort_apps">Isih</string>
+    <string name="sort_name_az">Isih mengikut nama A-Z</string>
+    <string name="sort_name_za">Isih mengikut nama Z-A</string>
+    <string name="sort_install_time">Masa pemasangan (terbaharu)</string>
+    <string name="sort_install_time_old">Masa pemasangan (terlama)</string>
+    <string name="sort_size_asc">Saiz menaik</string>
+    <string name="sort_size_desc">Saiz menurun</string>
     <string name="more_ios_app_from_us">Lagi apl iOS</string>
     <string name="reset_upate">Mulakan semula apl untuk mengemas kini</string>
     <string name="share_via">Kongsi melalui</string>

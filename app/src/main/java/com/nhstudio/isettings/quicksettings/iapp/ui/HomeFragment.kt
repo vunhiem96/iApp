@@ -171,13 +171,17 @@ class HomeFragment : Fragment() {
                     appListAdapter = created
                     binding.recyclerView.apply {
                         layoutManager = LinearLayoutManager(requireContext())
-                        setHasFixedSize(true)
                         itemAnimator = null
                         setItemViewCacheSize(20)
                         this.adapter = created
                     }
                 }
-                adapter.submitList(appListItems)
+                // wrap_content inside NestedScrollView: a fixed size keeps the old
+                // height after letter rows are removed, leaving a blank gap.
+                binding.recyclerView.setHasFixedSize(false)
+                adapter.submitList(appListItems) {
+                    binding.recyclerView.requestLayout()
+                }
             }
         }
     }

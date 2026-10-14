@@ -66,6 +66,13 @@
     <string name="feed_back">प्रतिक्रिया</string>
     <string name="rm_ads">विज्ञापन हटाएं</string>
     <string name="set_full_screen">पूर्ण स्क्रीन सेट करें</string>
+    <string name="sort_apps">क्रमबद्ध</string>
+    <string name="sort_name_az">नाम के अनुसार A-Z</string>
+    <string name="sort_name_za">नाम के अनुसार Z-A</string>
+    <string name="sort_install_time">इंस्टॉल समय (नवीनतम)</string>
+    <string name="sort_install_time_old">इंस्टॉल समय (सबसे पुराना)</string>
+    <string name="sort_size_asc">आकार आरोही</string>
+    <string name="sort_size_desc">आकार अवरोही</string>
     <string name="more_ios_app_from_us">अधिक आईओएस ऐप</string>
     <string name="reset_upate">अपडेट करने के लिए ऐप को पुनरारंभ करें</string>
     <string name="share_via">के माध्यम से साझा करें</string>

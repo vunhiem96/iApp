@@ -66,6 +66,13 @@
     <string name="feed_back">Feedback</string>
     <string name="rm_ads"> Aufer ads</string>
     <string name="set_full_screen"> pone plenum screen</string>
+    <string name="sort_apps">Ordina</string>
+    <string name="sort_name_az">Ordina secundum nomen A-Z</string>
+    <string name="sort_name_za">Ordina secundum nomen Z-A</string>
+    <string name="sort_install_time">Tempus installationis (recentissimum)</string>
+    <string name="sort_install_time_old">Tempus installationis (antiquissimum)</string>
+    <string name="sort_size_asc">Magnitudo ascendens</string>
+    <string name="sort_size_desc">Magnitudo descendens</string>
     <string name="more_ios_app_from_us"> More iOS app</string>
     <string name="reset_upate"> Restart app ut update</string>
     <string name="share_via"> per Share</string>

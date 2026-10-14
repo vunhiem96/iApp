@@ -66,6 +66,13 @@
     <string name="feed_back">Tilbakemelding</string>
     <string name="rm_ads">Fjern annonser</string>
     <string name="set_full_screen">Angi fullskjerm</string>
+    <string name="sort_apps">Sorter</string>
+    <string name="sort_name_az">Sorter etter navn A-Å</string>
+    <string name="sort_name_za">Sorter etter navn Å-A</string>
+    <string name="sort_install_time">Installasjonstid (nyeste)</string>
+    <string name="sort_install_time_old">Installasjonstid (eldste)</string>
+    <string name="sort_size_asc">Størrelse stigende</string>
+    <string name="sort_size_desc">Størrelse synkende</string>
     <string name="more_ios_app_from_us">Mer iOS-app</string>
     <string name="reset_upate">Start appen på nytt for å oppdatere</string>
     <string name="share_via">Del via</string>

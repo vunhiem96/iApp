@@ -66,6 +66,13 @@
     <string name="feed_back">Geri bildirim</string>
     <string name="rm_ads">Reklamları kaldır</string>
     <string name="set_full_screen">Tam ekran ayarla</string>
+    <string name="sort_apps">Sırala</string>
+    <string name="sort_name_az">Ada göre A-Z</string>
+    <string name="sort_name_za">Ada göre Z-A</string>
+    <string name="sort_install_time">Yükleme zamanı (en yeni)</string>
+    <string name="sort_install_time_old">Yükleme zamanı (en eski)</string>
+    <string name="sort_size_asc">Boyut artan</string>
+    <string name="sort_size_desc">Boyut azalan</string>
     <string name="more_ios_app_from_us">Daha fazla iOS uygulaması</string>
     <string name="reset_upate">Güncellemek için uygulamayı yeniden başlat</string>
     <string name="share_via">Şununla paylaş</string>

@@ -66,6 +66,13 @@
     <string name="feed_back">Σχόλια</string>
     <string name="rm_ads">Κατάργηση διαφημίσεων</string>
     <string name="set_full_screen">Ρύθμιση πλήρους οθόνης</string>
+    <string name="sort_apps">Ταξινόμηση</string>
+    <string name="sort_name_az">Ταξινόμηση κατά όνομα Α-Ω</string>
+    <string name="sort_name_za">Ταξινόμηση κατά όνομα Ω-Α</string>
+    <string name="sort_install_time">Χρόνος εγκατάστασης (νεότερα)</string>
+    <string name="sort_install_time_old">Χρόνος εγκατάστασης (παλαιότερα)</string>
+    <string name="sort_size_asc">Μέγεθος αύξουσα</string>
+    <string name="sort_size_desc">Μέγεθος φθίνουσα</string>
     <string name="more_ios_app_from_us">Περισσότερη εφαρμογή iOS</string>
     <string name="reset_upate">Επανεκκινήστε την εφαρμογή για ενημέρωση</string>
     <string name="share_via">Κοινοποίηση μέσω</string>
